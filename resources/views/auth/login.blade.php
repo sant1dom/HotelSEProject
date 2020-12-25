@@ -19,7 +19,7 @@
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required>
+                                <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required>
                                 <label for="password">Password</label>
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">

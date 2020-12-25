@@ -30,7 +30,7 @@
 
 
                             <div class="form-label-group">
-                                <input type="password" id="password" minlength="8" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required>
+                                <input type="password" name="password" id="password" minlength="8" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required>
                                 <label for="password">{{ __('Password') }}</label>
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -40,9 +40,9 @@
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="password-confirm" minlength="8" class="form-control @error('password') is-invalid @enderror" placeholder="Confirm Password" required>
+                                <input type="password" name="password_confirmation" id="password-confirm" minlength="8" class="form-control @error('password') is-invalid @enderror" placeholder="Confirm Password" required>
                                 <label for="password-confirm">{{ __('Confirm Password') }}</label>
-                                @error('password')
+                                @error('password-confirm')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

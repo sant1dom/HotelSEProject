@@ -42,8 +42,8 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
-            'email' => 'string',
-            'password' => 'string',
+            'email' => 'required|max:255|email',
+            'password' => 'required|string',
         ]);
     }
 }
