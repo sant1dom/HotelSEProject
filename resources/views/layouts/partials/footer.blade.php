@@ -3,28 +3,30 @@
         <div class="col-12">
             <div class="row row-2">
                 <div class="col-sm-3 text-md-center">
-                    <h5><b> Hotel Name</b></h5>
+                    <h5><b>Powered by:</b></h5>
+                    <img src="images/CrC.png" width="70" height="70" alt="">
+                    <p>Chech-in, Relax, Check-out&trade;</p>
                 </div>
                 <div class="col-sm-3 my-sm-0 mt-5">
                     <ul class="list-unstyled">
                         <li><b>Contacts</b></li>
-                        <li>Contact Type : Contact String</li>
-                        <li>Contact Type : Contact String</li>
-                        <li>Contact Type : Contact String</li>
+                        <li>Telefono : 0862 000000</li>
+                        <li>Fax : 0862 000000</li>
+                        <li>Email : info@hotel.com</li>
                     </ul>
                 </div>
                 <div class="col-sm-3 my-sm-0 mt-5">
                     <ul class="list-unstyled">
                         <li><b>Address</b></li>
-                        <li>Via miao miao,0 </li>
-                        <li>Chieti (CH), 66100</li>
+                        <li>Strada Statale 17</li>
+                        <li>L'Aquila (AQ), 67100</li>
                     </ul>
                 </div>
                 <div class="col-sm-3 my-sm-0 mt-5">
                     <ul class="list-unstyled">
                         <li><b>Social</b></li>
-                        <li>Facebook : paojfpaioef</li>
-                        <li>Instagram : pwefmwoifem</li>
+                        <li>Facebook : https://www.facebook.com/</li>
+                        <li>Instagram : https://www.instagram.com/</li>
                     </ul>
                 </div>
             </div>
