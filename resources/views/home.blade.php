@@ -4,7 +4,7 @@
     <section class="hero is-fullheight is-bold">
         <div class="hero-body">
             <div class="container has-text-right">
-                <h1 class="title has-text-white">Welcome to Hotel Name</h1>
+                <h1 class="title text-light font-weight-bold" style="font-size:8vw;">Welcome to <br/>Hotel Name</h1>
             </div>
         </div>
     </section>
@@ -33,8 +33,7 @@
                     <article class="tile is-child notification">
                         <p class="title">Camera Example 2</p>
                         <figure class="image">
-                            <img
-                                src="https://www.italianbark.com/wp-content/uploads/2018/01/hotel-room-design-trends-italianbark-interior-design-blog.jpg">
+                            <img src="https://www.italianbark.com/wp-content/uploads/2018/01/hotel-room-design-trends-italianbark-interior-design-blog.jpg" alt="hotel-view">
                         </figure>
                     </article>
                 </div>
