@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    @include('layouts.partials.head')
-</head>
-<body>
-@include('layouts.partials.nav')
-@include('layouts.partials.header')
+@extends('layouts.mainlayout')
+@section('content')
 <div class="container-fluid">
     <div class="row ">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto my-5">
@@ -32,7 +26,7 @@
         </div>
     </div>
 </div>
-@include('layouts.partials.footer-scripts')
+@endsection
 
 <style>
     .container-fluid {

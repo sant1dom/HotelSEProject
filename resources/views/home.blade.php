@@ -84,27 +84,22 @@
         background-position: center center;
         background-attachment: fixed;
     }
-
     .space {
         margin: 50px 0;
     }
-
     .separator {
         display: flex;
         align-items: center;
         text-align: center;
     }
-
     .separator::before, .separator::after {
         content: '';
         flex: 1;
         border-bottom: 1px solid #000;
     }
-
     .separator::before {
         margin-right: .25em;
     }
-
     .separator::after {
         margin-left: .25em;
     }
