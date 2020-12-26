@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'type',
+        'numroom',
+        'price',
+        'capacity'
+    ];
+
+    public function bookings(){
+        return $this->belongsToMany(Booking::class);
+    }
 }

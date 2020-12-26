@@ -17,6 +17,7 @@ class Admin extends Model
         'livello',
         'email',
         'password',
+        'create_time'
     ];
 
     /**
@@ -26,7 +27,11 @@ class Admin extends Model
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
+
+    public function hotel(){
+        return $this->belongsTo(Hotel::class);
+    }
 
 }
