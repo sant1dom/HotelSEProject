@@ -52,8 +52,7 @@
                 <div class="title is-parent">
                     <article class="tile is-child notification">
                         <figure class="image">
-                            <img
-                                src="https://www.italianbark.com/wp-content/uploads/2018/01/hotel-room-design-trends-italianbark-interior-design-blog.jpg">
+                            <img src="https://www.italianbark.com/wp-content/uploads/2018/01/hotel-room-design-trends-italianbark-interior-design-blog.jpg">
                         </figure>
                     </article>
                 </div>
@@ -63,8 +62,7 @@
                 <div class="title is-parent">
                     <article class="tile is-child notification">
                         <figure class="image">
-                            <img
-                                src="https://www.italianbark.com/wp-content/uploads/2018/01/hotel-room-design-trends-italianbark-interior-design-blog.jpg">
+                            <img src="https://www.italianbark.com/wp-content/uploads/2018/01/hotel-room-design-trends-italianbark-interior-design-blog.jpg">
                         </figure>
                     </article>
                 </div>

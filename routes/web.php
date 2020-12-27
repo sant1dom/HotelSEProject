@@ -25,3 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/contacts', function () {
     return view('contacts');
 });
+
+Route::get('/room', function () {
+    return view('room');
+});
