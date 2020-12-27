@@ -15,7 +15,7 @@
 
                 <div class="row" style="background-color:#ffcc00; border-radius: 6px; height:325px; width:350px;">
                     <article>
-                        <div class="content" style="padding-top: 25px; padding-left: 20px;">
+                        <div class="content py-4 px-4">
                             <!-- Content -->
 
                             <label for="dateofcheckin">Check-in</label>
@@ -99,8 +99,6 @@
 
     <div class="container-fluid">
         <div class="row">
-
-
         </div>
     </div>
 @endsection
