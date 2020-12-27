@@ -74,30 +74,3 @@
 
 @endsection
 
-<style>
-    section.hero.is-bold {
-        background-image: url("https://media-cdn.holidaycheck.com/w_1280,h_720,c_fill,q_80/ugc/images/e2f1eadb-1dfc-4ec3-9e44-4483aad249a4");
-        background-size: cover;
-        background-position: center center;
-        background-attachment: fixed;
-    }
-    .space {
-        margin: 50px 0;
-    }
-    .separator {
-        display: flex;
-        align-items: center;
-        text-align: center;
-    }
-    .separator::before, .separator::after {
-        content: '';
-        flex: 1;
-        border-bottom: 1px solid #000;
-    }
-    .separator::before {
-        margin-right: .25em;
-    }
-    .separator::after {
-        margin-left: .25em;
-    }
-</style>

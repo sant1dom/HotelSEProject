@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="">
+    <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="Aggiunte le tables mancanti dell'ER diagram (manca contacts, da decidere se metterlo). Aggiornate le factory e i modelli.">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/signinstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/utility.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/rooms/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/rooms/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/rooms/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/rooms/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/test.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/room.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/room.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contacts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contacts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/head.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/room.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/roomold.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.0">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/vendor/graham-campbell/result-type" />
@@ -142,17 +157,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/rooms" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Davide De Acetis\OneDrive\Desktop\Projects\HotelSEProject\resources\views\rooms" />
       <recent name="C:\Users\Davide De Acetis\OneDrive\Desktop\Projects\HotelSEProject\resources\views\layouts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Davide De Acetis\OneDrive\Desktop\Projects\HotelSEProject\resources\views\rooms" />
       <recent name="C:\Users\Davide De Acetis\OneDrive\Desktop\Projects\HotelSEProject\resources\views" />
+      <recent name="C:\Users\Davide De Acetis\OneDrive\Desktop\Projects\HotelSEProject\resources\css" />
     </key>
   </component>
   <component name="RunManager" selected="PHP Built-in Web Server.CrC">
@@ -182,7 +200,8 @@
       <workItem from="1608928784375" duration="292000" />
       <workItem from="1608929103360" duration="6379000" />
       <workItem from="1608935687614" duration="3797000" />
-      <workItem from="1609015622906" duration="1252000" />
+      <workItem from="1609015622906" duration="1437000" />
+      <workItem from="1609060403918" duration="14923000" />
     </task>
     <task id="LOCAL-00001" summary="Creata vista contacts.blade.php e modifica della lista dei contatti.&#10;Aggiunta del logo CrC nel footer.blade.php.&#10;Da valutare se tenere questa vista così com'è, aggiornarla o eliminarla; per ora rimane li a popolare il sito.">
       <created>1608983919653</created>
@@ -198,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608939558475</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Aggiunte le tables mancanti dell'ER diagram (manca contacts, da decidere se metterlo). Aggiornate le factory e i modelli.">
+      <created>1609017052146</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1609017052146</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +245,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Creata vista contacts.blade.php e modifica della lista dei contatti.&#10;Aggiunta del logo CrC nel footer.blade.php.&#10;Da valutare se tenere questa vista così com'è, aggiornarla o eliminarla; per ora rimane li a popolare il sito." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creata vista contacts.blade.php e modifica della lista dei contatti.&#10;Aggiunta del logo CrC nel footer.blade.php.&#10;Da valutare se tenere questa vista così com'è, aggiornarla o eliminarla; per ora rimane li a popolare il sito." />
+    <MESSAGE value="Aggiunte le tables mancanti dell'ER diagram (manca contacts, da decidere se metterlo). Aggiornate le factory e i modelli." />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunte le tables mancanti dell'ER diagram (manca contacts, da decidere se metterlo). Aggiornate le factory e i modelli." />
   </component>
 </project>
