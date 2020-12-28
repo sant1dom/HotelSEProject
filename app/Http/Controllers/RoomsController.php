@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Image;
 use App\Models\Room;
 
 class RoomsController extends Controller
@@ -10,13 +10,16 @@ class RoomsController extends Controller
     public function index()
     {
         $rooms = room::latest()->get();
+        $images = Room::find(1)->images;
 
-        return view('home', ['room' => $rooms]);
+        return view('rooms.index', ['room' => $rooms, 'images' => $images]);
     }
 
     //Mostra un SINGOLO SPECIFICO oggetto
-    public function show(Room $room)
+    public function show() //Room $room
     {
+        $room = room::findOrFail(1);
+
         return view('rooms.show', ['room' => $room]);
     }
 
@@ -29,10 +32,11 @@ class RoomsController extends Controller
     //inserisce l'oggetto nel DB
     public function store()
     {
-        $this->valideteRoom();
+        $this->validateRoom();
 
         $room = new Room(request(['type', 'numroom', 'price', 'capacity']));
         $room->save();
+
 
         return redirect(route('rooms.show', $room->id));
     }
@@ -58,13 +62,14 @@ class RoomsController extends Controller
 
     }
 
-    protected function valideteRoom()
+    protected function validateRoom()
     {
         return request()->validate([
             'type' => 'required',
             'numroom' => 'required',
             'price' => 'required',
-            'capacity' => 'required'
+            'capacity' => 'required',
+            'images' => 'exists:images,id'
         ]);
     }
 

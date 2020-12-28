@@ -2,33 +2,29 @@
 
 namespace Database\Factories;
 
-use App\Models\Room;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-class RoomFactory extends Factory
+class ImageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Room::class;
+    protected $model = Image::class;
 
     /**
      * Define the model's default state.
      *
      * @return array
+     * @throws \Exception
      */
     public function definition()
     {
         return [
-            'type'=> 'Stanza',
-            'numroom'=> 5,
-            'price'=> 10,
-            'capacity'=> 5,
-            'availability'=>true,
-            'hotel_id'=>1
+            'path'=> 'public\images\CrC.png',
+            'room_id'=>random_int(1, 5)
         ];
     }
 }

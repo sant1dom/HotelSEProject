@@ -26,7 +26,7 @@ class HotelFactory extends Factory
         return [
             'hotelname' => $this->faker->company,
             'address' => $this->faker->address,
-            'capacitiy' => $this->faker->randomNumber(3),
+            'capacity' => $this->faker->randomNumber(3),
             'stars' => $this->faker->randomNumber(1),
         ];
     }
