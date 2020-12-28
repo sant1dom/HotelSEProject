@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="Aggiunte le tables mancanti dell'ER diagram (manca contacts, da decidere se metterlo). Aggiornate le factory e i modelli.">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Image.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/ImageFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_12_28_101728_create_images_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/90681577-a23a-4474-97b4-9b156b7ec7c3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/90681577-a23a-4474-97b4-9b156b7ec7c3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/dynamicForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Guest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Guest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Room.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/HotelFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/HotelFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/RoomFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/RoomFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/room.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/head.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/rooms/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rooms/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/test.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/test.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +16,13 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -200,7 +198,7 @@
       <workItem from="1609015622906" duration="1437000" />
       <workItem from="1609060403918" duration="14923000" />
       <workItem from="1609150390539" duration="9405000" />
-      <workItem from="1609160899115" duration="5541000" />
+      <workItem from="1609160899115" duration="32690000" />
     </task>
     <task id="LOCAL-00001" summary="Creata vista contacts.blade.php e modifica della lista dei contatti.&#10;Aggiunta del logo CrC nel footer.blade.php.&#10;Da valutare se tenere questa vista così com'è, aggiornarla o eliminarla; per ora rimane li a popolare il sito.">
       <created>1608983919653</created>
@@ -230,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609111568668</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Continuata la vista room, ora viene passato una stanza creata nel database con id 1 e le associate immagini (per ora due immagini CrC.png). ho impostato il carosello delle immagini in modod che venga popolato da tutte le immagini associate ad una stanza.&#10;Per ora sono funzionanti solo le factory dello User, Hotel, Room e image(quest'ultima fa i capricci e funziona solo se chiamata con App\Models\Image).&#10;Ho fatto anche altre cose ma non me le ricordo più...">
+      <created>1609166896579</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1609166896579</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +258,7 @@
     <MESSAGE value="Creata vista contacts.blade.php e modifica della lista dei contatti.&#10;Aggiunta del logo CrC nel footer.blade.php.&#10;Da valutare se tenere questa vista così com'è, aggiornarla o eliminarla; per ora rimane li a popolare il sito." />
     <MESSAGE value="Aggiunte le tables mancanti dell'ER diagram (manca contacts, da decidere se metterlo). Aggiornate le factory e i modelli." />
     <MESSAGE value="Ricreate la vista room e il relativo controller, per ora funziona solo rooms/create per accedere alla vista che va finita ovviamente.&#10;Nel controllore sono stati inseriti i metodi base per la gestione dei dati ma vanno implementati con le rispettive viste.&#10;Ho creato una vista test.blade.php attualmente vuota, la uso per testare il codice senza smarmellare quello &quot;fatto bene&quot;.&#10;Ho inserito le sezioni css per la gestione del login dentro a signinstyle.css, così da far pulizia nei file delle viste." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ricreate la vista room e il relativo controller, per ora funziona solo rooms/create per accedere alla vista che va finita ovviamente.&#10;Nel controllore sono stati inseriti i metodi base per la gestione dei dati ma vanno implementati con le rispettive viste.&#10;Ho creato una vista test.blade.php attualmente vuota, la uso per testare il codice senza smarmellare quello &quot;fatto bene&quot;.&#10;Ho inserito le sezioni css per la gestione del login dentro a signinstyle.css, così da far pulizia nei file delle viste." />
+    <MESSAGE value="Continuata la vista room, ora viene passato una stanza creata nel database con id 1 e le associate immagini (per ora due immagini CrC.png). ho impostato il carosello delle immagini in modod che venga popolato da tutte le immagini associate ad una stanza.&#10;Per ora sono funzionanti solo le factory dello User, Hotel, Room e image(quest'ultima fa i capricci e funziona solo se chiamata con App\Models\Image).&#10;Ho fatto anche altre cose ma non me le ricordo più..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Continuata la vista room, ora viene passato una stanza creata nel database con id 1 e le associate immagini (per ora due immagini CrC.png). ho impostato il carosello delle immagini in modod che venga popolato da tutte le immagini associate ad una stanza.&#10;Per ora sono funzionanti solo le factory dello User, Hotel, Room e image(quest'ultima fa i capricci e funziona solo se chiamata con App\Models\Image).&#10;Ho fatto anche altre cose ma non me le ricordo più..." />
   </component>
 </project>
