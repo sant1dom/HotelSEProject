@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Hotel;
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,7 +25,8 @@ class ServiceFactory extends Factory
         return [
             'name' => $this->faker->name,
             'price' => $this->faker->numberBetween($min=20,$max=30),
-            'availability' => true
+            'availability' => true,
+            'hotel_id' => Hotel::first()
         ];
     }
 }

@@ -3,7 +3,7 @@
 use App\Http\Controllers\RoomsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ServicesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,12 +27,9 @@ Route::get('/contacts', function () {
     return view('contacts');
 });
 
-Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms.index');
-Route::post('/rooms', [RoomsController::class, 'store'])->name('rooms.store');
-Route::get('/rooms/create', [RoomsController::class, 'create'])->name('rooms.create');
-Route::get('/rooms/{room}', [RoomsController::class, 'show'])->name('rooms.show');
-Route::get('/rooms/{room}/edit', [RoomsController::class, 'edit'])->name('rooms.edit');
-Route::put('/rooms/{room}', [RoomsController::class, 'update'])->name('rooms.update');
+Route::resource('rooms', RoomsController::class);
+
+Route::resource('services', ServicesController::class);
 
 //se dovesse servire c'è una vista vuota per i test <3
 Route::get('/test', function () {

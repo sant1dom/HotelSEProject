@@ -11,3 +11,9 @@
 @include('layouts.partials.footer-scripts')
 </body>
 </html>
+
+<style>
+    body {
+    padding-top: 65px;
+    }
+</style>
