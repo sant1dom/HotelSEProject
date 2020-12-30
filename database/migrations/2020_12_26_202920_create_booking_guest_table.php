@@ -14,7 +14,7 @@ class CreateBookingGuestTable extends Migration
     public function up()
     {
         Schema::create('booking_guest', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('booking_id');
             $table->unsignedBigInteger('guest_id');
             $table->timestamps();

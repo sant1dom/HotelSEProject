@@ -24,7 +24,7 @@ class ImageFactory extends Factory
     {
         return [
             'path'=> 'public\images\CrC.png',
-            'room_id'=>random_int(1, 5)
+            'room_id'=>random_int(0, 5)
         ];
     }
 }

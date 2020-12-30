@@ -4,22 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Room;
+use Illuminate\Support\Facades\Auth;
 
 class RoomsController extends Controller
 {
+
+    /*if (auth()->user() && request()->is('guestCheckout')) {
+    return redirect()->route('checkout.index');
+    }*/
+
     public function index()
     {
         $rooms = room::latest()->get();
-        $images = Room::find(1)->images;
 
-        return view('rooms.index', ['room' => $rooms, 'images' => $images]);
+        return view('rooms.index', ['rooms' => $rooms]);
     }
 
     //Mostra un SINGOLO SPECIFICO oggetto
-    public function show() //Room $room
+    public function show(Room $room) //Room $room
     {
-        $room = room::findOrFail(1);
-
         return view('rooms.show', ['room' => $room]);
     }
 
@@ -37,23 +40,26 @@ class RoomsController extends Controller
         $room = new Room(request(['type', 'numroom', 'price', 'capacity']));
         $room->save();
 
-
         return redirect(route('rooms.show', $room->id));
     }
 
     //Mostra una vista per modificare un oggetto esistente
     public function edit(Room $room)
     {
-        //compact è un modo veloce per scrivere ['article' => $article]
+        //compact è un modo veloce per scrivere ['room' => $room]
         return view('rooms.edit', compact('room'));
     }
 
     //aggiorana nel database l'oggetto con la modifica
     public function update(Room $room)
     {
+        //da completare
+        if (auth()->admin() && request()->is('guestCheckout')) {
+
         $room->update();
 
         return redirect($room->path());
+        }
     }
 
     //elimina l'oggetto dal database
@@ -69,6 +75,8 @@ class RoomsController extends Controller
             'numroom' => 'required',
             'price' => 'required',
             'capacity' => 'required',
+            'availability'=> 'required',
+            'description'=> 'required',
             'images' => 'exists:images,id'
         ]);
     }

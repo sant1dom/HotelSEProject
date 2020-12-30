@@ -28,6 +28,7 @@ class RoomFactory extends Factory
             'price'=> 10,
             'capacity'=> 5,
             'availability'=>true,
+            'description'=>$this->faker->realText(200),
             'hotel_id'=>1
         ];
     }

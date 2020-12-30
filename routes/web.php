@@ -31,6 +31,10 @@ Route::resource('rooms', RoomsController::class);
 
 Route::resource('services', ServicesController::class);
 
+Route::get('/booking', function () {
+    return view('booking');
+});
+
 //se dovesse servire c'è una vista vuota per i test <3
 Route::get('/test', function () {
     return view('test');
