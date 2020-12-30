@@ -23,12 +23,12 @@
                                     <div class="row">
                                         <div class="col my-2">
                                             <label class="control-label " for="select">
-                                                N° of people
+                                                N° of adults
                                             </label>
                                         </div>
                                         <div class="col my-2">
                                             <label class="control-label" for="select">
-                                                N° of rooms
+                                                N° of children
                                             </label>
                                         </div>
                                     </div>
@@ -73,6 +73,36 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col my-2">
+                                        <label class="control-label " for="select">
+                                            N° of rooms
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <select class="select form-control" id="select" name="select">
+                                            <option value="1">
+                                                1
+                                            </option>
+                                            <option value="2">
+                                                2
+                                            </option>
+                                            <option value="3">
+                                                3
+                                            </option>
+                                            <option value="4">
+                                                4
+                                            </option>
+                                            <option value="5">
+                                                5
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase text-center"
                                         type="submit">
                                     SUBMIT
