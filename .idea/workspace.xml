@@ -4,8 +4,8 @@
     <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GuestsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GuestsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_26_200253_create_guests_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_26_200253_create_guests_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/guests/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/guests/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +191,7 @@
       <workItem from="1608935687614" duration="3797000" />
       <workItem from="1609015622906" duration="1252000" />
       <workItem from="1609271222447" duration="3648000" />
-      <workItem from="1609401853626" duration="4873000" />
+      <workItem from="1609401853626" duration="6434000" />
     </task>
     <task id="LOCAL-00001" summary="Creata vista contacts.blade.php e modifica della lista dei contatti.&#10;Aggiunta del logo CrC nel footer.blade.php.&#10;Da valutare se tenere questa vista così com'è, aggiornarla o eliminarla; per ora rimane li a popolare il sito.">
       <created>1608983919653</created>

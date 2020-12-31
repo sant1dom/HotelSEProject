@@ -18,9 +18,11 @@ class GuestsController extends Controller
     }
 
     //Mostra un SINGOLO SPECIFICO oggetto
-    public function show(Guest $guest) //Room $room
+    public function show(Guest $guest) //Guest $guest
     {
+        $guest = Guest::findOrFail(1);
 
+        return view('guests.show', ['guest' => $guest]);
     }
 
     //Mostra una vista per creare un nuovo oggetto

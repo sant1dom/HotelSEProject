@@ -20,7 +20,14 @@ class CreateGuestsTable extends Migration
             $table->timestamp('birthdate');
             $table->string('doctype');
             $table->string('numdoc');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
