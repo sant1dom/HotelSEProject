@@ -11,10 +11,9 @@ class GuestsController extends Controller
 
     public function index()
     {
-        $guests = Guest::latest()->paginate();
+        $guests = Guest::latest()->get();
 
-        return view('guests.index',compact('guests'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('guests.index',compact('guests'));
     }
 
     //Mostra un SINGOLO SPECIFICO oggetto

@@ -4,13 +4,13 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>I miei ospiti</h2>
+                <h2>My Guests</h2>
             </div>
         </div>
 
         <table class="table table-bordered">
             <tr>
-                <th> No</th>
+                <th>No</th>
                 <th>Name</th>
                 <th>Surname</th>
                 <th></th>
