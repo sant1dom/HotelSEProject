@@ -4,6 +4,7 @@ use App\Http\Controllers\RoomsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\GuestsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,8 @@ Route::get('/contacts', function () {
 Route::resource('rooms', RoomsController::class);
 
 Route::resource('services', ServicesController::class);
+
+Route::resource('guests', GuestsController::class);
 
 Route::get('/booking', function () {
     return view('booking');
