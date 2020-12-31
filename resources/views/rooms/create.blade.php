@@ -3,146 +3,137 @@
 @section('content')
     <div class="bootstrap-iso">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-3 my-2 mx-3">
-                    <h1 class="text-center">Search</h1>
-                    <div class="my-4 bg-warning rounded">
-                        <div class="card-body">
-                            <form method="post" action="/room">
+            <form method="POST" action="{{ route('rooms.store') }}">
+                @csrf
+                <div class="row">
+                    <!-- Inizio sezione informazioni -->
+                    <div class="col-sm-3 my-2 mx-5 h-75">
+                        <h1 class="text-center">Informations</h1>
+                        <div class="my-4 bg-warning rounded h-75">
+                            <div class="card-body">
+
                                 @csrf
                                 <div class="form-group">
-                                    <label for="startDate">Start Date: </label>
-                                    <input id="startDate" type="date"
-                                           class="form-control @error('date') is-invalid @enderror" name="email"
-                                           value="{{ old('date') }}"/>
-                                    <label for="endDate">End Date: </label>
-                                    <input id="endDate" type="date"
-                                           class="form-control @error('date') is-invalid @enderror" name="email"
-                                           value="{{ old('date') }}"/>
+
+                                    <label class="control-label" for="type">
+                                        Room Type:
+                                    </label>
+                                    <input class="form-control" id="type" name="type" type="text"/>
+
+                                    <label class="control-label my-1" for="capacity">
+                                        Max people:
+                                    </label>
+                                    <input class="form-control" id="capacity" name="capacity" type="text"/>
+
 
                                     <div class="row">
-                                        <div class="col my-2">
-                                            <label class="control-label " for="select">
-                                                N° of adults
+                                        <div class="col my-2 d-flex">
+                                            <label class="bottom_aligner my-1" for="price">
+                                                Price:
                                             </label>
                                         </div>
-                                        <div class="col my-2">
-                                            <label class="control-label" for="select">
-                                                N° of children
+                                        <div class="col my-2 d-flex">
+                                            <label class="bottom_aligner my-1" for="availability">
+                                                Available:
+                                            </label>
+                                        </div>
+                                        <div class="col my-2 d-flex justify-content-center">
+                                            <label class="bottom_aligner my-1" for="numroom">
+                                                Room number:
                                             </label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <select class="select form-control" id="select" name="select">
-                                                <option value="1">
-                                                    1
-                                                </option>
-                                                <option value="2">
-                                                    2
-                                                </option>
-                                                <option value="3">
-                                                    3
-                                                </option>
-                                                <option value="4">
-                                                    4
-                                                </option>
-                                                <option value="5">
-                                                    5
-                                                </option>
-                                            </select>
+                                            <input class="form-control" id="price" name="price" type="text"/>
+                                        </div>
+                                        <div class="col my-1 d-flex justify-content-center">
+                                            <input class="" id="availability" name="availability" type="checkbox"
+                                                   checked
+                                                   data-toggle="toggle" data-style="ios"
+                                                   data-on="Yes" data-off="No" data-onstyle="success"
+                                                   data-offstyle="danger">
                                         </div>
                                         <div class="col">
-                                            <select class="select form-control" id="select" name="select">
-                                                <option value="1">
-                                                    1
-                                                </option>
-                                                <option value="2">
-                                                    2
-                                                </option>
-                                                <option value="3">
-                                                    3
-                                                </option>
-                                                <option value="4">
-                                                    4
-                                                </option>
-                                                <option value="5">
-                                                    5
-                                                </option>
-                                            </select>
+                                            <input class="form-control" id="numroom" name="numroom" type="text"/>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col my-2">
-                                        <label class="control-label " for="select">
-                                            N° of rooms
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Inizio sezione  Immagini -->
+                    <div class="col-sm-4 my-2 mx-3">
+                        <div class="row d-flex justify-content-center">
+                            <h1 class="text-center">Gallery </h1>
+                            <i class="fa fa-plus imgAdd"></i>
+                        </div>
+                        <div class="row my-3 d-flex justify-content-center">
+                            <div class="container">
+                                <div class="row d-flex justify-content-center" id="imageContainer">
+                                        <div class="col-sm-6 imgUp ">
+                                            <div class="imagePreview"></div>
+                                            <label class="btn btn-primary">
+                                                Upload<input id="image" name="image" type="file" class="uploadFile img" value="Upload Photo"
+                                                             style="width: 0;height: 0;overflow: hidden;">
+                                            </label>
+                                            <i class="fa fa-times del"></i>
+                                        </div><!-- col-2 -->
+                                </div><!-- row -->
+                            </div><!-- container -->
+                        </div>
+                    </div>
+                    <div class="col-sm-3 my-2 mx-5 h-75">
+                        <h1 class="text-center">Description</h1>
+                        <div class="bg-warning rounded my-3 h-75">
+                            <div class="card-body">
+                                <div class=" bg-light rounded my-1">
+                                    <div class="card-body">
+                                        <label class="control-label" for="description">
+                                            Description of the room:
                                         </label>
+                                        <textarea class="form-control " id="description" name="description" rows="7"
+                                                  style="resize: none"></textarea>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <select class="select form-control" id="select" name="select">
-                                            <option value="1">
-                                                1
-                                            </option>
-                                            <option value="2">
-                                                2
-                                            </option>
-                                            <option value="3">
-                                                3
-                                            </option>
-                                            <option value="4">
-                                                4
-                                            </option>
-                                            <option value="5">
-                                                5
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <br>
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase text-center"
-                                        type="submit">
-                                    SUBMIT
-                                </button>
-                            </form>
+                            </div>
+                        </div>
+
+                        <div class="row d-flex justify-content-center">
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase text-center rounded"
+                                    type="submit">
+                                SUBMIT
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-8 my-2 mx-3">
-                    <h1 class="text-center">Gallery</h1>
-                    <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active ">
-                                <img class="d-block w-100" src="http://placehold.it/450x250/69D2E7/ffffff">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="http://placehold.it/450x250/69D2E7/ffffff">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="http://placehold.it/450x250/69D2E7/ffffff">
-                            </div>
+                <div class="row d-flex justify-content-center">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                           data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                           data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
+                    @endif
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+
+    <link href="{{ asset('css/imgUploaderStyle.css') }}" rel="stylesheet">
+    <script src="{{asset('js/dynamicImageUpload.js')}}"></script>
+
+    <style>
+        .toggle.ios, .toggle-on.ios, .toggle-off.ios {
+            border-radius: 20px;
+        }
+
+        .bottom_aligner {
+            display: flex;
+            align-items: flex-end;
+        }
+    </style>
 @endsection

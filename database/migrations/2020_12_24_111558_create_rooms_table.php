@@ -19,7 +19,7 @@ class CreateRoomsTable extends Migration
             $table->string('numroom');
             $table->float('price');
             $table->integer('capacity');
-            $table->boolean('availability');
+            $table->boolean('availability')->default(0);
             $table->text('description');
             $table->unsignedBigInteger('hotel_id');
             $table->timestamps();

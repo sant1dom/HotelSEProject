@@ -23,8 +23,8 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'path'=> 'public\images\CrC.png',
-            'room_id'=>random_int(0, 5)
+            'path'=>$this->faker->image('public/images/', 400, 300, null, false),
+            'room_id'=>random_int(1, 10)
         ];
     }
 }

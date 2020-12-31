@@ -89,16 +89,17 @@
                     <div class="row">
                         <h1 class="text-center">Our rooms</h1>
                     </div>
-                    @foreach ($rooms as $room)
+                    @forelse ($rooms as $room)
                         <div class="row">
                             <div class="bg-warning rounded my-2">
                                 <div class="card-body">
                                     <div class="row my-1">
                                         <div class="col-sm-4">
-                                            <img src="{{$room->images[0]->path}}" class='img-responsive' alt="">
+
+                                            <img src="/images/{{$room->images[0]->path}}" class='img-responsive' alt="">
                                         </div>
                                         <div class="col">
-                                            <div class="bg-light rounded" style="height: 100% ">
+                                            <div class="bg-light rounded" style="height: 100%">
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-sm-8">
@@ -126,11 +127,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @empty
+                                        <p>Nessun articolo trovato.</p>
                                 </div>
                             </div>
                         </div>
 
-                    @endforeach
+                    @endforelse
                 </div>
             </div>
         </div>

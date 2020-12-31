@@ -4,7 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Room;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
+
+use Symfony\Component\Console\Input\Input;
 
 class RoomsController extends Controller
 {
@@ -33,14 +40,16 @@ class RoomsController extends Controller
     }
 
     //inserisce l'oggetto nel DB
-    public function store()
+    public function store(Request $request)
     {
         $this->validateRoom();
 
-        $room = new Room(request(['type', 'numroom', 'price', 'capacity']));
+        $room = new Room(request(['type', 'numroom', 'price', 'capacity', 'description']));
+        $room->availability = strcmp ( \request('availability') , 'On');
+        $room->hotel_id=1;
         $room->save();
 
-        return redirect(route('rooms.show', $room->id));
+        return redirect($room->path());
     }
 
     //Mostra una vista per modificare un oggetto esistente
@@ -53,13 +62,9 @@ class RoomsController extends Controller
     //aggiorana nel database l'oggetto con la modifica
     public function update(Room $room)
     {
-        //da completare
-        if (auth()->admin() && request()->is('guestCheckout')) {
-
         $room->update();
 
         return redirect($room->path());
-        }
     }
 
     //elimina l'oggetto dal database
@@ -75,9 +80,15 @@ class RoomsController extends Controller
             'numroom' => 'required',
             'price' => 'required',
             'capacity' => 'required',
-            'availability'=> 'required',
+            'availability',
             'description'=> 'required',
-            'images' => 'exists:images,id'
+        ]);
+    }
+
+    protected function validateImage()
+    {
+        return request()->validate([
+            'path',
         ]);
     }
 

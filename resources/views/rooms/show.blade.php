@@ -91,11 +91,11 @@
                     <div class="row d-flex justify-content-center">
                         <h1 class="text-center">Gallery</h1>
                     </div>
-                    <div class="row my-3">
+                    <div class="row my-3 d-flex justify-content-center">
                         <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <?php $i = 0;?>
-                                @foreach ($room->images as $image):
+                                @foreach ($room->images as $image)
                                 <?php if ($i == 0) {
                                     $set_ = 'active';
                                 } else {
@@ -107,33 +107,33 @@
                                 @endforeach
                             </ol>
 
-                            <div class='carousel-inner' style=" width:100%; height: 23em; !important;">
-
-                                <a class="carousel-control-prev" href="#carouselIndicators" role="button"
-                                   data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselIndicators" role="button"
-                                   data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
+                            <div class='carousel-inner' style=" width:100%; height: 23em; !important;" >
 
                                 <?php $i = 0;?>
-                                @foreach ($room->images as $image):
+                                @foreach ($room->images as $image)
                                 <?php if ($i == 0) {
                                     $set_ = 'active';
                                 } else {
                                     $set_ = '';
                                 } ?>
-                                <div class='carousel-item  <?php echo $set_; ?>' >
-                                    <img src='{{$image->path}}' class='d-block img-responsive' alt="">
+                                <div class='carousel-item  <?php echo $set_; ?>'>
+                                    <img src="/images/{{$image->path}}" class='d-block img-responsive' alt="" style="margin: auto">
                                 </div>
                                 <?php $i++;?>
                                 @endforeach
 
                             </div>
+
+                            <a class="carousel-control-prev" href="#carouselIndicators" role="button"
+                               data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselIndicators" role="button"
+                               data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
                     </div>
                 </div>

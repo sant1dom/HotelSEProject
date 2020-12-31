@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="" />
+    <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/css/imgUploaderStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/dynamicImageUpload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/90681577-a23a-4474-97b4-9b156b7ec7c3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/90681577-a23a-4474-97b4-9b156b7ec7c3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_12_2020_20_11__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_12_2020_20_11__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_12_2020_20_23__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_12_2020_20_23__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_12_2020_20_43__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_12_2020_20_43__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_2020_19_44__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_2020_19_44__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/ImageFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ImageFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_24_111558_create_rooms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_24_111558_create_rooms_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/head.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/rooms/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rooms/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/rooms/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rooms/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/rooms/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rooms/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/test.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/test.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,10 +36,18 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.0">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/vendor/graham-campbell/result-type" />
@@ -139,7 +172,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/freshproject" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ProgettoSE_Test" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -167,8 +201,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="PHPUnit.phpunit.xml" />
       <item itemvalue="PHP Built-in Web Server.CrC" />
+      <item itemvalue="PHPUnit.phpunit.xml" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -186,7 +220,7 @@
       <workItem from="1608935687614" duration="3797000" />
       <workItem from="1609015622906" duration="1252000" />
       <workItem from="1609271222447" duration="3648000" />
-      <workItem from="1609401853626" duration="8189000" />
+      <workItem from="1609401853626" duration="6434000" />
     </task>
     <task id="LOCAL-00001" summary="Creata vista contacts.blade.php e modifica della lista dei contatti.&#10;Aggiunta del logo CrC nel footer.blade.php.&#10;Da valutare se tenere questa vista così com'è, aggiornarla o eliminarla; per ora rimane li a popolare il sito.">
       <created>1608983919653</created>

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @method path()
  * @method static latest()
  * @method static find(int $int)
  * @method static findOrFail(int $int)
@@ -25,6 +24,11 @@ class Room extends Model
         'description',
         'hotel_id'
     ];
+
+    public function path()
+    {
+        return route('rooms.show', $this);
+    }
 
     public function bookings(){
         return $this->belongsToMany(Booking::class);
