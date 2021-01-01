@@ -1,7 +1,11 @@
 // var maxImg = 0;
 $(".imgAdd").click(function () {
     //if (maxImg < 3) {
-    $("#imageContainer").prepend('<div class="col-sm-6 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+    $("#imageContainer").prepend('<div class="col-sm-6 imgUp">' +
+        '<div class="imagePreview"></div>' +
+        '<label class="btn btn-primary">Upload' +
+        '<input id="image" name="images[]" type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label>' +
+        '<i class="fa fa-times del"></i></div>');
     // maxImg++;
     // }
 });

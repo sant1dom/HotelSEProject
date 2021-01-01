@@ -91,12 +91,11 @@
                     </div>
                     @forelse ($rooms as $room)
                         <div class="row">
-                            <div class="bg-warning rounded my-2">
+                            <div class="bg-warning rounded my-2 ">
                                 <div class="card-body">
                                     <div class="row my-1">
                                         <div class="col-sm-4">
-
-                                            <img src="/images/{{$room->images[0]->path}}" class='img-responsive' alt="">
+                                            <img src="/uploads/{{$room->images[0]->path}}" class='img-responsive' alt="">
                                         </div>
                                         <div class="col">
                                             <div class="bg-light rounded" style="height: 100%">
@@ -127,12 +126,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @empty
-                                        <p>Nessun articolo trovato.</p>
                                 </div>
                             </div>
                         </div>
-
+                    @empty
+                        <p>No rooms in this page.</p>
+                        <br>
                     @endforelse
                 </div>
             </div>

@@ -1,9 +1,9 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-    <div class="bootstrap-iso">
+    <div class="bootstrap-iso" xmlns="http://www.w3.org/1999/html">
         <div class="container-fluid">
-            <form method="POST" action="{{ route('rooms.store') }}">
+            <form method="POST" action="{{ route('rooms.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <!-- Inizio sezione informazioni -->
@@ -11,20 +11,24 @@
                         <h1 class="text-center">Informations</h1>
                         <div class="my-4 bg-warning rounded h-75">
                             <div class="card-body">
-
                                 @csrf
+
                                 <div class="form-group">
 
                                     <label class="control-label" for="type">
                                         Room Type:
                                     </label>
-                                    <input class="form-control" id="type" name="type" type="text"/>
+
+                                    <input class="form-control @error('type') is-invalid @enderror" id="type"
+                                           name="type" type="text" placeholder="Ex.: Luxury"/>
+
 
                                     <label class="control-label my-1" for="capacity">
                                         Max people:
                                     </label>
-                                    <input class="form-control" id="capacity" name="capacity" type="text"/>
-
+                                    <input class="form-control @error('capacity') is-invalid @enderror" id="capacity"
+                                           name="capacity" type="text"
+                                           placeholder="Ex.: 4"/>
 
                                     <div class="row">
                                         <div class="col my-2 d-flex">
@@ -45,8 +49,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <input class="form-control" id="price" name="price" type="text"/>
+                                            <input class="form-control @error('price') is-invalid @enderror" id="price"
+                                                   name="price" type="text"
+                                                   placeholder="Ex.: 100"/>
                                         </div>
+
+
                                         <div class="col my-1 d-flex justify-content-center">
                                             <input class="" id="availability" name="availability" type="checkbox"
                                                    checked
@@ -55,13 +63,26 @@
                                                    data-offstyle="danger">
                                         </div>
                                         <div class="col">
-                                            <input class="form-control" id="numroom" name="numroom" type="text"/>
+                                            <input class="form-control @error('numroom') is-invalid @enderror"
+                                                   id="numroom" name="numroom" type="text"
+                                                   placeholder="Ex.: 408"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="row mx-1 d-flex justify-content-center">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
                     </div>
+
+
                     <!-- Inizio sezione  Immagini -->
                     <div class="col-sm-4 my-2 mx-3">
                         <div class="row d-flex justify-content-center">
@@ -71,18 +92,24 @@
                         <div class="row my-3 d-flex justify-content-center">
                             <div class="container">
                                 <div class="row d-flex justify-content-center" id="imageContainer">
-                                        <div class="col-sm-6 imgUp ">
-                                            <div class="imagePreview"></div>
-                                            <label class="btn btn-primary">
-                                                Upload<input id="image" name="image" type="file" class="uploadFile img" value="Upload Photo"
-                                                             style="width: 0;height: 0;overflow: hidden;">
-                                            </label>
-                                            <i class="fa fa-times del"></i>
-                                        </div><!-- col-2 -->
+                                    <div class="col-sm-6 imgUp ">
+                                        <div class="imagePreview"></div>
+                                        <label class="btn btn-primary">
+                                            Upload<input id="image" name="images[]" type="file"
+                                                         class="uploadFile @error('images') is-invalid @enderror img"
+                                                         value="Upload Image"
+                                                         accept="image/*"
+                                                         style="width: 0;height: 0;overflow: hidden;">
+                                        </label>
+                                        <i class="fa fa-times del"></i>
+                                    </div><!-- col-2 -->
                                 </div><!-- row -->
                             </div><!-- container -->
                         </div>
                     </div>
+                    <!--fine sezione immagini-->
+
+
                     <div class="col-sm-3 my-2 mx-5 h-75">
                         <h1 class="text-center">Description</h1>
                         <div class="bg-warning rounded my-3 h-75">
@@ -92,8 +119,10 @@
                                         <label class="control-label" for="description">
                                             Description of the room:
                                         </label>
-                                        <textarea class="form-control " id="description" name="description" rows="7"
-                                                  style="resize: none"></textarea>
+                                        <textarea class="form-control @error('description') is-invalid @enderror"
+                                                  id="description" name="description" rows="7"
+                                                  style="resize: none"
+                                                  placeholder="Put a description of the room here..."></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -107,24 +136,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row d-flex justify-content-center">
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                </div>
             </form>
         </div>
     </div>
 
     <link href="{{ asset('css/imgUploaderStyle.css') }}" rel="stylesheet">
     <script src="{{asset('js/dynamicImageUpload.js')}}"></script>
+
 
     <style>
         .toggle.ios, .toggle-on.ios, .toggle-off.ios {
@@ -136,4 +154,12 @@
             align-items: flex-end;
         }
     </style>
+
+    <script>
+        function bootstrapAlert() {
+            $.bootstrapGrowl("messaggio")
+        }
+    </script>
+
+
 @endsection

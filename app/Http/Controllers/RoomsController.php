@@ -5,13 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Room;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Session;
 
-use Symfony\Component\Console\Input\Input;
 
 class RoomsController extends Controller
 {
@@ -42,25 +37,57 @@ class RoomsController extends Controller
     //inserisce l'oggetto nel DB
     public function store(Request $request)
     {
+        /*        $this->validateRoom();
+
+                $room = new Room(request(['type', 'numroom', 'price', 'capacity', 'description']));
+                $room->availability = strcmp(\request('availability'), 'On');
+                $room->hotel_id = 1;
+                $room->save();
+
+
+                foreach (request('images') as $imageName) {
+                    $image = new Image();
+                    $image->path = $imageName;
+                    $image->room_id = $room->id;
+                    $image->save();
+                }
+                return redirect($room->path());*/
+
         $this->validateRoom();
 
         $room = new Room(request(['type', 'numroom', 'price', 'capacity', 'description']));
-        $room->availability = strcmp ( \request('availability') , 'On');
-        $room->hotel_id=1;
+        $room->availability = strcmp(\request('availability'), 'On');
+        $room->hotel_id = 1;
         $room->save();
+
+
+        if ($request->hasfile('images')) {
+            foreach ($request->file('images') as $file) {
+                $name = time() . rand(1, 100) . '.' . $file->extension();
+                $file->move(public_path('uploads'), $name);
+
+                $image = new Image();
+                $image->path = $name;
+                $image->room_id = $room->id;
+                $image->save();
+            }
+        }
+
 
         return redirect($room->path());
     }
 
     //Mostra una vista per modificare un oggetto esistente
-    public function edit(Room $room)
+    public
+    function edit(Room $room)
     {
         //compact è un modo veloce per scrivere ['room' => $room]
         return view('rooms.edit', compact('room'));
     }
 
     //aggiorana nel database l'oggetto con la modifica
-    public function update(Room $room)
+    public
+    function update(Room $room)
     {
         $room->update();
 
@@ -68,12 +95,14 @@ class RoomsController extends Controller
     }
 
     //elimina l'oggetto dal database
-    public function destroy(Room $room)
+    public
+    function destroy(Room $room)
     {
-
+        Storage::delete($room->images());
     }
 
-    protected function validateRoom()
+    protected
+    function validateRoom()
     {
         return request()->validate([
             'type' => 'required',
@@ -81,15 +110,9 @@ class RoomsController extends Controller
             'price' => 'required',
             'capacity' => 'required',
             'availability',
-            'description'=> 'required',
+            'description' => 'required',
+            'images' => 'required',
+            'images.*' => 'image'
         ]);
     }
-
-    protected function validateImage()
-    {
-        return request()->validate([
-            'path',
-        ]);
-    }
-
 }

@@ -117,7 +117,7 @@
                                     $set_ = '';
                                 } ?>
                                 <div class='carousel-item  <?php echo $set_; ?>'>
-                                    <img src="/images/{{$image->path}}" class='d-block img-responsive' alt="" style="margin: auto">
+                                    <img src="/uploads/{{$image->path}}" class='d-block img-responsive' alt="" style="margin: auto">
                                 </div>
                                 <?php $i++;?>
                                 @endforeach

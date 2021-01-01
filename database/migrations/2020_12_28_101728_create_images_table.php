@@ -24,6 +24,8 @@ class CreateImagesTable extends Migration
                 ->on('rooms')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
+
         });
     }
 
