@@ -27,9 +27,9 @@
                 <th width="280px">Action</th>
             </tr>
 
-            @foreach ($services as $service)
+            @foreach ($services as $i => $service)
 
-                <tr>
+                <tr style="background-color: {{ $i % 2 == 0 ? '#d7f5f3': '#FFFFFF' }};">
                     <td>{{ $service->name }}</td>
                     <td>{{ $service->price }}</td>
                     @if($service->availability == 1)
@@ -37,7 +37,7 @@
                     @else
                         <td>{{__('Not available')}}</td>
                     @endif
-                        <td>
+                    <td>
 
                         <form action="{{ route('services.destroy',$service->id) }}" method="POST">
                             <a class="btn btn-info" href="{{ route('services.show',$service->id) }}">Show</a>
@@ -55,3 +55,4 @@
         </div>
     </div>
 @endsection
+
