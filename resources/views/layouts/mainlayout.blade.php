@@ -14,6 +14,6 @@
 
 <style>
     body {
-    padding-top: 65px;
+    padding-top: 70px;
     }
 </style>

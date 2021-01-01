@@ -17,8 +17,8 @@ class CreateServicesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->float('price');
-            $table->boolean('availability');
-            $table->unsignedBigInteger('hotel_id');
+            $table->boolean('availability')->default(0);
+            $table->unsignedBigInteger('hotel_id')->default(1);
             $table->timestamps();
 
             $table->foreign('hotel_id')

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Service;
-use http\Env\Request;
+use Illuminate\Http\Request;
+use function PHPUnit\Framework\isEmpty;
 
 class ServicesController extends Controller
 {
@@ -17,11 +18,9 @@ class ServicesController extends Controller
     }
 
     //Mostra un SINGOLO SPECIFICO oggetto
-    public function show() //Room $room
+    public function show(Service $service)
     {
-        $service = Service::findOrFail(1);
-
-        return view('services.show', ['service' => $service]);
+        return view('services.show', compact('service'));
     }
 
     //Mostra una vista per creare un nuovo oggetto
@@ -33,7 +32,7 @@ class ServicesController extends Controller
     //inserisce l'oggetto nel DB
     public function store(Request $request)
     {
-        $this->validateService();
+        $this->validateService($request);
 
         Service::create($request->all());
         return redirect()->route('services.index')
@@ -50,7 +49,7 @@ class ServicesController extends Controller
     //aggiorana nel database l'oggetto con la modifica
     public function update(Service $service, Request $request)
     {
-        $this->validateService();
+        $this->validateService($request);
         $service->update($request->all());
 
         return redirect($service->path());
@@ -59,14 +58,22 @@ class ServicesController extends Controller
     //elimina l'oggetto dal database
     public function destroy(Service $service)
     {
+        if ($service->bookings()->count() == 0){
+            $service->delete();
+            return redirect()->route('services.index')
+                ->with('success','Service deleted successfully');
+        }
+        else{
+            return redirect()->route('services.index')
+                ->with('error','Service cannot be deleted, someone used or booked the service');
+        }
     }
 
-    protected function validateService()
+    protected function validateService(Request $request)
     {
-        return request()->validate([
-            'name' => 'required',
-            'price' => 'required',
-            'availability' => 'required'
+        $this->validate($request, [
+            'name' => 'required|max:255|string',
+            'price' => 'required|numeric',
         ]);
     }
 
