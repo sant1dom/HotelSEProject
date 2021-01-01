@@ -21,7 +21,6 @@
 
         <table class="table table-bordered mx-2">
             <tr>
-                <th>No</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Availability</th>
@@ -31,7 +30,6 @@
             @foreach ($services as $service)
 
                 <tr>
-                    <td>{{ ++$i }}</td>
                     <td>{{ $service->name }}</td>
                     <td>{{ $service->price }}</td>
                     @if($service->availability == 1)
@@ -52,5 +50,8 @@
                 </tr>
             @endforeach
         </table>
+        <div class="d-flex justify-content-center">
+            {!! $services->links() !!}
+        </div>
     </div>
 @endsection

@@ -11,10 +11,9 @@ class ServicesController extends Controller
 {
     public function index()
     {
-        $services = Service::latest()->paginate(5);
+        $services = Service::orderBy('name')->simplePaginate(10);
 
-        return view('services.index',compact('services'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('services.index',compact('services'));
     }
 
     //Mostra un SINGOLO SPECIFICO oggetto
@@ -43,7 +42,7 @@ class ServicesController extends Controller
     public function edit(Service $service)
     {
         //compact è un modo veloce per scrivere ['article' => $article]
-        return view('service.edit', compact('service'));
+        return view('services.edit', compact('service'));
     }
 
     //aggiorana nel database l'oggetto con la modifica
@@ -51,8 +50,8 @@ class ServicesController extends Controller
     {
         $this->validateService($request);
         $service->update($request->all());
-
-        return redirect($service->path());
+        return redirect()->route('services.index')
+            ->with('success','Product updated successfully');
     }
 
     //elimina l'oggetto dal database
