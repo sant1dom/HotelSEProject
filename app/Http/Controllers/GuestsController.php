@@ -11,7 +11,7 @@ class GuestsController extends Controller
 
     public function index()
     {
-        $guests = Guest::latest()->get();
+        $guests= Guest::orderBy('name')->simplePaginate(10);;
 
         return view('guests.index',compact('guests'));
     }
@@ -19,9 +19,8 @@ class GuestsController extends Controller
     //Mostra un SINGOLO SPECIFICO oggetto
     public function show(Guest $guest) //Guest $guest
     {
-        $guest = Guest::findOrFail(1);
 
-        return view('guests.show', ['guest' => $guest]);
+        return view('guests.show', compact('guest'));
     }
 
     //Mostra una vista per creare un nuovo oggetto

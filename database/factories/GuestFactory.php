@@ -26,7 +26,7 @@ class GuestFactory extends Factory
         return [
             'name'=> $this->faker->name,
             'surname'=>$this->faker->lastName,
-            'birthdate'=>$this->faker->date($max = '2012',$min = '1990'),
+            'birthdate'=>$this->faker->dateTime($max = 'now'),
             'doctype'=>'IdCard',
             'numdoc'=>Str::random(5)
         ];

@@ -17,10 +17,10 @@ class CreateGuestsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('surname');
-            $table->timestamp('birthdate');
+            $table->date('birthdate');
             $table->string('doctype');
             $table->string('numdoc');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->default(1);
             $table->timestamps();
 
             $table->foreign('user_id')

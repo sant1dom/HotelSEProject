@@ -21,8 +21,18 @@ class Guest extends Model
         'surname',
         'birthdate',
         'doctype',
-        'numdoc'
+        'numdoc',
+
     ];
+    /**
+     * @var mixed
+     */
+
+
+    /**
+     * @var mixed
+     */
+
 
     public function user(){
         return $this->belongsTo(User::class);
