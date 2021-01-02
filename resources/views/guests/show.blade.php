@@ -31,7 +31,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Birthdate:</strong>
-                {{ $guest->birthdate}}
+                {{  \Carbon\Carbon::parse($guest->birthdate)->format('d/m/Y')}}
             </div>
         </div>
 
