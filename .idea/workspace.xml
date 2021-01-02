@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="Costruita autenticazione per admin con relative viste, TODO: finire dashboard">
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/IsAdmin.php" afterDir="false" />
+    <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/90681577-a23a-4474-97b4-9b156b7ec7c3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/90681577-a23a-4474-97b4-9b156b7ec7c3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/admin-nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/admin-nav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/services/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/services/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/services/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/services/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/GuestFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/GuestFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_26_200253_create_guests_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_26_200253_create_guests_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/guests/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/guests/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,10 +155,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ProgettoSE_Test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -176,7 +172,6 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="php artisan tinker" />
-      <command value="php artisan make:controller Auth/AdminLoginController" />
     </option>
   </component>
   <component name="RunManager" selected="PHP Built-in Web Server.CrC">
@@ -209,7 +204,10 @@
       <workItem from="1609015622906" duration="1252000" />
       <workItem from="1609271222447" duration="3648000" />
       <workItem from="1609401853626" duration="6434000" />
-      <workItem from="1609538168476" duration="4943000" />
+      <workItem from="1609450604459" duration="536000" />
+      <workItem from="1609464476332" duration="130000" />
+      <workItem from="1609512352330" duration="21547000" />
+      <workItem from="1609596233821" duration="1012000" />
     </task>
     <task id="LOCAL-00001" summary="Creata vista contacts.blade.php e modifica della lista dei contatti.&#10;Aggiunta del logo CrC nel footer.blade.php.&#10;Da valutare se tenere questa vista così com'è, aggiornarla o eliminarla; per ora rimane li a popolare il sito.">
       <created>1608983919653</created>
@@ -232,28 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609231926805</updated>
     </task>
-    <task id="LOCAL-00004" summary="create viste di creazione, indexing e showing dei servizi">
-      <created>1609536927997</created>
+    <task id="LOCAL-00004" summary="continuata la vista create.blade.php e praticamente completata, l'unico problema è che non riesco a capire come eseguire l'uppload delle immagini.&#10;le nuove stanze create vengolo salvate nel database senza problemi, devo solo finire di impostare gli avvisi di errore nella vista e qualche altra cosa.&#10;ho dovuto modificare una tabella, sapete cosa fare.">
+      <created>1609448302924</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1609536927997</updated>
+      <updated>1609448302925</updated>
     </task>
-    <task id="LOCAL-00005" summary="Completate viste per servizi">
-      <created>1609541149078</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1609541149078</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Costruita autenticazione per admin con relative viste, TODO: finire dashboard">
-      <created>1609608408914</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1609608408915</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,9 +262,18 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Creata vista contacts.blade.php e modifica della lista dei contatti.&#10;Aggiunta del logo CrC nel footer.blade.php.&#10;Da valutare se tenere questa vista così com'è, aggiornarla o eliminarla; per ora rimane li a popolare il sito." />
     <MESSAGE value="Aggiustata navbar in modo da farla rimanere fissata in alto" />
-    <MESSAGE value="create viste di creazione, indexing e showing dei servizi" />
-    <MESSAGE value="Completate viste per servizi" />
-    <MESSAGE value="Costruita autenticazione per admin con relative viste, TODO: finire dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="Costruita autenticazione per admin con relative viste, TODO: finire dashboard" />
+    <MESSAGE value="continuata la vista create.blade.php e praticamente completata, l'unico problema è che non riesco a capire come eseguire l'uppload delle immagini.&#10;le nuove stanze create vengolo salvate nel database senza problemi, devo solo finire di impostare gli avvisi di errore nella vista e qualche altra cosa.&#10;ho dovuto modificare una tabella, sapete cosa fare." />
+    <option name="LAST_COMMIT_MESSAGE" value="continuata la vista create.blade.php e praticamente completata, l'unico problema è che non riesco a capire come eseguire l'uppload delle immagini.&#10;le nuove stanze create vengolo salvate nel database senza problemi, devo solo finire di impostare gli avvisi di errore nella vista e qualche altra cosa.&#10;ho dovuto modificare una tabella, sapete cosa fare." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/GuestsController.php</url>
+          <line>5</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

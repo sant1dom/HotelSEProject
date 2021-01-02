@@ -41,7 +41,7 @@ class GuestsController extends Controller
 
     }
 
-    //aggiorana nel database l'oggetto con la modifica
+    //aggiorna nel database l'oggetto con la modifica
     public function update(Guest $guest)
     {
 
