@@ -42,7 +42,7 @@ Route::get('/contacts', function () {
 /**
  * Routes for the rooms views
  */
-Route::resource('rooms', RoomsController::class)->middleware('auth:admin');
+Route::resource('rooms', RoomsController::class);
 
 /**
  * Routes for the services views
@@ -52,7 +52,7 @@ Route::resource('services', ServicesController::class)->middleware('auth:admin')
 /**
  * Routes for the guests views
  */
-Route::resource('guests', GuestsController::class)->middleware('auth:admin');
+Route::resource('guests', GuestsController::class);
 
 /**
  * Route for the booking view
