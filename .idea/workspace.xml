@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/90681577-a23a-4474-97b4-9b156b7ec7c3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/90681577-a23a-4474-97b4-9b156b7ec7c3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/2ab5d9abb4cfe5fc566636c001180223.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/9822793d7675cf0d6a58e57d76d2ca95.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/b3bccc8819ab55f0dcf19446ece81407.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/f9a3cc9ea798e97884d8c5544e5fc8c9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_01_2021_00_24__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_01_2021_00_24__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_12_2020_10_05__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_12_2020_10_05__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_2020_10_42__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_2020_10_42__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_2020_19_44__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_12_2020_19_44__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_12_2020_11_38__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_12_2020_11_38__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_12_2020_12_01__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_12_2020_12_01__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/GuestFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/GuestFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_26_200253_create_guests_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_26_200253_create_guests_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/guests/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/guests/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GuestsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GuestsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/guests/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/guests/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,6 +214,7 @@
       <workItem from="1609464476332" duration="130000" />
       <workItem from="1609512352330" duration="21547000" />
       <workItem from="1609596233821" duration="1012000" />
+      <workItem from="1609604358689" duration="4294000" />
     </task>
     <task id="LOCAL-00001" summary="Creata vista contacts.blade.php e modifica della lista dei contatti.&#10;Aggiunta del logo CrC nel footer.blade.php.&#10;Da valutare se tenere questa vista così com'è, aggiornarla o eliminarla; per ora rimane li a popolare il sito.">
       <created>1608983919653</created>
@@ -264,16 +271,5 @@
     <MESSAGE value="Aggiustata navbar in modo da farla rimanere fissata in alto" />
     <MESSAGE value="continuata la vista create.blade.php e praticamente completata, l'unico problema è che non riesco a capire come eseguire l'uppload delle immagini.&#10;le nuove stanze create vengolo salvate nel database senza problemi, devo solo finire di impostare gli avvisi di errore nella vista e qualche altra cosa.&#10;ho dovuto modificare una tabella, sapete cosa fare." />
     <option name="LAST_COMMIT_MESSAGE" value="continuata la vista create.blade.php e praticamente completata, l'unico problema è che non riesco a capire come eseguire l'uppload delle immagini.&#10;le nuove stanze create vengolo salvate nel database senza problemi, devo solo finire di impostare gli avvisi di errore nella vista e qualche altra cosa.&#10;ho dovuto modificare una tabella, sapete cosa fare." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/GuestsController.php</url>
-          <line>5</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

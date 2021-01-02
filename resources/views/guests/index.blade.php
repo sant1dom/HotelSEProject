@@ -8,34 +8,39 @@
             </div>
         </div>
 
-        <table class="table table-bordered">
+        <table class="table table-bordered mx-2">
+            <!-- columns width -->
+            <colgroup>
+                <col style="width: 30%;">
+                <col style="width: 30%;">
+                <col style="width: 25%;">
+                <col style="width: 15%;">
+            </colgroup>
+
             <tr>
-                <th>No</th>
                 <th>Name</th>
                 <th>Surname</th>
+                <th>Added on</th>
                 <th></th>
             </tr>
 
-            @foreach ($guests as $guest)
+            @foreach ($guests as  $i =>$guest)
 
-                <tr>
-                    <td>{{ ++$i }}</td>
+                <tr style="background-color: {{ $i % 2 == 0 ? '#d7f5f3': '#FFFFFF' }};">
                     <td>{{ $guest->name }}</td>
-                    <td>{{ $guests->surname }}</td>
+                    <td>{{ $guest->surname }}</td>
+                    <td>{{ $guest->created_at }}</td>
                     <td>
-
-                        <form action="{{ route('guests.show',$service->id) }}" method="POST">
-                            <a class="btn btn-info" href="{{ route('services.show',$service->id) }}">Show</a>
-                            <a class="btn btn-primary" href="{{ route('services.edit',$service->id) }}">Edit</a>
-                            @method('SHOW')
-                            <button type="submit" class="btn btn-danger">Show</button>
-                        </form>
+                        <button type="button" class="btn btn-primary text-uppercase text-center"
+                                onclick="location.href='{{ route('guests.show', $guest) }}'">
+                            SEE MORE
+                        </button>
                     </td>
                 </tr>
             @endforeach
         </table>
 
     </div>
-
+@endsection
 
 
