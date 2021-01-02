@@ -46,16 +46,4 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
     }
-
-    //
-    /**
-     * Show the application's login form.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
-//
 }

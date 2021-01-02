@@ -6,5 +6,25 @@
         <button class="btn btn-outline-primary"><a href="/services">Services</a></button>
         <h1>Manage Contacts</h1>
         <h1>Reports</h1>
+
+        @if ($errors->any())
+
+            <div class="alert alert-danger">
+
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+
+                <ul>
+
+                    @foreach ($errors->all() as $error)
+
+                        <li>{{ $error }}</li>
+
+                    @endforeach
+
+                </ul>
+
+            </div>
+
+        @endif
     </div>
 @endsection

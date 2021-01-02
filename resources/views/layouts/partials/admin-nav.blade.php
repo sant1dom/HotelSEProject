@@ -21,36 +21,16 @@
             </li>
         </ul>
         <!-- Authentication Links -->
-        @guest
-            @if (Route::has('login'))
-                <button type="button" class="btn btn-warning mr-2">
-                    <a href="{{ route('login') }}" style="color: inherit">{{ __('Login') }}</a>
-                </button>
-            @endif
-
-            @if (Route::has('register'))
-                <button type="button" class="btn btn-outline-primary">
-                    <a href="{{ route('register') }}" style="color: inherit">{{ __('Register') }}</a>
-                </button>
-            @endif
-        @else
-            <li class="navbar-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle has-text-black has-text-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->email }}
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
-            </li>
-        @endguest
+        <li class="navbar-item">
+            <a class="btn btn-outline-dark" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </li>
 
     </div>
 </nav>

@@ -42,17 +42,17 @@ Route::get('/contacts', function () {
 /**
  * Routes for the rooms views
  */
-Route::resource('rooms', RoomsController::class);
+Route::resource('rooms', RoomsController::class)->middleware('auth:admin');
 
 /**
  * Routes for the services views
  */
-Route::resource('services', ServicesController::class);
+Route::resource('services', ServicesController::class)->middleware('auth:admin');
 
 /**
  * Routes for the guests views
  */
-Route::resource('guests', GuestsController::class);
+Route::resource('guests', GuestsController::class)->middleware('auth:admin');
 
 /**
  * Route for the booking view
@@ -73,5 +73,6 @@ Route::prefix('admin')->group(function() {
     Route::get('/', 'App\Http\Controllers\Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::get('/login', 'App\Http\Controllers\Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'App\Http\Controllers\Auth\AdminLoginController@login')->name('admin.login.submit');
-    Route::get('/dashboard', 'App\Http\Controllers\AdminController@index')->name('admin.home');
 });
+
+Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@index')->middleware('auth:admin')->name('admin.home');

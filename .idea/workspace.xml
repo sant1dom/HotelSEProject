@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AdminLoginController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/admin-layout.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/partials/admin-nav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="2524daab-6eea-4291-a30c-f71c535b7572" name="Default Changelist" comment="Costruita autenticazione per admin con relative viste, TODO: finire dashboard">
+      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/IsAdmin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_24_112641_create_admins_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_24_112641_create_admins_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/admin-nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/admin-nav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/services/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/services/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/services/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/services/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/services/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -250,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609541149078</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Costruita autenticazione per admin con relative viste, TODO: finire dashboard">
+      <created>1609608408914</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1609608408915</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,6 +280,7 @@
     <MESSAGE value="Aggiustata navbar in modo da farla rimanere fissata in alto" />
     <MESSAGE value="create viste di creazione, indexing e showing dei servizi" />
     <MESSAGE value="Completate viste per servizi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completate viste per servizi" />
+    <MESSAGE value="Costruita autenticazione per admin con relative viste, TODO: finire dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Costruita autenticazione per admin con relative viste, TODO: finire dashboard" />
   </component>
 </project>

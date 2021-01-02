@@ -1,4 +1,4 @@
-@extends('layouts.mainlayout')
+@extends('layouts.admin-layout')
 @section('content')
     <div class="row mx-auto my-auto">
         <div class="col-lg-12 margin-tb">
