@@ -70,9 +70,9 @@ Route::get('/test', function () {
  * Route for the admin authentication
  */
 Route::prefix('admin')->group(function() {
-    Route::get('/', 'App\Http\Controllers\Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::get('/login', 'App\Http\Controllers\Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'App\Http\Controllers\Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/dashboard', 'App\Http\Controllers\AdminController@index')->name('admin.home')->middleware('auth:admin');
 });
 
-Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@index')->middleware('auth:admin')->name('admin.home');
+

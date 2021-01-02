@@ -18,17 +18,13 @@ class AdminLoginController extends Controller
     {
         return view('auth.admin-login');
     }
+
     protected function guard(){
         return Auth::guard('admin');
     }
 
     use AuthenticatesUsers;
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/admin/dashboard';
+
     /**
      * Create a new controller instance.
      *

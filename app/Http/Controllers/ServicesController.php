@@ -9,6 +9,7 @@ use function PHPUnit\Framework\isEmpty;
 
 class ServicesController extends Controller
 {
+
     public function index()
     {
         $services = Service::orderBy('name')->simplePaginate(10);
