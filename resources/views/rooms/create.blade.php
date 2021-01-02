@@ -1,6 +1,7 @@
 @extends('layouts.mainlayout')
 
 @section('content')
+
     <div class="bootstrap-iso" xmlns="http://www.w3.org/1999/html">
         <div class="container-fluid">
             <form method="POST" action="{{ route('rooms.store') }}" enctype="multipart/form-data">
@@ -27,7 +28,7 @@
                                         Max people:
                                     </label>
                                     <input class="form-control @error('capacity') is-invalid @enderror" id="capacity"
-                                           name="capacity" type="text"
+                                           name="capacity" type="number"
                                            placeholder="Ex.: 4"/>
 
                                     <div class="row">
@@ -50,8 +51,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <input class="form-control @error('price') is-invalid @enderror" id="price"
-                                                   name="price" type="text"
-                                                   placeholder="Ex.: 100"/>
+                                                   name="price" type="number"/>
                                         </div>
 
 
@@ -64,8 +64,7 @@
                                         </div>
                                         <div class="col">
                                             <input class="form-control @error('numroom') is-invalid @enderror"
-                                                   id="numroom" name="numroom" type="text"
-                                                   placeholder="Ex.: 408"/>
+                                                   id="numroom" name="numroom" type="number"/>
                                         </div>
                                     </div>
                                 </div>
@@ -140,9 +139,9 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="{{ asset('css/imgUploaderStyle.css') }}" rel="stylesheet">
     <script src="{{asset('js/dynamicImageUpload.js')}}"></script>
-
 
     <style>
         .toggle.ios, .toggle-on.ios, .toggle-off.ios {
@@ -154,12 +153,5 @@
             align-items: flex-end;
         }
     </style>
-
-    <script>
-        function bootstrapAlert() {
-            $.bootstrapGrowl("messaggio")
-        }
-    </script>
-
 
 @endsection
