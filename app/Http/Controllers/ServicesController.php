@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
 use App\Models\Service;
 use Illuminate\Http\Request;
-use function PHPUnit\Framework\isEmpty;
 
 class ServicesController extends Controller
 {
@@ -13,8 +11,15 @@ class ServicesController extends Controller
     public function index()
     {
         $services = Service::orderBy('name')->simplePaginate(10);
+        return view('services.index', compact('services'));
+    }
 
-        return view('services.index',compact('services'));
+    public function index_users()
+    {
+        $services = Service::where('availability', '=', '1')
+            ->orderBy('name')
+            ->simplePaginate(9);
+        return view('services.index-users', compact('services'));
     }
 
     //Mostra un SINGOLO SPECIFICO oggetto
@@ -52,7 +57,7 @@ class ServicesController extends Controller
         $this->validateService($request);
         $service->update($request->all());
         return redirect()->route('services.index')
-            ->with('success','Product updated successfully');
+            ->with('success', 'Service updated successfully');
     }
 
     //elimina l'oggetto dal database

@@ -63,7 +63,7 @@
 
 <style>
     .container-fluid {
-        background-image: url("https://www.atlantis.com/-/media/atlantis/dubai/atp/resort/exterior/AtlantisThePalm-Exterior-FrontShotWithRoyalPool.jpg?sc_lang=it");
+        background-image: url("https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/89/45/894539_v11.jpeg");
         background-size: cover;
         background-attachment: fixed;
     }

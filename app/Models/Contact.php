@@ -12,25 +12,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static findOrFail(int $int)
  * @method static create(array $array)
  */
-class Service extends Model
+class Contact extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name',
-        'price',
-        'availability',
+        'type',
+        'contact_string',
     ];
-
-    public function bookings()
-    {
-        return $this->belongsToMany(Booking::class);
-    }
 
     public function hotel()
     {
