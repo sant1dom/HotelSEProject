@@ -10,11 +10,18 @@ $(".imgAdd").click(function () {
     // }
 });
 
+var id; // global variable
+var path;
+
+function sendData(valuePath, valueId) {
+    id = valueId;
+    path = valuePath;
+}
 
 $(document).on("click", "i.del", function () {
-    //maxImg--;
     $(this).parent().remove();
 });
+
 $(function () {
     $(document).on("change", ".uploadFile", function () {
         var uploadFile = $(this);
@@ -27,9 +34,20 @@ $(function () {
 
             reader.onloadend = function () { // set image data as background of div
                 //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-                uploadFile.closest(".imgUp").find('.imagePreview').css({"background-image": "url(" + this.result + ")", "background-position" : "center"});
+                uploadFile.closest(".imgUp").find('.imagePreview').css({
+                    "background-image": "url(" + this.result + ")",
+                    "background-position": "center"
+                });
             }
         }
 
     });
 });
+
+
+/*
+$(document).on("click", "i.del", function () {
+    //maxImg--;
+    $(this).parent().remove();
+});
+*/

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @method static latest()
@@ -23,4 +25,13 @@ class Image extends Model
     {
         return $this->belongsTo(Room::class);
     }
+
+    public function destroyImg($image)
+    {
+        $image = DB::table('images')->where('id', $image->id)->first();
+        $file= $image->path;
+        $filename = public_path().'/uploads/'.$file;
+        @unlink($filename);
+    }
+
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Room;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -37,22 +39,6 @@ class RoomsController extends Controller
     //inserisce l'oggetto nel DB
     public function store(Request $request)
     {
-        /*        $this->validateRoom();
-
-                $room = new Room(request(['type', 'numroom', 'price', 'capacity', 'description']));
-                $room->availability = strcmp(\request('availability'), 'On');
-                $room->hotel_id = 1;
-                $room->save();
-
-
-                foreach (request('images') as $imageName) {
-                    $image = new Image();
-                    $image->path = $imageName;
-                    $image->room_id = $room->id;
-                    $image->save();
-                }
-                return redirect($room->path());*/
-
         $this->validateRoom();
 
         $room = new Room(request(['type', 'numroom', 'price', 'capacity', 'description']));
@@ -78,31 +64,30 @@ class RoomsController extends Controller
     }
 
     //Mostra una vista per modificare un oggetto esistente
-    public
-    function edit(Room $room)
+    public function edit(Room $room)
     {
-        //compact è un modo veloce per scrivere ['room' => $room]
-        return view('rooms.edit', compact('room'));
+        return view('rooms.edit', ['room' => $room]);
     }
 
     //aggiorana nel database l'oggetto con la modifica
-    public
-    function update(Room $room)
+    public function update(Room $room, Request $request)
     {
-        $room->update();
+        $this->validateRoom();
+        $room->availability = strcmp(\request('availability'), 'On');
+        $room->update($request->all(['type', 'numroom', 'price', 'capacity', 'description']));
 
-        return redirect($room->path());
+
+
+        return redirect()->route('rooms.show',['room' => $room]);
     }
 
     //elimina l'oggetto dal database
-    public
-    function destroy(Room $room)
+    public function destroy(Room $room)
     {
         Storage::delete($room->images());
     }
 
-    protected
-    function validateRoom()
+    protected function validateRoom()
     {
         return request()->validate([
             'type' => 'required',

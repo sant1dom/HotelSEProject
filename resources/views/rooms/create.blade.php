@@ -1,4 +1,4 @@
-@extends('layouts.mainlayout')
+@extends('layouts.admin-layout')
 
 @section('content')
 
@@ -12,7 +12,6 @@
                         <h1 class="text-center">Informations</h1>
                         <div class="my-4 bg-warning rounded h-75">
                             <div class="card-body">
-                                @csrf
 
                                 <div class="form-group">
 
@@ -28,7 +27,7 @@
                                         Max people:
                                     </label>
                                     <input class="form-control @error('capacity') is-invalid @enderror" id="capacity"
-                                           name="capacity" type="number"
+                                           name="capacity" type="number" min="0"
                                            placeholder="Ex.: 4"/>
 
                                     <div class="row">
@@ -51,7 +50,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <input class="form-control @error('price') is-invalid @enderror" id="price"
-                                                   name="price" type="number"/>
+                                                   name="price" type="number" min="0"/>
                                         </div>
 
 
@@ -64,7 +63,7 @@
                                         </div>
                                         <div class="col">
                                             <input class="form-control @error('numroom') is-invalid @enderror"
-                                                   id="numroom" name="numroom" type="number"/>
+                                                   id="numroom" name="numroom" type="number" min="0"/>
                                         </div>
                                     </div>
                                 </div>
