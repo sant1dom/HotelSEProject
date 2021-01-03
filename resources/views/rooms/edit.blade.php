@@ -100,7 +100,6 @@
                                             <div class="imagePreviewEdit"
                                                  style="background-image: URL('/uploads/{{$image->path}}');">
 
-
                                             </div>
                                             <label class="btn btn-primary">
                                                 Upload<input id="image" name="images[]" type="file"
@@ -109,8 +108,7 @@
                                                              accept="image/*"
                                                              style="width: 0;height: 0;overflow: hidden;">
                                             </label>
-                                            <i class="fa fa-times del"
-                                               onclick="{{ $image->destroyImg($image) }}"></i>
+                                            <i class="fa fa-times del"></i>
 
                                         </div><!-- col-2 -->
                                     @endforeach
@@ -155,9 +153,6 @@
     <link href="{{ asset('css/imgUploaderStyle.css') }}" rel="stylesheet">
     <script src="{{asset('js/dynamicImageUpload.js')}}"></script>
 
-    <script>
-
-    </script>
 
     <style>
         .toggle.ios, .toggle-on.ios, .toggle-off.ios {

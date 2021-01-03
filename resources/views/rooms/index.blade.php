@@ -1,4 +1,4 @@
-@extends('layouts.mainlayout')
+@extends('layouts.admin-layout')
 
 @section('content')
 
@@ -11,76 +11,9 @@
                     <h1 class="text-center">Search</h1>
                     <div class="my-4 bg-warning rounded">
                         <div class="card-body">
-                            <form method="GET" action="{{ route('rooms.index') }}">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="startDate">Start Date: </label>
-                                    <input id="startDate" type="date"
-                                           class="form-control @error('date') is-invalid @enderror" name="email"
-                                           value="{{ old('date') }}" min="<?php echo date('Y-m-d'); ?>"
-                                           max="2030-12-31"/>
-                                    <label for="endDate">End Date: </label>
-                                    <input id="endDate" type="date"
-                                           class="form-control @error('date') is-invalid @enderror" name="email"
-                                           value="{{ old('date') }}" min="<?php echo date('Y-m-d'); ?>"
-                                           max="2030-12-31"/>
-                                    <div class="row">
-                                        <div class="col my-2">
-                                            <label class="control-label " for="select">
-                                                N° of people
-                                            </label>
-                                        </div>
-                                        <div class="col my-2">
-                                            <label class="control-label" for="select">
-                                                N° of rooms
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <select class="select form-control" id="select" name="select">
-                                                <option value="1">
-                                                    1
-                                                </option>
-                                                <option value="2">
-                                                    2
-                                                </option>
-                                                <option value="3">
-                                                    3
-                                                </option>
-                                                <option value="4">
-                                                    4
-                                                </option>
-                                                <option value="5">
-                                                    5
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <select class="select form-control" id="select" name="select">
-                                                <option value="1">
-                                                    1
-                                                </option>
-                                                <option value="2">
-                                                    2
-                                                </option>
-                                                <option value="3">
-                                                    3
-                                                </option>
-                                                <option value="4">
-                                                    4
-                                                </option>
-                                                <option value="5">
-                                                    5
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase text-center"
-                                        type="submit">
-                                    SEARCH
-                                </button>
+                            <form class="form-inline" action="">
+
+
                             </form>
                         </div>
                     </div>
@@ -114,12 +47,23 @@
                                                             </h5>
                                                             <h5>Price: {{$room->price}}€</h5>
                                                         </div>
-                                                        <div class="col-sm-4 d-flex justify-content-center">
+                                                        <div class="col-sm-4">
+                                                            <div class="row d-flex justify-content-center">
                                                             <button type="button"
-                                                                    class="btn btn-primary text-uppercase text-center"
+                                                                    class="btn btn-block btn-primary text-uppercase text-center"
                                                                     onclick="location.href='{{ route('rooms.show', $room) }}'">
                                                                 SEE MORE
                                                             </button>
+
+                                                            </div>
+                                                            <br>
+                                                            <div class="row d-flex justify-content-center">
+                                                                <button type="button"
+                                                                        class="btn btn-block btn-success text-uppercase text-center"
+                                                                        onclick="location.href='{{ route('rooms.edit', $room) }}'">
+                                                                    EDIT
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -146,5 +90,7 @@
             display: inline-block;
         }
     </style>
+
+
 @endsection
 

@@ -8,13 +8,13 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ route('admin.home') }}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/rooms">Rooms</a>
+                <a class="nav-link" href="{{ route('rooms.index') }}">Rooms</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/services">Services</a>
+                <a class="nav-link" href="{{ route('services.index') }}">Services</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/reports">Reports</a>

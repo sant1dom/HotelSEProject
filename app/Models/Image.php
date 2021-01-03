@@ -28,6 +28,7 @@ class Image extends Model
 
     public function destroyImg($image)
     {
+        /*onclick="{{ $image->destroyImg($image) }}"*/
         $image = DB::table('images')->where('id', $image->id)->first();
         $file= $image->path;
         $filename = public_path().'/uploads/'.$file;

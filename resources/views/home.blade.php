@@ -42,7 +42,7 @@
         <div class="row d-flex justify-content-center">
             <button type="button"
                     class="btn btn-primary text-uppercase text-center"
-                    onclick="location.href='{{ route('rooms.index') }}'">
+                    onclick="location.href='{{ route('rooms.userIndex') }}'">
                 SEE MORE
             </button>
         </div>

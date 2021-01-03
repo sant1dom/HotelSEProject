@@ -4,30 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Room;
-use Illuminate\Http\File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
 class RoomsController extends Controller
 {
-
-    /*if (auth()->user() && request()->is('guestCheckout')) {
-    return redirect()->route('checkout.index');
-    }*/
-
     public function index()
     {
         $rooms = room::latest()->get();
 
         return view('rooms.index', ['rooms' => $rooms]);
+
     }
+
+    public function userIndex()
+    {
+        $rooms = room::latest()->get();
+
+        return view('rooms.userIndex', ['rooms' => $rooms]);
+
+    }
+
 
     //Mostra un SINGOLO SPECIFICO oggetto
     public function show(Room $room) //Room $room
     {
         return view('rooms.show', ['room' => $room]);
+
+    }
+
+    public function userShow(Room $room) //Room $room
+    {
+        return view('rooms.userShow', ['room' => $room]);
     }
 
     //Mostra una vista per creare un nuovo oggetto

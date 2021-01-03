@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\ContactsController;
-use App\Http\Controllers\FileController;
-use App\Http\Controllers\GuestsController;
 use App\Http\Controllers\RoomsController;
-use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\GuestsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +42,16 @@ Route::get('/contacts', function () {
 /**
  * Routes for the rooms views
  */
-Route::resource('rooms', RoomsController::class);
+Route::prefix('admin')->group(function() {
+    Route::resource('/rooms', RoomsController::class)->middleware('auth:admin');
+});
+Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
+Route::get('/rooms/{room}', [RoomsController::class, 'userShow'])->name('rooms.userShow');
+
+/**
+ * Routes for the services views
+ */
+Route::resource('services', ServicesController::class)->middleware('auth:admin');
 
 /**
  * Routes for the guests views
@@ -69,18 +77,6 @@ Route::prefix('admin')->group(function() {
     Route::get('/login', 'App\Http\Controllers\Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'App\Http\Controllers\Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/dashboard', 'App\Http\Controllers\AdminController@index')->name('admin.home')->middleware('auth:admin');
-
-    /**
-     * Routes for the services views
-     */
-    Route::resource('services', ServicesController::class)->middleware('auth:admin');
-    /**
-     * Routes for the services views
-     */
-    Route::resource('contacts', ContactsController::class)->middleware('auth:admin');
 });
-
-Route::get('services', 'App\Http\Controllers\ServicesController@index_users');
-
 
 
