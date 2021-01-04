@@ -59,7 +59,7 @@ class RoomsController extends Controller
         if ($request->hasfile('images')) {
             foreach ($request->file('images') as $file) {
                 $name = time() . rand(1, 100) . '.' . $file->extension();
-                $file->move(public_path('uploads'), $name);
+                $file->move(public_path('storage'), $name);
 
                 $image = new Image();
                 $image->path = $name;

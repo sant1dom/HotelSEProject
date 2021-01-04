@@ -70,7 +70,7 @@
                                         $set_ = '';
                                     } ?>
                                     <div class='carousel-item  <?php echo $set_; ?>'>
-                                        <img src="/uploads/{{$image->path}}" class='d-block img-responsive' alt=""
+                                        <img src="/storage/{{$image->path}}" class='d-block img-responsive' alt=""
                                              style="margin: auto">
                                     </div>
                                     <?php $i++;?>

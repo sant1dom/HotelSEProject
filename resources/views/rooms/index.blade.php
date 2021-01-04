@@ -28,7 +28,7 @@
                                 <div class="card-body">
                                     <div class="row my-1">
                                         <div class="col-sm-4">
-                                            <img src="/uploads/{{$room->images[0]->path}}" class='img-responsive' alt="">
+                                            <img src="/storage/{{$room->images[0]->path}}" class='img-responsive' alt="">
                                         </div>
                                         <div class="col">
                                             <div class="bg-light rounded" style="height: 100%">

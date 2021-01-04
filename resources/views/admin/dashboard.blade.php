@@ -2,6 +2,7 @@
 @section('content')
     <div class="mx-3">
         <h1>Manage Rooms</h1>
+        <button class="btn btn-outline-primary"><a href="{{route('rooms.index')}}">Rooms</a></button>
         <h1>Manage Services</h1>
         <button class="btn btn-outline-primary"><a href="{{route('services.index')}}">Services</a></button>
         <h1>Manage Contacts</h1>

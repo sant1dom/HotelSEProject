@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\RoomsController;
-use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicesController;
@@ -33,13 +33,6 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /**
- * Route for the contact view
- */
-Route::get('/contacts', function () {
-    return view('contacts');
-});
-
-/**
  * Routes for the rooms views
  */
 Route::prefix('admin')->group(function() {
@@ -47,6 +40,14 @@ Route::prefix('admin')->group(function() {
 });
 Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
 Route::get('/rooms/{room}', [RoomsController::class, 'userShow'])->name('rooms.userShow');
+
+/**
+ * Routes for the contacts views
+ */
+Route::prefix('admin')->group(function() {
+    Route::resource('/contacts', ContactsController::class)->middleware('auth:admin');
+});
+Route::get('/contacts', [RoomsController::class, 'userIndex'])->name('contacts.userIndex');
 
 /**
  * Routes for the services views
