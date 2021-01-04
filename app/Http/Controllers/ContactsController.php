@@ -14,6 +14,11 @@ class ContactsController extends Controller
         return view('contacts.index', compact('contacts'));
     }
 
+    public function index_users()
+    {
+        return view('/contacts');
+    }
+
     //Mostra un SINGOLO SPECIFICO oggetto
     public function show(Contact $contact)
     {

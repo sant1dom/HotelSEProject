@@ -7,19 +7,27 @@
                 <div class="card-body">
                     <ul class="list-unstyled">
                         <li><b>Contacts</b></li>
-                        <li>Telefono : 0862 000000</li>
-                        <li>Fax : 0862 000000</li>
-                        <li>Email : info@hotel.com</li>
+                        @foreach($contacts as $contact)
+                            @if($contact->type == 'phone' || $contact->type == 'email')
+                                <li>{{ $contact->contact_string }}</li>
+                            @endif
+                        @endforeach
                     </ul>
                     <ul class="list-unstyled">
                         <li><b>Address</b></li>
-                        <li>Strada Statale 17</li>
-                        <li>L'Aquila (AQ), 67100</li>
+                        @foreach($contacts as $contact)
+                            @if($contact->type == 'address')
+                                <li>{{ $contact->contact_string }}</li>
+                            @endif
+                        @endforeach
                     </ul>
                     <ul class="list-unstyled">
                         <li><b>Social</b></li>
-                        <li>Facebook : https://www.facebook.com/</li>
-                        <li>Instagram : https://www.instagram.com/</li>
+                        @foreach($contacts as $contact)
+                            @if($contact->type == 'social')
+                                <li>{{ $contact->contact_string }}</li>
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>

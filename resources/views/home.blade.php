@@ -4,7 +4,7 @@
     <section class="hero is-fullheight is-bold">
         <div class="hero-body">
             <div class="container has-text-right">
-                <h1 class="title text-light font-weight-bold" style="font-size:8vw;">Welcome to <br/>Hotel Name</h1>
+                <h1 class="title text-light font-weight-bold" style="font-size:8vw;">Welcome to <br/>{{$hotel->hotelname}}</h1>
             </div>
         </div>
     </section>

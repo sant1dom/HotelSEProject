@@ -18,9 +18,6 @@ use App\Http\Controllers\GuestsController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
 
 /**
  * Routes for the users authentication
@@ -30,7 +27,7 @@ Auth::routes(['verify' => true]);
 /**
  * Route for the home view
  */
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 
 /**
  * Routes for the rooms views
@@ -47,7 +44,7 @@ Route::get('/rooms/{room}', [RoomsController::class, 'userShow'])->name('rooms.u
 Route::prefix('admin')->group(function() {
     Route::resource('/contacts', ContactsController::class)->middleware('auth:admin');
 });
-Route::get('/contacts', [RoomsController::class, 'userIndex'])->name('contacts.userIndex');
+Route::get('/contacts',[ContactsController::class, 'index_users']);
 
 /**
  * Routes for the services views
