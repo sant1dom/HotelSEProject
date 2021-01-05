@@ -17,7 +17,9 @@ class Booking extends Model
      */
     protected $fillable = [
         'from',
-        'to'
+        'to',
+        'check-in',
+        'check-out'
     ];
 
     public function services(){

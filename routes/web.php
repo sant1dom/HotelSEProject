@@ -29,7 +29,9 @@ Auth::routes(['verify' => true]);
 /**
  * Route for the home view
  */
-Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/', function (){
+    return view('home');
+})->name('home');
 
 /**
  * Routes for the rooms views
@@ -37,8 +39,9 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::prefix('admin')->group(function() {
     Route::resource('/rooms', RoomsController::class)->middleware('auth:admin');
 });
+
 Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
-Route::get('/rooms/{room}', [RoomsController::class, 'userShow'])->name('rooms.userShow');
+Route::get('/rooms/{id}', [RoomsController::class, 'userShow'])->name('rooms.userShow');
 
 /**
  * Routes for the contacts views

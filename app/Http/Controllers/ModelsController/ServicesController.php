@@ -55,6 +55,9 @@ class ServicesController extends Controller
     public function update(Service $service, Request $request)
     {
         $this->validateService($request);
+        if ($service->availability == 1 && $request->availability == 0){
+            //TODO Inviare mail di rimborso se viene disabilitato il servizio
+        }
         $service->update($request->all());
         return redirect()->route('services.index')
             ->with('success', 'Service updated successfully');
