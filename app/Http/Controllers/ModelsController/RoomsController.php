@@ -70,7 +70,8 @@ class RoomsController extends Controller
         }
 
 
-        return redirect($room->path());
+        return redirect()->route('rooms.index')
+            ->with('success','Service created successfully.');
     }
 
     //Mostra una vista per modificare un oggetto esistente

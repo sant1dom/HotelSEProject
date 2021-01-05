@@ -16,7 +16,7 @@ class CreateRoomsTable extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('type');
-            $table->string('numroom');
+            $table->string('numroom')->unique();
             $table->float('price');
             $table->integer('capacity');
             $table->boolean('availability')->default(0);

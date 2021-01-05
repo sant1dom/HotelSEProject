@@ -32,4 +32,8 @@ class Hotel extends Model
     public function admins(){
         return $this->hasMany(Admin::class);
     }
+
+    public function contacts(){
+        return $this->hasMany(Contact::class);
+    }
 }
