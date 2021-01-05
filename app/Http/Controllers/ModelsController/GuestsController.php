@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ModelsController;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Guest;
 
 class GuestsController extends Controller

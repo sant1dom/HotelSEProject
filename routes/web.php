@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\ContactsController;
-use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\ModelsController\AdminController;
+use App\Http\Controllers\ModelsController\ContactsController;
+use App\Http\Controllers\ModelsController\RoomsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ServicesController;
-use App\Http\Controllers\GuestsController;
+use App\Http\Controllers\ModelsController\ServicesController;
+use App\Http\Controllers\ModelsController\GuestsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,9 +74,9 @@ Route::get('/test', function () {
  * Route for the admin authentication
  */
 Route::prefix('admin')->group(function() {
-    Route::get('/login', 'App\Http\Controllers\Auth\AdminLoginController@showLoginForm')->name('admin.login');
-    Route::post('/login', 'App\Http\Controllers\Auth\AdminLoginController@login')->name('admin.login.submit');
-    Route::get('/dashboard', 'App\Http\Controllers\AdminController@index')->name('admin.home')->middleware('auth:admin');
+    Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.home')->middleware('auth:admin');
 });
 
 
