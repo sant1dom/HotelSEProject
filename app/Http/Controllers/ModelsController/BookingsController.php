@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Room;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingsController extends Controller
 {
@@ -26,9 +27,13 @@ class BookingsController extends Controller
     //Mostra una vista per creare un nuovo oggetto
     public function create()
     {
-        $services = Service::all()->unique('name');
-        $rooms = Room::all()->unique('type');
-        return view('bookings.create', compact('rooms','services'));
+        if(Auth::check()){
+            $services = Service::all()->unique('name');
+            $rooms = Room::all()->unique('type');
+            return view('bookings.create', compact('rooms','services'));
+        }
+        else
+           return redirect(404);
     }
 
     public function confirmation(Request $request)

@@ -22,7 +22,6 @@ class RoomsController extends Controller
     public function userIndex()
     {
         $rooms = room::latest()->get();
-
         return view('rooms.userIndex', ['rooms' => $rooms]);
 
     }
@@ -32,7 +31,6 @@ class RoomsController extends Controller
     public function show(Room $room) //Room $room
     {
         return view('rooms.show', ['room' => $room]);
-
     }
 
     public function userShow(Room $room) //Room $room

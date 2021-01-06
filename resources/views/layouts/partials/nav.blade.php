@@ -20,7 +20,7 @@
                 <a class="nav-link" href="{{route('bookings.create')}}">Book a room</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('contacts.index')}}">Contacts</a>
+                <a class="nav-link" href="{{route('contacts.userIndex')}}">Contacts</a>
             </li>
         </ul>
         <!-- Authentication Links -->

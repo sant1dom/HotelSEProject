@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="col">
                                             <input class="form-control @error('numroom') is-invalid @enderror"
-                                                   id="numroom" name="numroom" type="text" value="Ex: D110"/>
+                                                   id="numroom" name="numroom" type="text" placeholder="Ex: D110"/>
                                         </div>
                                     </div>
                                 </div>

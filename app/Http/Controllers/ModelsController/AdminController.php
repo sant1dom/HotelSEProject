@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\ModelsController;
 use App\Http\Controllers\Controller;
 
-
 class AdminController extends Controller
 {
     /**
@@ -18,7 +17,6 @@ class AdminController extends Controller
     /**
     * Show the application dashboard.
     *
-    * @return \Illuminate\Http\Response
     */
     public function index()
     {

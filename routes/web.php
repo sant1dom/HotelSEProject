@@ -37,12 +37,13 @@ Route::get('/', function (){
 /**
  * Routes for the rooms views
  */
+Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
+Route::get('/rooms/{id}', [RoomsController::class, 'userShow'])->name('rooms.userShow');
+
 Route::prefix('admin')->group(function() {
     Route::resource('/rooms', RoomsController::class)->middleware('auth:admin');
 });
 
-Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
-Route::get('/rooms/{id}', [RoomsController::class, 'userShow'])->name('rooms.userShow');
 
 /**
  * Routes for the contacts views
@@ -50,7 +51,8 @@ Route::get('/rooms/{id}', [RoomsController::class, 'userShow'])->name('rooms.use
 Route::prefix('admin')->group(function() {
     Route::resource('/contacts', ContactsController::class)->middleware('auth:admin');
 });
-Route::get('/contacts',[ContactsController::class, 'index_users']);
+
+Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contacts.userIndex');
 
 /**
  * Routes for the services views

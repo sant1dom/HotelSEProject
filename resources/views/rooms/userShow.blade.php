@@ -1,7 +1,6 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-
     <div class="bootstrap-iso">
         <div class="container-fluid">
             <!-- Inizio sezione immagini e ricerca -->
@@ -24,59 +23,6 @@
                                            class="form-control @error('date') is-invalid @enderror" name="email"
                                            value="{{ old('date') }}" min="<?php echo date('Y-m-d'); ?>"
                                            max="2030-12-31"/>
-
-                                    <div class="row">
-                                        <div class="col my-2">
-                                            <label class="control-label " for="select">
-                                                N° of people
-                                            </label>
-                                        </div>
-                                        <div class="col my-2">
-                                            <label class="control-label" for="select">
-                                                N° of rooms
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <select class="select form-control" id="select" name="select">
-                                                <option value="1">
-                                                    1
-                                                </option>
-                                                <option value="2">
-                                                    2
-                                                </option>
-                                                <option value="3">
-                                                    3
-                                                </option>
-                                                <option value="4">
-                                                    4
-                                                </option>
-                                                <option value="5">
-                                                    5
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <select class="select form-control" id="select" name="select">
-                                                <option value="1">
-                                                    1
-                                                </option>
-                                                <option value="2">
-                                                    2
-                                                </option>
-                                                <option value="3">
-                                                    3
-                                                </option>
-                                                <option value="4">
-                                                    4
-                                                </option>
-                                                <option value="5">
-                                                    5
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
                                 </div>
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase text-center"
                                         type="submit">
@@ -87,7 +33,7 @@
                     </div>
                 </div>
                 <!-- Inizio sezione  Immagini -->
-                <div class="col-sm-4 my-2 mx-3 ">
+                <div class="col-sm-4 my-2 mx-5 ">
                     <div class="row d-flex justify-content-center">
                         <h1 class="text-center">Gallery</h1>
                     </div>
@@ -117,7 +63,7 @@
                                         $set_ = '';
                                     } ?>
                                     <div class='carousel-item  <?php echo $set_; ?>'>
-                                        <img src="/uploads/{{$image->path}}" class='d-block img-responsive' alt=""
+                                        <img src="/storage/{{$image->path}}" class='d-block img-responsive' alt=""
                                              style="margin: auto">
                                     </div>
                                     <?php $i++;?>
@@ -165,7 +111,7 @@
                 </div>
             </div>
             <div class="row mx-5">
-                <div class="bg-warning rounded my-3 " style="width: 100rem;">
+                <div class="bg-warning rounded my-3 " style="width: 100%;">
                     <div class="card-body">
                         <div class="info-group">
                             <div class=" bg-light rounded my-1">

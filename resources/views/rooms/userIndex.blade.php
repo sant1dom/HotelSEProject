@@ -1,7 +1,6 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-
     <div class="bootstrap-iso">
         <div class="container-fluid">
             <!-- Inizio sezione immagini e ricerca -->
@@ -11,7 +10,7 @@
                     <h1 class="text-center">Search</h1>
                     <div class="my-4 bg-warning rounded">
                         <div class="card-body">
-                            <form method="GET" action="{{ route('rooms.index') }}">
+                            <form method="GET" action="{{ route('rooms.userIndex') }}">
                                 @csrf
                                 <div class="form-group">
                                     <label for="startDate">Start Date: </label>
@@ -95,7 +94,7 @@
                                 <div class="card-body">
                                     <div class="row my-1">
                                         <div class="col-sm-4">
-                                            <img src="/uploads/{{$room->images[0]->path}}" class='img-responsive' alt="">
+                                            <img src="/storage/{{$room->images[0]->path}}" class='img-responsive' alt="">
                                         </div>
                                         <div class="col">
                                             <div class="bg-light rounded" style="height: 100%">
