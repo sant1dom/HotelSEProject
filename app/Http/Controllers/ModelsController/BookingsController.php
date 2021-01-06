@@ -4,6 +4,8 @@ namespace App\Http\Controllers\ModelsController;
 
 use App\Models\Booking;
 use App\Http\Controllers\Controller;
+use App\Models\Room;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class BookingsController extends Controller
@@ -11,7 +13,7 @@ class BookingsController extends Controller
 
     public function index()
     {
-        $bookings = Booking::orderBy('type')->simplePaginate(10);
+        $bookings = Booking::orderBy('to')->simplePaginate(10);
         return view('bookings.index', compact('bookings'));
     }
 
@@ -24,7 +26,15 @@ class BookingsController extends Controller
     //Mostra una vista per creare un nuovo oggetto
     public function create()
     {
-        return view('bookings.create');
+        $services = Service::all()->unique('name');
+        $rooms = Room::all()->unique('type');
+        return view('bookings.create', compact('rooms','services'));
+    }
+
+    public function confirmation(Request $request)
+    {
+        $this->validateBooking($request);
+        return view('bookings.confirmation', $request);
     }
 
     //inserisce l'oggetto nel DB
@@ -37,17 +47,6 @@ class BookingsController extends Controller
             ->with('success', 'Booking created successfully.');
     }
 
-    //Mostra una vista per modificare un oggetto esistente
-
-    protected function validateBooking(Request $request)
-    {
-        $this->validate($request, [
-            'type' => 'required|max:255|string',
-            'booking_string' => 'required|max:255|string',
-        ]);
-    }
-
-    //aggiorana nel database l'oggetto con la modifica
 
     public function edit(Booking $booking)
     {
@@ -67,6 +66,14 @@ class BookingsController extends Controller
 
     public function destroy(Booking $booking)
     {
+    }
+
+    protected function validateBooking(Request $request)
+    {
+        $this->validate($request, [
+            'from' => 'required',
+            'to' => 'required',
+        ]);
     }
 
 }

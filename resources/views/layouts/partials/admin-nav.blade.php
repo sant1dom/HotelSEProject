@@ -1,5 +1,11 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light ">
-    <a class="navbar-brand my-auto" href="/">{{$hotel->hotelname}}</a>
+    <a class="navbar-brand my-auto" href="{{route('admin.dashboard')}}">
+        @if (!is_null($hotel))
+            {{$hotel->hotelname}}
+        @else
+            Hotel Name
+        @endif
+    </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,7 +14,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="/admin/dashboard">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{route('admin.dashboard')}}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('rooms.index')}}">Rooms</a>
@@ -17,7 +23,7 @@
                 <a class="nav-link" href="{{route('services.index')}}">Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/reports">Reports</a>
+                <a class="nav-link" href="{{route('admin.reports')}}">Reports</a>
             </li>
         </ul>
         <!-- Authentication Links -->

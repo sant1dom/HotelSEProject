@@ -24,7 +24,7 @@ class ImageFactory extends Factory
     {
         return [
             'path'=>$this->faker->image('public/images/', 400, 300, null, false),
-            'room_id'=>random_int(1, 10)
+            'room_id'=>1
         ];
     }
 }

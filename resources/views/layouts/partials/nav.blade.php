@@ -1,5 +1,11 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light ">
-    <a class="navbar-brand my-auto" href="/">{{$hotel->hotelname}}</a>
+    <a class="navbar-brand my-auto" href="/">
+        @if (!is_null($hotel))
+            {{$hotel->hotelname}}
+        @else
+            Hotel Name
+        @endif
+    </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,10 +17,10 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/booking">Book a room</a>
+                <a class="nav-link" href="{{route('bookings.create')}}">Book a room</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/contacts">Contacts</a>
+                <a class="nav-link" href="{{route('contacts.index')}}">Contacts</a>
             </li>
         </ul>
         <!-- Authentication Links -->

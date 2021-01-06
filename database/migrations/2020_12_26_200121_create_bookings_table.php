@@ -17,8 +17,8 @@ class CreateBookingsTable extends Migration
             $table->bigIncrements('id');
             $table->time('from');
             $table->time('to');
-            $table->boolean('check-in');
-            $table->boolean('check-out');
+            $table->boolean('check-in')->nullable();
+            $table->boolean('check-out')->nullable();
             $table->timestamps();
         });
     }

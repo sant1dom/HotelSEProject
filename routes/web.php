@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\ModelsController\AdminController;
+use App\Http\Controllers\ModelsController\BookingsController;
 use App\Http\Controllers\ModelsController\ContactsController;
 use App\Http\Controllers\ModelsController\RoomsController;
 use Illuminate\Support\Facades\Auth;
@@ -64,9 +65,9 @@ Route::resource('guests', GuestsController::class);
 /**
  * Route for the booking view
  */
-Route::get('/booking', function () {
-    return view('booking');
-});
+Route::resource('bookings', BookingsController::class);
+Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('bookings.confirmation');;
+
 
 //se dovesse servire c'è una vista vuota per i test <3
 Route::get('/test', function () {
@@ -79,7 +80,8 @@ Route::get('/test', function () {
 Route::prefix('admin')->group(function() {
     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.home')->middleware('auth:admin');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('auth:admin');
+    Route::get('/reports', [AdminLoginController::class, 'showReports'])->name('admin.reports');
 });
 
 
