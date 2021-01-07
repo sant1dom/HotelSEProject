@@ -23,58 +23,7 @@
                                            class="form-control @error('date') is-invalid @enderror" name="email"
                                            value="{{ old('date') }}" min="<?php echo date('Y-m-d'); ?>"
                                            max="2030-12-31"/>
-                                    <div class="row">
-                                        <div class="col my-2">
-                                            <label class="control-label " for="select">
-                                                N° of people
-                                            </label>
-                                        </div>
-                                        <div class="col my-2">
-                                            <label class="control-label" for="select">
-                                                N° of rooms
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <select class="select form-control" id="select" name="select">
-                                                <option value="1">
-                                                    1
-                                                </option>
-                                                <option value="2">
-                                                    2
-                                                </option>
-                                                <option value="3">
-                                                    3
-                                                </option>
-                                                <option value="4">
-                                                    4
-                                                </option>
-                                                <option value="5">
-                                                    5
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <select class="select form-control" id="select" name="select">
-                                                <option value="1">
-                                                    1
-                                                </option>
-                                                <option value="2">
-                                                    2
-                                                </option>
-                                                <option value="3">
-                                                    3
-                                                </option>
-                                                <option value="4">
-                                                    4
-                                                </option>
-                                                <option value="5">
-                                                    5
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase text-center"
                                         type="submit">

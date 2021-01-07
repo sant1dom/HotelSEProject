@@ -109,8 +109,6 @@
         </div>
     </div>
 
-    <!-- Fine sezione immagini e ricerca -->
-
     <style>
         .carousel-control-next, .carousel-control-prev, .carousel-indicators {
             /* cambia il colore degli indicatori del carosello in nero */

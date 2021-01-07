@@ -37,8 +37,8 @@
                                                 Price:
                                             </label>
                                         </div>
-                                        <div class="col my-2 d-flex">
-                                            <label class="bottom_aligner my-1" for="availability">
+                                        <div class="col my-2 d-flex justify-content-center">
+                                            <label class="bottom_aligner my-1 " for="availability">
                                                 Available:
                                             </label>
                                         </div>
@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="col">
                                             <input class="form-control @error('numroom') is-invalid @enderror"
-                                                   id="numroom" name="numroom" type="number" value="{{$room->numroom}}"
+                                                   id="numroom" name="numroom" type="text" value="{{$room->numroom}}"
                                                    min="0"/>
                                         </div>
                                     </div>
@@ -95,21 +95,11 @@
                             <div class="container">
                                 <div class="row d-flex justify-content-center" id="imageContainer">
                                     @foreach($room->images as $image)
-
                                         <div class="col-sm-6 imgUp ">
                                             <div class="imagePreviewEdit"
-                                                 style="background-image: URL('/uploads/{{$image->path}}');">
-
+                                                 style="background-image: URL('/storage/{{$image->path}}');">
                                             </div>
-                                            <label class="btn btn-primary">
-                                                Upload<input id="image" name="images[]" type="file"
-                                                             class="uploadFile @error('images') is-invalid @enderror img"
-                                                             value="Upload Image"
-                                                             accept="image/*"
-                                                             style="width: 0;height: 0;overflow: hidden;">
-                                            </label>
                                             <i class="fa fa-times del"></i>
-
                                         </div><!-- col-2 -->
                                     @endforeach
                                 </div><!-- row -->

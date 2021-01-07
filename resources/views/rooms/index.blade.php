@@ -19,8 +19,33 @@
                     </div>
                 </div>
                 <div class="col-sm-7 my-2 mx-5">
-                    <div class="row">
-                        <h1 class="text-center">Our rooms</h1>
+                    <h1 class="text-center">Our rooms</h1>
+                    <div class="my-4 bg-warning rounded">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <button type="button"
+                                            class="btn btn-success text-uppercase text-center"
+                                            onclick="location.href='{{ route('rooms.create') }}'">
+                                        ADD NEW ROOM
+                                    </button>
+                                </div>
+                                <div class="col-sm-3">
+                                    @if(!$rooms)
+                                        <p>No rooms in this page.</p>
+                                    @else
+                                        <button type="button"
+                                                class="btn btn-success text-uppercase text-center"
+                                                onclick="location.href='{{ route('rooms.disableIndex') }}'">
+                                            DISABLE ROOMS
+                                        </button>
+                                    @endif
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="success"></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     @forelse ($rooms as $room)
                         <div class="row">
@@ -28,7 +53,8 @@
                                 <div class="card-body">
                                     <div class="row my-1">
                                         <div class="col-sm-4">
-                                            <img src="/storage/{{$room->images[0]->path}}" class='img-responsive' alt="">
+                                            <img src="/storage/{{$room->images[0]->path}}" class='img-responsive'
+                                                 alt="">
                                         </div>
                                         <div class="col">
                                             <div class="bg-light rounded" style="height: 100%">
@@ -49,12 +75,11 @@
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <div class="row d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-block btn-primary text-uppercase text-center"
-                                                                    onclick="location.href='{{ route('rooms.show', $room) }}'">
-                                                                SEE MORE
-                                                            </button>
-
+                                                                <button type="button"
+                                                                        class="btn btn-block btn-primary text-uppercase text-center"
+                                                                        onclick="location.href='{{ route('rooms.show', $room) }}'">
+                                                                    SEE MORE
+                                                                </button>
                                                             </div>
                                                             <br>
                                                             <div class="row d-flex justify-content-center">
@@ -74,8 +99,6 @@
                             </div>
                         </div>
                     @empty
-                        <p>No rooms in this page.</p>
-                        <br>
                     @endforelse
                 </div>
             </div>

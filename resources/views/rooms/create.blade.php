@@ -146,11 +146,6 @@
         .toggle.ios, .toggle-on.ios, .toggle-off.ios {
             border-radius: 20px;
         }
-
-        .bottom_aligner {
-            display: flex;
-            align-items: flex-end;
-        }
     </style>
 
 @endsection

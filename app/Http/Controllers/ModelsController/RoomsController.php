@@ -69,13 +69,29 @@ class RoomsController extends Controller
 
 
         return redirect()->route('rooms.index')
-            ->with('success','Service created successfully.');
+            ->with('success', 'Service created successfully.');
     }
 
     //Mostra una vista per modificare un oggetto esistente
     public function edit(Room $room)
     {
         return view('rooms.edit', ['room' => $room]);
+    }
+
+    public function disableIndex()
+    {
+        $rooms = room::latest()->get();
+        return view('rooms.disableIndex', ['rooms' => $rooms]);
+    }
+
+    public function disable(Request $request)
+    {
+        $room = room::where('numroom', $request->numroom);
+        $room->availability = $request->availabiltiy;
+        $room->update();
+
+        $rooms = room::latest()->get();
+        return redirect()->route('rooms.disableIndex', ['rooms' => $rooms]);
     }
 
     //aggiorana nel database l'oggetto con la modifica
@@ -85,9 +101,7 @@ class RoomsController extends Controller
         $room->availability = strcmp(\request('availability'), 'On');
         $room->update($request->all(['type', 'numroom', 'price', 'capacity', 'description']));
 
-
-
-        return redirect()->route('rooms.show',['room' => $room]);
+        return redirect()->route('rooms.show', ['room' => $room]);
     }
 
     //elimina l'oggetto dal database
