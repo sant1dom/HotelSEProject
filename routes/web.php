@@ -41,7 +41,7 @@ Route::get('/', function (){
 Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
 Route::get('/rooms/disableRooms', [RoomsController::class, 'disableIndex'])->name('rooms.disableIndex')->middleware('auth:admin');
 Route::get('/rooms/disableRoom', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
-Route::get('/rooms/{id}', [RoomsController::class, 'userShow'])->name('rooms.userShow');
+Route::get('/rooms/{room}', [RoomsController::class, 'userShow'])->name('rooms.userShow');
 Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contacts.userIndex');
 
 /**

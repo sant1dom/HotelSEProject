@@ -63,11 +63,10 @@
                                                             <h5>Price: {{$room->price}}€</h5>
                                                         </div>
                                                         <div class="col-sm-4 d-flex justify-content-center">
-                                                            <button type="button"
-                                                                    class="btn btn-primary text-uppercase text-center"
-                                                                    onclick="location.href='{{ route('rooms.userShow', $room) }}'">
+                                                            <a class="btn btn-primary text-uppercase text-center"
+                                                                    href='{{ route('rooms.userShow', $room) }}'>
                                                                 SEE MORE
-                                                            </button>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>

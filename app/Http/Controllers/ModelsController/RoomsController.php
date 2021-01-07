@@ -35,6 +35,7 @@ class RoomsController extends Controller
 
     public function userShow(Room $room) //Room $room
     {
+
         return view('rooms.userShow', ['room' => $room]);
     }
 
