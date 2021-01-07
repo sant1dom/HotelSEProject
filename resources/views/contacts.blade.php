@@ -15,11 +15,7 @@
                     </ul>
                     <ul class="list-unstyled">
                         <li><b>Address</b></li>
-                        @foreach($contacts as $contact)
-                            @if($contact->type == 'address')
-                                <li>{{ $contact->contact_string }}</li>
-                            @endif
-                        @endforeach
+                        <li>{{ $hotel->address }}</li>
                     </ul>
                     <ul class="list-unstyled">
                         <li><b>Social</b></li>

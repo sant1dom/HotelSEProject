@@ -20,11 +20,7 @@
                 <div class="col-sm-3 my-sm-0 mt-5">
                     <ul class="list-unstyled">
                         <li><b>Address</b></li>
-                        @foreach($contacts as $contact)
-                            @if($contact->type == 'address')
-                                <li>{{ $contact->contact_string }}</li>
-                            @endif
-                        @endforeach
+                        <li>{{ $hotel->address }}</li>
                     </ul>
                 </div>
                 <div class="col-sm-3 my-sm-0 mt-5">

@@ -24,7 +24,7 @@ class ContactFactory extends Factory
      */
     public function definition()
     {
-        $types = ['social', 'phone', 'email', 'address'];
+        $types = ['social', 'phone', 'email'];
         $type = $types[array_rand($types)];
         return [
             'type' => $type,
@@ -41,8 +41,6 @@ class ContactFactory extends Factory
                 return 'Phone' . ': ' . $this->faker->phoneNumber;
             case 'email':
                 return 'Email' . ': ' . $this->faker->email;
-            case 'address':
-                return 'Address' . ': ' . $this->faker->address;
         }
     }
 }

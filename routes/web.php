@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModelsController\ServicesController;
 use App\Http\Controllers\ModelsController\GuestsController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,24 +41,9 @@ Route::get('/', function (){
 Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
 Route::get('/rooms/{id}', [RoomsController::class, 'userShow'])->name('rooms.userShow');
 
-Route::prefix('admin')->group(function() {
-    Route::resource('/rooms', RoomsController::class)->middleware('auth:admin');
-});
-
-
-/**
- * Routes for the contacts views
- */
-Route::prefix('admin')->group(function() {
-    Route::resource('/contacts', ContactsController::class)->middleware('auth:admin');
-});
 
 Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contacts.userIndex');
 
-/**
- * Routes for the services views
- */
-Route::resource('services', ServicesController::class)->middleware('auth:admin');
 
 /**
  * Routes for the guests views
@@ -84,6 +70,12 @@ Route::prefix('admin')->group(function() {
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('auth:admin');
     Route::get('/reports', [AdminLoginController::class, 'showReports'])->name('admin.reports');
+    Route::resource('contacts', ContactsController::class)->middleware('auth:admin');
+    /**
+     * Routes for the services views
+     */
+    Route::resource('services', ServicesController::class)->middleware('auth:admin');
+    Route::resource('rooms', RoomsController::class)->middleware('auth:admin');
 });
 
 
