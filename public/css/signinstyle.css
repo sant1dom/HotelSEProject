@@ -1,6 +1,6 @@
 
 section.hero.is-bold {
-    background-image: url("https://media-cdn.holidaycheck.com/w_1280,h_720,c_fill,q_80/ugc/images/e2f1eadb-1dfc-4ec3-9e44-4483aad249a4");
+    background-image:linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 60%), url("https://media-cdn.holidaycheck.com/w_1280,h_720,c_fill,q_80/ugc/images/e2f1eadb-1dfc-4ec3-9e44-4483aad249a4");
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;

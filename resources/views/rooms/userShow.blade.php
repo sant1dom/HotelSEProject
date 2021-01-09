@@ -84,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 my-2 mx-5">
+                <div class="col-sm-3 my-2 mx-5 float-right">
                     <h1 class="text-center">Informations</h1>
                     <div class="bg-warning rounded my-4">
                         <div class="card-body">

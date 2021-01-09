@@ -27,7 +27,7 @@ class HotelFactory extends Factory
             'hotelname' => $this->faker->company,
             'address' => $this->faker->address,
             'capacity' => $this->faker->randomNumber(3),
-            'stars' => $this->faker->randomNumber(1),
+            'stars' => $this->faker->numberBetween($min=3,$max=5),
         ];
     }
 }
