@@ -1,42 +1,48 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light ">
-    <a class="navbar-brand my-auto" href="{{route('admin.dashboard')}}">
+<nav class="navbar navbar-dark bg-light fixed-top d-flex justify-content-end">
+    <a class="navbar-brand mr-auto" href="{{route('admin.dashboard')}}" style="color: black;">
         @if (!is_null($hotel))
             {{$hotel->hotelname}}
         @else
             Hotel Name
         @endif
     </a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <ul class="navbar-brand my-auto">
+            <li class="navbar-item dropdown">
+                <a class="btn btn-outline-dark" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
+    </ul>
+    <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarsExample01"
+            aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation" id="toggleButton">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <div class="collapse navbar-collapse bg-light" id="navbarsExample01">
+        <ul class="navbar-nav my-auto mx-2 text-right">
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('admin.dashboard')}}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{route('admin.dashboard')}}" style="color: black"><h5>Home <span class="sr-only">(current)</span></h5></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('rooms.index')}}">Rooms</a>
+                <a class="nav-link" href="{{route('admin.reports')}}" style="color: black"><h5>Reports</h5></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('services.index')}}">Services</a>
+                <a class="nav-link" href="{{route('admin.dashboard')}}" style="color: black"><h5>Bookings</h5></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.reports')}}">Reports</a>
+                <a class="nav-link" href="{{route('rooms.index')}}" style="color: black"><h5>Rooms</h5></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('services.index')}}" style="color: black"><h5>Services</h5></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('contacts.index')}}" style="color: black"><h5>contacts</h5></a>
             </li>
         </ul>
-        <!-- Authentication Links -->
-        <li class="navbar-item">
-            <a class="btn btn-outline-dark" href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-        </li>
-
     </div>
 </nav>

@@ -86,8 +86,8 @@
                                             $set_ = '';
                                         } ?>
                                         <div class='carousel-item  <?php echo $set_; ?>'>
-                                            <img src="/storage/{{$image->path}}" class='imageRoom img-responsive' alt=""
-                                                 style="margin: auto;">
+                                            <img src="/storage/{{$image->path}}" class='imageRoom' alt=""
+                                                 style="margin: auto; object-fit: contain;">
                                         </div>
                                         <?php $i++;?>
                                     @endforeach
@@ -110,7 +110,7 @@
                             <p>{{$room->description}}</p>
                             <br>
                             <div class="row has-text-centered bottomLine">
-                                <p>For max {{$room->capacity}} people price: {{$room->price}}€</p>
+                                <p>For max {{$room->capacity}} people. Price: {{$room->price}}€</p>
                             </div>
                         </div>
                     </div>
@@ -172,7 +172,6 @@
             @endforeach
         @endif
         <br>
-        <div class="separatorEnd"></div>
     </div>
 
     <style>

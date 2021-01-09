@@ -53,8 +53,13 @@
                                 <div class="card-body">
                                     <div class="row my-1">
                                         <div class="col-sm-4">
-                                            <img src="/storage/{{$room->images[0]->path}}" class='img-responsive'
-                                                 alt="">
+                                            @if($room->images[0] === null)
+                                                <img src="http://via.placeholder.com/512" class='img-fluid'
+                                                     alt="">
+                                            @else
+                                                <img src="/storage/{{$room->images[0]->path}}" class='img-fluid'
+                                                     alt="">
+                                            @endif
                                         </div>
                                         <div class="col">
                                             <div class="bg-light rounded" style="height: 100%">
@@ -69,8 +74,7 @@
                                                                 @else
                                                                     <span class="dot"
                                                                           style="background-color: red"></span>
-                                                                @endif
-                                                            </h5>
+                                                                @endif </h5>
                                                             <h5>Price: {{$room->price}}€</h5>
                                                         </div>
                                                         <div class="col-sm-4">
