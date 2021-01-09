@@ -19,10 +19,17 @@ class RoomsController extends Controller
 
     }
 
-    public function userIndex()
+    public function userIndex(Request $request)
     {
-        $rooms = room::latest()->get();
-        return view('rooms.userIndex', ['rooms' => $rooms]);
+        $types = room::get();
+        $types->unique('type');
+        if (!($request->typeSelection === 'None')) {
+            $type = $request->typeSelection;
+            $rooms = Room::where('type', 'LIKE', $type)->get()->sortBy('id');
+        } else {
+            $rooms = Room::get();
+        }
+        return view('rooms.userIndex', ['rooms' => $rooms, 'types' => $types]);
 
     }
 
@@ -33,11 +40,6 @@ class RoomsController extends Controller
         return view('rooms.show', ['room' => $room]);
     }
 
-    public function userShow(Room $room) //Room $room
-    {
-
-        return view('rooms.userShow', ['room' => $room]);
-    }
 
     //Mostra una vista per creare un nuovo oggetto
     public function create()

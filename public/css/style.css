@@ -1,4 +1,6 @@
-
+.bootstrap-iso {
+    background-color: rgb(242, 242, 242);
+}
 section.hero.is-bold {
     background-image:linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 60%), url("https://media-cdn.holidaycheck.com/w_1280,h_720,c_fill,q_80/ugc/images/e2f1eadb-1dfc-4ec3-9e44-4483aad249a4");
     background-size: cover;
@@ -23,33 +25,4 @@ section.hero.is-bold {
 }
 .separator::after {
     margin-left: .25em;
-}
-
-.card-signin {
-    border: 0;
-    border-radius: 1rem;
-    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-}
-
-.card-signin .card-title {
-    margin-bottom: 2rem;
-    font-weight: 300;
-    font-size: 1.5rem;
-}
-
-.card-signin .card-body {
-    padding: 2rem;
-}
-
-.form-signin {
-    width: 100%;
-}
-
-.form-signin .btn {
-    font-size: 80%;
-    border-radius: 5rem;
-    letter-spacing: .1rem;
-    font-weight: bold;
-    padding: 1rem;
-    transition: all 0.2s;
 }

@@ -11,7 +11,7 @@
                         Hotel Name<br/>
                     @endif
                 </h4>
-                <h4 class="subtitle text-light font-weight-bold" style="font-size:4vw;">
+                <h4 class="title text-light font-weight-bold" style="font-size:4vw;">
                     @if (!is_null($hotel))
                         {{$hotel->hotelname}}<br/>
                     @else
@@ -30,7 +30,7 @@
                             <label for="startDate">Check-in</label>
                             <input id="startDate" type="date"
                                    class="form-control @error('date') is-invalid @enderror" name="email"
-                                   value="{{ old('date') }}" min="<?php echo date('Y-m-d'); ?>"
+                                   value="{{ old('date') }}" min="<?php use App\Models\Room;echo date('Y-m-d'); ?>"
                                    max="2030-12-31"/>
                         </div>
                         <div class="col-sm-4 float-none" style="margin: auto">
@@ -52,26 +52,22 @@
         </div>
     </section>
     <div class="bootstrap-iso">
-        <br><br><br> <br> <br> <br>
+        <br><br><br><br><br><br>
         <div class="separator"><h1 class="title is-1 has-text-centered">Rooms in evidence</h1></div>
         <br><br><br>
-
-
-
-
         <?php
-        $rooms = \App\Models\Room::latest()->take(4)->get()->unique('type');
+        $rooms = Room::take(4)->get()->unique('type');
         ?>
         @if($rooms)
             @foreach($rooms as $i => $room)
                 @if($i % 2 == 0)
-                    <div class="row d-flex justify-content-center" style="background-color: white;">
+                    <div class="row d-flex justify-content-center" style="background-color: white; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);">
                         <div class="col-sm has-text-centered roomImage" style="margin: 2rem">
                             <img class="imageRoom img-responsive" src="/storage/{{$room->images[0]->path}}" alt="">
                             <div class="middle">
                                 <button type="button"
                                         class="btn btn-primary btn-lg text-uppercase text-center rounded-pill"
-                                        onclick="location.href='{{ route('rooms.userShow', $room) }}'">
+                                        onclick="location.href='{{ route('rooms.userIndex') }}'">
                                     SEE MORE!
                                 </button>
                             </div>
@@ -82,8 +78,6 @@
                             <p>{{$room->description}}</p>
                         </div>
                     </div>
-
-
                 @else
                     <div class="row d-flex justify-content-center">
                         <div class="col-sm has-text-centered" style="margin: 2rem">
@@ -96,7 +90,7 @@
                             <div class="middle">
                                 <button type="button"
                                         class="btn btn-primary btn-lg text-uppercase text-center rounded-pill"
-                                        onclick="location.href='{{ route('rooms.userShow', $room) }}'">
+                                        onclick="location.href='{{ route('rooms.userIndex') }}'">
                                     SEE MORE!
                                 </button>
                             </div>
@@ -110,22 +104,13 @@
     </div>
 
     <style>
-        .hero {
+        .hero-body {
             width: 100%;
-            height: 100%;
-            position: relative;
+            height: 20rem;
         }
-
-        #searchBar {
-            width: 60%;
-            border-color: goldenrod;
-            border-radius: 20px;
-            background-color: white !important;
-            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
-            position: absolute;
-            left: 50%;
-            top: 100%;
-            transform: translate(-50%, -50%);
+        .separatorEnd {
+            flex: 1;
+            border-bottom: 1px solid #000;
         }
 
         .imageRoom {
@@ -163,14 +148,6 @@
             opacity: 1;
         }
 
-        .bootstrap-iso {
-            background-color: rgb(242, 242, 242);
-        }
-
-        .separatorEnd {
-            flex: 1;
-            border-bottom: 1px solid #000;
-        }
     </style>
 @endsection
 

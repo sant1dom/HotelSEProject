@@ -5,10 +5,13 @@ use App\Http\Controllers\ModelsController\AdminController;
 use App\Http\Controllers\ModelsController\BookingsController;
 use App\Http\Controllers\ModelsController\ContactsController;
 use App\Http\Controllers\ModelsController\RoomsController;
+use App\Models\Room;
+use http\Client\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModelsController\ServicesController;
 use App\Http\Controllers\ModelsController\GuestsController;
+use Symfony\Component\Console\Input\Input;
 
 
 /*
@@ -41,7 +44,6 @@ Route::get('/', function (){
 Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
 Route::get('/rooms/disableRooms', [RoomsController::class, 'disableIndex'])->name('rooms.disableIndex')->middleware('auth:admin');
 Route::get('/rooms/disableRoom', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
-Route::get('/rooms/{room}', [RoomsController::class, 'userShow'])->name('rooms.userShow');
 Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contacts.userIndex');
 
 /**

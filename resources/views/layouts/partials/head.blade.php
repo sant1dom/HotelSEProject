@@ -5,7 +5,9 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>{{ config('app.name', 'Hotel Name') }}</title>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<link href="{{ asset('css/signinstyle.css') }}" rel="stylesheet">
+<link href="{{ asset('css/signIn.css') }}" rel="stylesheet">
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('css/heroWithSearch.css') }}" rel="stylesheet">
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">

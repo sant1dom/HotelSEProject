@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
+/**
+ * @method static latest()
+ * @method static take(int $int)
+ * @method static get()
+ */
 class Room extends Model
 {
     use HasFactory;
