@@ -1,92 +1,99 @@
 @extends('layouts.admin-layout')
 
 @section('content')
-
-    <div class="row mx-auto my-auto">
-
-        <div class="col-lg-12 margin-tb">
-
-            <div class="pull-left">
-
-                <h2>Add New Contact</h2>
-
-            </div>
-
-            <div class="pull-right">
-
-                <a class="btn btn-primary" href="{{ route('contacts.index') }}"> Back</a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    @if ($errors->any())
-
-        <div class="alert alert-danger">
-
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-
-            <ul>
-
-                @foreach ($errors->all() as $error)
-
-                    <li>{{ $error }}</li>
-
-                @endforeach
-
-            </ul>
-
-        </div>
-
-    @endif
-
-
-
-    <form action="{{ route('contacts.store') }}" method="POST">
+    <form method="POST" action="{{ route('contacts.store') }}">
         @csrf
-        <div class="row mx-auto my-auto">
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-
-                <div class="form-group">
-
-                    <strong>Type:</strong>
-                    <br>
-                    <input type="radio" name="type" value="social"> Social</label>
-                    <br>
-                    <input type="radio" name="type" value="email"> Email</label>
-                    <br>
-                    <input type="radio" name="type" value="address"> Address</label>
-                    <br>
-                    <input type="radio" name="type" value="phone"> Phone</label>
-                    <br>
-
+        <section class="hero is-fullheight is-bold">
+            <div class="hero-body is-align-items-stretch">
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                <div class="container-fluid dashboard">
+                    <div class="col-sm-12 my-5 d-flex justify-content-center">
+                        <div class="card hoverCard bg-warning">
+                            <div class="card-body">
+                                {{--Yellow background--}}
+                            </div>
+                        </div>
+                        <div class="card dashboard">
+                            <div class="card-body">
+                                <div class="col-sm">
+                                    <h3 class="text-center">Details</h3>
+                                    <div class="form-group has-text-centered">
+                                        <div class="autocomplete" style="width: 100%">
+                                            <label class="control-label my-2" for="contact_string">
+                                                Description
+                                            </label>
+                                            <input class="form-control @error('contact_string') is-invalid @enderror"
+                                                   id="contact_string" type="text" name="contact_string"
+                                                   placeholder="Ex.: example@email.com"
+                                                   value="{{ old('contact_string') }}"/>
+                                        </div>
+                                        <label class="my-2" for="type">Type</label>
+                                        <select class="form-control @error('type') is-invalid @enderror" id="type" name="type">
+                                            <option>Social</option>
+                                            <option>Email</option>
+                                            <option>Address</option>
+                                            <option>Phone</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-success btn-block" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-
-                <div class="form-group">
-
-                    <strong>Contact String:</strong>
-
-                    <input type="text" class="form-control" name="contact_string"></input>
-
-                </div>
-
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-
-            </div>
-        </div>
+        </section>
     </form>
 
+    <style>
+        .form-control {
+            background-color: #f1f1f1;
+        }
+
+        .alert {
+            position: absolute;
+            left: 80%;
+            top: 5%;
+            z-index: 999;
+        }
+
+        .card.hoverCard {
+            width: 68%;
+            height: 100%;
+            border-color: black;
+            border-radius: 20px;
+            right: 19%;
+            bottom: 10%;
+            position: absolute;
+        }
+
+        .card.dashboard {
+            z-index: 1;
+            height: 50%;
+            width: 70%;
+            border-color: black;
+            border-radius: 20px;
+            background-color: white !important;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+            position: relative;
+
+        }
+
+        .container-fluid.dashboard {
+            max-width: 50%;
+            max-height: 50%;
+            margin-top: 10%;
+        }
+    </style>
 @endsection

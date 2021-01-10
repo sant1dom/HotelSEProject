@@ -11,8 +11,8 @@
                         </div>
                     </div>
                     <div class="card dashboard">
-                        <h5 class="card-header text-center">
-                            Hotel contacts list
+                        <h5 class="card-header d-flex justify-content-center">
+                            {{ $contacts->links( "pagination::bootstrap-4" ) }}
                         </h5>
                         <div class="card-body">
                             <div id="collapse1">
@@ -36,7 +36,7 @@
                                                         <div class="row" style="margin: auto">
                                                             <div class="col-sm ">
                                                                 <a class="btn btn-primary btn-block"
-                                                                   href="{{route('contacts.edit', $contact)}}">Edit</a>
+                                                                   href="{{route('contacts.edit', $contact)}}">Edit/Show</a>
                                                             </div>
                                                             @csrf
                                                             @method('DELETE')
@@ -69,9 +69,7 @@
         }
 
         #collapse1 {
-            max-height: 30rem;
-            overflow-y: scroll;
-            overflow-x: scroll;
+            height: 34rem;
             width: 100%;
         }
 
@@ -81,7 +79,7 @@
             border-color: black;
             border-radius: 20px;
             left: 13%;
-            bottom: 58%;
+            bottom: 56%;
             position: absolute;
         }
 
@@ -102,7 +100,7 @@
         .container-fluid.dashboard {
             max-width: 80%;
             max-height: 50%;
-            margin-top: 15%;
+            margin-top: 17%;
         }
 
         .header {

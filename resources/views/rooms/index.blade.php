@@ -11,8 +11,8 @@
                         </div>
                     </div>
                     <div class="card dashboard">
-                        <h5 class="card-header text-center">
-                           Hotel rooms list
+                        <h5 class="card-header d-flex justify-content-center">
+                              {{ $rooms->links( "pagination::bootstrap-4" ) }}
                         </h5>
                         <div class="card-body">
                             <div id="collapse1">
@@ -54,13 +54,14 @@
                                                         @endif
                                                         <div class="col-sm ">
                                                             <a class="btn btn-primary btn-block"
-                                                               href="{{route('rooms.edit', $room)}}">Edit</a>
+                                                               href="{{route('rooms.edit', $room)}}">Edit/Show</a>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
+
                                     </table>
                                 </div>
                             </div>
@@ -80,9 +81,7 @@
         }
 
         #collapse1 {
-            max-height: 30rem;
-            overflow-y: scroll;
-            overflow-x: scroll;
+            height: 34rem;
             width: 100%;
         }
 
@@ -92,7 +91,7 @@
             border-color: black;
             border-radius: 20px;
             left: 13%;
-            bottom: 58%;
+            bottom: 56%;
             position: absolute;
         }
 
@@ -113,7 +112,7 @@
         .container-fluid.dashboard {
             max-width: 80%;
             max-height: 50%;
-            margin-top: 15%;
+            margin-top: 17%;
         }
 
         .dot {

@@ -45,6 +45,7 @@ Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userInd
 Route::get('/rooms/disableRoom{room}', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
 Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contacts.userIndex');
 Route::get('/rooms/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
+Route::get('/rooms/delImage',[RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
 /**
  * Routes for the guests views
  */

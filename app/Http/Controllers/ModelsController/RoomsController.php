@@ -13,7 +13,7 @@ class RoomsController extends Controller
 {
     public function index()
     {
-        $rooms = room::latest()->get();
+        $rooms = room::orderBy('numroom')->paginate(8);
 
         return view('rooms.index', ['rooms' => $rooms]);
 
@@ -102,6 +102,10 @@ class RoomsController extends Controller
         $room->update($request->all(['type', 'numroom', 'price', 'capacity', 'description']));
 
         return redirect()->route('rooms.show', ['room' => $room]);
+    }
+
+    public function deleteImage(Image $image){
+        dd($image);
     }
 
     //elimina l'oggetto dal database

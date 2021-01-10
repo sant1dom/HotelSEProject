@@ -123,8 +123,8 @@
             height: 100%;
             border-color: black;
             border-radius: 20px;
-            right: 18%;
-            bottom: 6%;
+            right: 19%;
+            bottom: 10%;
             position: absolute;
         }
 
