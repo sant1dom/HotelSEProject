@@ -53,7 +53,7 @@ class RoomsController extends Controller
         $this->validateRoom();
 
         $room = new Room(request(['type', 'numroom', 'price', 'capacity', 'description']));
-        $room->availability = strcmp(\request('availability'), 'On');
+        $room->availability = 1;
         $room->hotel_id = 1;
         $room->save();
 
@@ -117,10 +117,7 @@ class RoomsController extends Controller
             'numroom' => 'required',
             'price' => 'required',
             'capacity' => 'required',
-            'availability',
             'description' => 'required',
-            'images' => 'required',
-            'images.*' => 'image'
         ]);
     }
 }
