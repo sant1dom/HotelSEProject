@@ -1,5 +1,10 @@
+
 @extends('layouts.admin-layout')
+
 @section('content')
+    <?php
+    use App\Models\Contact;$contacts = Contact::get();
+    ?>
     <section class="hero is-fullheight is-bold" style="overflow:hidden;">
         <div class="hero-body">
             <div class="container-fluid dashboard">
@@ -10,59 +15,51 @@
                         </div>
                     </div>
                     <div class="card dashboard">
+                        <h5 class="card-header text-center">
+                            Hotel contacts list
+                        </h5>
                         <div class="card-body">
-                            <h1 class=" text-center big">{{ __('Admin Dashboard') }}</h1>
-                            <div class="row my-3">
-                                <div class="col-sm">
-                                    <div class="row">
-                                        <div class="col-sm d-flex justify-content-center my-4">
-                                            <button type="button"
-                                                    class="btn btn-outline-secondary btn-lg btn-block text-center rounded-pill"
-                                                    onclick="location.href='{{ route('admin.dashboard') }}'">
-                                                Bookings
-                                            </button>
-                                        </div>
-                                        <div class="col-sm d-flex justify-content-center my-4">
-                                            <button type="button"
-                                                    class="btn btn-outline-secondary btn-lg btn-block text-center rounded-pill"
-                                                    onclick="location.href='{{ route('admin.dashboard') }}'">
-                                                Reports
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm has-text-centered">
-                                    <img class="my-3" src="/images/CrC.png"  width="100" height="100" alt="">
-                                    <p>Chech-in, Relax, Check-out&trade;</p>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="row">
-                                        <div class="col-sm d-flex justify-content-center  my-4">
-                                            <button type="button"
-                                                    class="btn btn-outline-secondary btn-lg btn-block text-center rounded-pill"
-                                                    onclick="location.href='{{ route('rooms.index') }}'">
-                                                Rooms
-                                            </button>
-                                        </div>
-                                        <div class="col-sm d-flex justify-content-center  my-4">
-                                            <button type="button"
-                                                    class="btn btn-outline-secondary btn-lg btn-block text-center rounded-pill"
-                                                    onclick="location.href='{{ route('services.index') }}'">
-                                                Services
-                                            </button>
-                                        </div>
-                                    </div>
+                            <div id="collapse1">
+                                <div class="table-responsive-sm">
+                                    <table class="table table-fixed table-striped header-fixed">
+                                        <thead style="position: sticky; top: 0" class="thead-dark">
+                                        <tr>
+                                            <th class="header has-text-centered" scope="col">Type</th>
+                                            <th class="header has-text-centered" scope="col">Description</th>
+                                            <th class="header has-text-centered" scope="col">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($contacts as $contact)
+                                            <tr>
+                                                <td>{{$contact->type}}</td>
+                                                <td class="has-text-centered">{{$contact->contact_string}}</td>
+                                                <td>
+                                                    <form action="{{ route('contacts.destroy',$contact->id) }}"
+                                                          method="POST">
+                                                        <div class="row" style="margin: auto">
+                                                            <div class="col-sm ">
+                                                                <a class="btn btn-primary btn-block"
+                                                                   href="{{route('contacts.edit', $contact)}}">Edit</a>
+                                                            </div>
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <div class="col-sm">
+                                                                <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="row my-3">
-                                <div class="col-sm d-flex justify-content-center">
-                                    <button type="button"
-                                            class="btn btn-outline-secondary btn-lg btn-block text-center rounded-pill"
-                                            onclick="location.href='{{ route('contacts.index') }}'">
-                                        Contacts
-                                    </button>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-success btn-block" href="{{ route('contacts.create') }}">Create a new
+                                contact</a>
                         </div>
                     </div>
                 </div>
@@ -71,20 +68,31 @@
     </section>
 
     <style>
+        .hero {
+            position: absolute;
+        }
+
+        #collapse1 {
+            max-height: 30rem;
+            overflow-y: scroll;
+            overflow-x: scroll;
+            width: 100%;
+        }
+
         .card.hoverCard {
-            width: 50%;
+            width: 68%;
             height: 100%;
             border-color: black;
             border-radius: 20px;
-            left: 22%;
-            bottom: 60%;
+            left: 13%;
+            bottom: 58%;
             position: absolute;
         }
 
         .card.dashboard {
             z-index: 1;
             height: 50%;
-            width: 50%;
+            width: 70%;
             border-color: black;
             border-radius: 20px;
             background-color: white !important;
@@ -96,8 +104,15 @@
         }
 
         .container-fluid.dashboard {
-            max-width: 65%;
+            max-width: 80%;
+            max-height: 50%;
             margin-top: 15%;
         }
+
+        .header {
+            position: sticky;
+            top: 0;
+        }
+
     </style>
 @endsection

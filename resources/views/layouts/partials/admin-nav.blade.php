@@ -41,7 +41,7 @@
                 <a class="nav-link" href="{{route('services.index')}}" style="color: black"><h5>Services</h5></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('contacts.index')}}" style="color: black"><h5>contacts</h5></a>
+                <a class="nav-link" href="{{route('contacts.index')}}" style="color: black"><h5>Contacts</h5></a>
             </li>
         </ul>
     </div>

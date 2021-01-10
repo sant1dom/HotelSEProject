@@ -51,6 +51,20 @@ class ServicesController extends Controller
         return view('services.edit', compact('service'));
     }
 
+    public function disable(Service $service){
+        {
+            if ($service->availability) {
+                Service::find($service->id)->update(['availability' => 0]);
+            } else {
+
+                Service::find($service->id)->update(['availability' => 1]);
+            }
+
+            $services = Service::get();
+            return redirect()->route('services.index', ['services' => $services]);
+        }
+    }
+
     //aggiorana nel database l'oggetto con la modifica
     public function update(Service $service, Request $request)
     {

@@ -1,58 +1,147 @@
 @extends('layouts.admin-layout')
+
 @section('content')
-    <div class="">
-        <div class="row mx-auto my-2">
-            <div class="col-lg-12 margin-tb">
-                <div class="float-left">
-                    <h2>Service List</h2>
-                </div>
 
-                <div class="float-right">
-                    <a class="btn btn-success" href="{{ route('services.create') }}"> Create New Service</a>
+
+    <section class="hero is-fullheight is-bold" style="overflow:hidden;">
+        <div class="hero-body">
+            <div class="container-fluid dashboard">
+                <div class="col-sm-12">
+                    <div class="card hoverCard bg-warning">
+                        <div class="card-body">
+                            {{--Yellow background--}}
+                        </div>
+                    </div>
+                    <div class="card dashboard">
+                        <h5 class="card-header text-center">
+                            Hotel services list
+                        </h5>
+                        <div class="card-body">
+                            <div id="collapse1">
+                                <div class="table-responsive-sm">
+                                    <table class="table table-fixed table-striped header-fixed">
+                                        <thead style="position: sticky; top: 0" class="thead-dark">
+                                        <tr>
+                                            <th class="header has-text-centered" scope="col">Name</th>
+                                            <th class="header has-text-centered" scope="col">Price</th>
+                                            <th class="header has-text-centered" scope="col">Availability</th>
+                                            <th class="header has-text-centered" scope="col">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($services as $service)
+                                            <tr>
+                                                <td>{{$service->name}}</td>
+                                                <td class="has-text-centered">{{$service->price}}€</td>
+                                                <td class="has-text-centered">
+                                                    @if($service->availability)
+                                                        <span class="dot" style="background-color: green"></span>
+                                                    @else
+                                                        <span class="dot" style="background-color: red"></span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('services.destroy',$service->id) }}"
+                                                          method="POST">
+                                                        <div class="row" style="margin: auto">
+                                                            @if($service->availability)
+                                                                <div class="col-sm">
+                                                                    <a class="btn btn-danger btn-block"
+                                                                       href="{{route('services.disable', $service)}}">Disable</a>
+                                                                </div>
+                                                            @else
+                                                                <div class="col-sm">
+                                                                    <a class="btn btn-success btn-block"
+                                                                       href="{{route('services.disable', $service)}}">Enable</a>
+                                                                </div>
+                                                            @endif
+                                                            <div class="col-sm ">
+                                                                <a class="btn btn-primary btn-block"
+                                                                   href="{{route('services.edit', $service)}}">Edit</a>
+                                                            </div>
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <div class="col-sm ">
+                                                                <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                    <div class="d-flex justify-content-center">
+                                        {!! $services->links() !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-success btn-block" href="{{ route('services.create') }}">Create a new
+                                service</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
+    <style>
+        .hero {
+            position: absolute;
+        }
 
-        <table class="table table-bordered mx-2">
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Availability</th>
-                <th width="280px">Action</th>
-            </tr>
+        #collapse1 {
+            max-height: 30rem;
+            overflow-y: scroll;
+            overflow-x: scroll;
+            width: 100%;
+        }
 
-            @foreach ($services as $i => $service)
+        .card.hoverCard {
+            width: 68%;
+            height: 100%;
+            border-color: black;
+            border-radius: 20px;
+            left: 13%;
+            bottom: 58%;
+            position: absolute;
+        }
 
-                <tr style="background-color: {{ $i % 2 == 0 ? '#d7f5f3': '#FFFFFF' }};">
-                    <td>{{ $service->name }}</td>
-                    <td>{{ $service->price }}</td>
-                    @if($service->availability == 1)
-                        <td>{{__('Available')}}</td>
-                    @else
-                        <td>{{__('Not available')}}</td>
-                    @endif
-                    <td>
+        .card.dashboard {
+            z-index: 1;
+            height: 50%;
+            width: 70%;
+            border-color: black;
+            border-radius: 20px;
+            background-color: white !important;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+            position: relative;
+            left: 50%;
+            top: 100%;
+            transform: translate(-50%, -50%);
+        }
+        .container-fluid.dashboard {
+            max-width: 80%;
+            max-height: 50%;
+            margin-top: 15%;
+        }
 
-                        <form action="{{ route('services.destroy',$service->id) }}" method="POST">
-                            <a class="btn btn-info" href="{{ route('services.show',$service->id) }}">Show</a>
-                            <a class="btn btn-primary" href="{{ route('services.edit',$service->id) }}">Edit</a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </table>
-        <div class="d-flex justify-content-center">
-            {!! $services->links() !!}
-        </div>
-    </div>
+        .dot {
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+        }
+
+    </style>
 @endsection
+
+
 

@@ -42,10 +42,9 @@ Route::get('/', function (){
  * Routes for the rooms views
  */
 Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
-Route::get('/rooms/disableRooms', [RoomsController::class, 'disableIndex'])->name('rooms.disableIndex')->middleware('auth:admin');
-Route::get('/rooms/disableRoom', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
+Route::get('/rooms/disableRoom{room}', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
 Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contacts.userIndex');
-
+Route::get('/rooms/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
 /**
  * Routes for the guests views
  */
@@ -55,13 +54,13 @@ Route::resource('guests', GuestsController::class);
  * Route for the booking view
  */
 Route::resource('bookings', BookingsController::class);
-Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('bookings.confirmation');;
+Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('bookings.confirmation');
 
 
 //se dovesse servire c'è una vista vuota per i test <3
 Route::get('/test', function () {
     return view('test');
-});
+})->name('test');
 
 /**
  * Route for the admin authentication

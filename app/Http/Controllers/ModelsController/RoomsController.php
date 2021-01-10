@@ -7,7 +7,6 @@ use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
-use Intervention\Image\ImageManagerStatic as ImageResized;
 
 
 class RoomsController extends Controller
@@ -82,20 +81,17 @@ class RoomsController extends Controller
         return view('rooms.edit', ['room' => $room]);
     }
 
-    public function disableIndex()
+    public function disable(Room $room)
     {
-        $rooms = room::latest()->get();
-        return view('rooms.disableIndex', ['rooms' => $rooms]);
-    }
+        if ($room->availability) {
+            Room::find($room->id)->update(['availability' => 0]);
+        } else {
 
-    public function disable(Request $request)
-    {
-        $room = room::where('numroom', $request->numroom);
-        $room->availability = $request->availabiltiy;
-        $room->update();
+            Room::find($room->id)->update(['availability' => 1]);
+        }
 
-        $rooms = room::latest()->get();
-        return redirect()->route('rooms.disableIndex', ['rooms' => $rooms]);
+        $rooms = Room::get()->sortBy('numroom');
+        return redirect()->route('rooms.index', ['rooms' => $rooms]);
     }
 
     //aggiorana nel database l'oggetto con la modifica
