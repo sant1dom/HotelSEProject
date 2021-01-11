@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\ModelsController\AdminController;
 use App\Http\Controllers\ModelsController\BookingsController;
 use App\Http\Controllers\ModelsController\ContactsController;
+use App\Http\Controllers\ModelsController\ReportController;
 use App\Http\Controllers\ModelsController\RoomsController;
 use App\Models\Room;
 use http\Client\Request;
@@ -49,12 +50,12 @@ Route::get('/rooms/delImage',[RoomsController::class, 'deleteImage'])->name('roo
 /**
  * Routes for the guests views
  */
-Route::resource('guests', GuestsController::class);
+Route::resource('guests', GuestsController::class)->middleware('auth');
 
 /**
  * Route for the booking view
  */
-Route::resource('bookings', BookingsController::class);
+Route::resource('bookings', BookingsController::class)->middleware('auth');
 Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('bookings.confirmation');
 
 
@@ -70,13 +71,21 @@ Route::prefix('admin')->group(function() {
     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('auth:admin');
-    Route::get('/reports', [AdminLoginController::class, 'showReports'])->name('admin.reports');
     Route::resource('contacts', ContactsController::class)->middleware('auth:admin');
     /**
      * Routes for the services views
      */
     Route::resource('services', ServicesController::class)->middleware('auth:admin');
+    /**
+     * Routes for the rooms views
+     */
     Route::resource('rooms', RoomsController::class)->middleware('auth:admin');
+
+    Route::get('/reports', [ReportController::class, 'index'])->name('admin.reports');
+    Route::get('/reports/users', [ReportController::class, 'usersIndex'])->name('admin.users.index');
+    Route::get('/reports/services', [ReportController::class, 'servicesIndex'])->name('admin.services.index');
+    Route::get('/reports/users/{user}', [ReportController::class, 'usersShow'])->name('report.user.edit');
+    Route::get('/reports/services/{service}', [ReportController::class, 'servicesShow'])->name('report.service.edit');
 });
 
 

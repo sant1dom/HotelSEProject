@@ -26,7 +26,7 @@
                                         <div class="col-sm d-flex justify-content-center my-4">
                                             <button type="button"
                                                     class="btn btn-outline-secondary btn-lg btn-block text-center rounded-pill"
-                                                    onclick="location.href='{{ route('admin.dashboard') }}'">
+                                                    onclick="location.href='{{ route('admin.reports') }}'">
                                                 Reports
                                             </button>
                                         </div>

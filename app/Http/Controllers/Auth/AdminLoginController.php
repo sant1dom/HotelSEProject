@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminLoginController extends Controller
 {
+    protected $guard = 'admin';
     /**
      * Show the application’s login form.
      *
