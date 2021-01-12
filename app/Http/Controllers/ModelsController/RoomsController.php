@@ -33,14 +33,6 @@ class RoomsController extends Controller
 
     }
 
-
-    //Mostra un SINGOLO SPECIFICO oggetto
-    public function show(Room $room) //Room $room
-    {
-        return view('rooms.show', ['room' => $room]);
-    }
-
-
     //Mostra una vista per creare un nuovo oggetto
     public function create()
     {

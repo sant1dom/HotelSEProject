@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ModelsController;
 
 use App\Models\Booking;
 use App\Http\Controllers\Controller;
+use App\Models\Guest;
 use App\Models\Room;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class BookingsController extends Controller
 
     public function index()
     {
-        $bookings = Booking::orderBy('to')->simplePaginate(10);
+        $bookings = Booking::orderBy('to')->Paginate(10);
         return view('bookings.index', compact('bookings'));
     }
 
@@ -30,7 +31,8 @@ class BookingsController extends Controller
         if(Auth::check()){
             $services = Service::all()->unique('name');
             $rooms = Room::all()->unique('type');
-            return view('bookings.create', compact('rooms','services'));
+            $guests = Guest::all();
+            return view('bookings.create', compact('rooms','services', 'guests'));
         }
         else
            return redirect(404);

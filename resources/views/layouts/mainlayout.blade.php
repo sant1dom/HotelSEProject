@@ -16,4 +16,7 @@
     body {
         padding-top: 70px;
     }
+    body::-webkit-scrollbar {
+        display: none;
+    }
 </style>

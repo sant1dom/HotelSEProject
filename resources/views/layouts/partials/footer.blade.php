@@ -4,7 +4,7 @@
             <div class="row row-2">
                 <div class="col-sm-3 text-md-center">
                     <h5><b>Powered by:</b></h5>
-                    <img src="/images/CrC.png"  width="70" height="70" alt="">
+                    <img src="/images/CrC.png" width="70" height="70" alt="">
                     <p>Chech-in, Relax, Check-out&trade;</p>
                 </div>
                 <div class="col-sm-3 my-sm-0 mt-5">
@@ -20,7 +20,9 @@
                 <div class="col-sm-3 my-sm-0 mt-5">
                     <ul class="list-unstyled">
                         <li><b>Address</b></li>
-                        <li>{{ $hotel->address }}</li>
+                        @if ($hotel)
+                            <li>{{ $hotel->address }}</li>
+                        @endif
                     </ul>
                 </div>
                 <div class="col-sm-3 my-sm-0 mt-5">

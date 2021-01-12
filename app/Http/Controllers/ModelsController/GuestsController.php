@@ -4,6 +4,8 @@ namespace App\Http\Controllers\ModelsController;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Request;
 
 class GuestsController extends Controller
 {
@@ -11,9 +13,9 @@ class GuestsController extends Controller
 
     public function index()
     {
-        $guests= Guest::orderBy('name')->simplePaginate(10);;
+        $guests = Guest::orderBy('name')->simplePaginate(10);;
 
-        return view('guests.index',compact('guests'));
+        return view('guests.index', compact('guests'));
     }
 
     //Mostra un SINGOLO SPECIFICO oggetto
@@ -30,9 +32,31 @@ class GuestsController extends Controller
     }
 
     //inserisce l'oggetto nel DB
-    public function store()
+    public function store(Request $request)
     {
 
+        $this->validateGuest();
+
+        $names = $request->name;
+        $surnames = $request->surname;
+        $birthdates = $request->birthdate;
+        $doctypes = $request->doctype;
+        $numdocs = $request->numdoc;
+
+        for($count = 0; $count < count($names); $count++)
+        {
+            $guest = new Guest([
+                'name' => $names[$count],
+                'surname' => $surnames[$count],
+                'birthdate' => $birthdates[$count],
+                'doctype' => $doctypes[$count],
+                'numdoc' => $numdocs[$count],
+            ]);
+            $guest->save();
+        }
+
+        return redirect()->route('bookings.create')
+            ->with('success', 'Service created successfully.');
     }
 
     //Mostra una vista per modificare un oggetto esistente
@@ -51,5 +75,21 @@ class GuestsController extends Controller
     public function destroy(Guest $guest)
     {
 
+    }
+
+    protected function validateGuest()
+    {
+        return request()->validate([
+            'name' => 'required',
+            'name.*' => 'required',
+            'surname' => 'required',
+            'surname.*' => 'required',
+            'birthdate' => 'required',
+            'birthdate.*' => 'required',
+            'doctype' => 'required',
+            'doctype.*' => 'required',
+            'numdoc' => 'required',
+            'numdoc.*' => 'required',
+        ]);
     }
 }

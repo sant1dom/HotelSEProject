@@ -5,7 +5,7 @@
         <div class="hero-body">
             <div class="container has-text-centered">
                 <h4 class="subtitle text-light font-weight-bold" style="font-size:2vw;">
-                    @if (!is_null($hotel))
+                    @if ($hotel)
                         Welcome to a {{$hotel->stars}} <span class="text-warning">&#9733</span> hotel <br/>
                     @else
                         Hotel Name<br/>

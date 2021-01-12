@@ -1,59 +1,21 @@
-var child_0 = [];
-var count_0 = -1;
-var child_1 = [];
-var count_1 = -1;
+$(document).on("click", "i.formAdd", function () {
+    $("#guestContainer").append('<div class="col-sm-6 my-3">' +
+        '<div class="card">' +
+        '<div class="card-body">' +
+        '<label For="names">First name:</label>' +
+        '<input class="form-control " type="text" id="name" name="names[]" form="sub-form">' +
+        '<label for="surnames">Last name:</label>' +
+        '<input class="form-control " type="text" id="surname" name="surnames[]" form="sub-form">' +
+        '<label for="doctypes">Document type:</label>' +
+        '<input class="form-control " type="text" id="doctype" name="doctypes[]" form="sub-form">' +
+        '<label for="numdocs">Document number:</label>' +
+        '<input class="form-control " type="text" id="numdoc" name="numdocs[]" form="sub-form">' +
+        '<label for="birthdates">Birth date:</label>' +
+        '<input class="form-control " type="date" id="birthdate" name="birthdates[]" form="sub-form" max="  <?php echo date(\'Y-m-d\'); ?>  ">' +
+        '</div> </div> <i class = "fa fa-times del"> </i> ');
+});
 
-function addFormFun(n) {
-
-    if (n===0) {
-        if(count_0===-1){
-            document.getElementById("CloneNode_0").style.display = 'block';
-            count_0++;
-            return;
-        }
-        let form = document.createElement("div");
-
-        let NODE = document.getElementById("CloneNode_0").cloneNode(true);
-
-        form.append(NODE);
-
-        document.getElementById("BottomLine_0").appendChild(form);
-        child_0[count_0++] = form;
-    } else if (n===1) {
-        if(count_1===-1){
-            document.getElementById("CloneNode_1").style.display = 'block';
-            count_1++;
-            return;
-        }
-        document.getElementById("CloneNode_1").style.display = 'block';
-        let form = document.createElement("div");
-
-        let NODE = document.getElementById("CloneNode_1").cloneNode(true);
-
-        form.append(NODE);
-
-        document.getElementById("BottomLine_1").appendChild(form);
-        child_1[count_1++] = form;
-    }
-
-}
-
-function removeFormFun(n) {
-    if(n===0){
-        if(count_0===0){
-            document.getElementById("CloneNode_0").style.display = 'none';
-            count_0--;
-            return;
-        }
-        document.getElementById("BottomLine_0").removeChild(child_0[--count_0]);
-
-    }else if (n===1){
-        if(count_1===0){
-            document.getElementById("CloneNode_1").style.display = 'none';
-            count_1--;
-            return;
-        }
-        document.getElementById("BottomLine_1").removeChild(child_1[--count_1]);
-    }
-}
+$(document).on("click", "i.del", function () {
+    $(this).parent().remove();
+});
 
