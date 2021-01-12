@@ -33,7 +33,7 @@
                                             <div class="row" style="margin: auto">
                                                 <div class="col-sm ">
                                                     <a class="btn btn-primary btn-block"
-                                                       href="{{route('report.user.edit', $user)}}">Edit/Show</a>
+                                                       href="{{route('report.user.show', $user)}}">Show report</a>
                                                 </div>
                                             </div>
                                         </td>

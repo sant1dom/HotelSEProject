@@ -47,6 +47,7 @@ Route::get('/rooms/disableRoom{room}', [RoomsController::class, 'disable'])->nam
 Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contacts.userIndex');
 Route::get('/rooms/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
 Route::get('/rooms/delImage',[RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
+
 /**
  * Routes for the guests views
  */
@@ -57,12 +58,6 @@ Route::resource('guests', GuestsController::class)->middleware('auth');
  */
 Route::resource('bookings', BookingsController::class)->middleware('auth');
 Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('bookings.confirmation');
-
-
-//se dovesse servire c'è una vista vuota per i test <3
-Route::get('/test', function () {
-    return view('test');
-})->name('test');
 
 /**
  * Route for the admin authentication
@@ -81,11 +76,14 @@ Route::prefix('admin')->group(function() {
      */
     Route::resource('rooms', RoomsController::class)->middleware('auth:admin');
 
+    /**
+     * Routes for report generation
+     */
     Route::get('/reports', [ReportController::class, 'index'])->name('admin.reports');
     Route::get('/reports/users', [ReportController::class, 'usersIndex'])->name('admin.users.index');
     Route::get('/reports/services', [ReportController::class, 'servicesIndex'])->name('admin.services.index');
-    Route::get('/reports/users/{user}', [ReportController::class, 'usersShow'])->name('report.user.edit');
-    Route::get('/reports/services/{service}', [ReportController::class, 'servicesShow'])->name('report.service.edit');
+    Route::get('/reports/users/{user}', [ReportController::class, 'usersShow'])->name('report.user.show');
+    Route::get('/reports/services/{service}', [ReportController::class, 'servicesShow'])->name('report.service.show');
 });
 
 
