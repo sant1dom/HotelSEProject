@@ -7,12 +7,11 @@ use App\Http\Controllers\ModelsController\ContactsController;
 use App\Http\Controllers\ModelsController\ReportController;
 use App\Http\Controllers\ModelsController\RoomsController;
 use App\Models\Room;
-use http\Client\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModelsController\ServicesController;
 use App\Http\Controllers\ModelsController\GuestsController;
-use Symfony\Component\Console\Input\Input;
+
 
 
 /*
@@ -26,6 +25,9 @@ use Symfony\Component\Console\Input\Input;
 |
 */
 
+Route::get('/test', function (){
+    return view('test');
+})->name('test');
 
 /**
  * Routes for the users authentication
@@ -36,7 +38,8 @@ Auth::routes(['verify' => true]);
  * Route for the home view
  */
 Route::get('/', function (){
-    return view('home');
+    $rooms = Room::take(4)->get()->unique('type');
+    return view('home', compact('rooms'));
 })->name('home');
 
 Route::get('/home', function (){
@@ -57,7 +60,7 @@ Route::resource('guests', GuestsController::class)->middleware('auth');
 /**
  * Route for the booking view
  */
-Route::resource('bookings', BookingsController::class)->middleware('auth');
+Route::resource('bookings', BookingsController::class);
 Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('bookings.confirmation');
 
 /**

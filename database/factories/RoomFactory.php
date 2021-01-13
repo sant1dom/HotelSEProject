@@ -24,7 +24,7 @@ class RoomFactory extends Factory
     {
         return [
             'type'=> 'Stanza',
-            'numroom'=> 5,
+            'numroom'>$this->faker->numberBetween(1,5),
             'price'=> 10,
             'capacity'=> 5,
             'availability'=>true,

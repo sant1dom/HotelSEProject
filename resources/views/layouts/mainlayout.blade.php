@@ -15,6 +15,8 @@
 <style>
     body {
         padding-top: 70px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
     body::-webkit-scrollbar {
         display: none;

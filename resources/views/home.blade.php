@@ -55,9 +55,7 @@
         <br><br><br><br><br><br>
         <div class="separator"><h1 class="title is-1 has-text-centered">Rooms in evidence</h1></div>
         <br><br><br>
-        <?php
-        $rooms = Room::take(4)->get()->unique('type');
-        ?>
+
         @if($rooms)
             @foreach($rooms as $i => $room)
                 @if($i % 2 == 0)

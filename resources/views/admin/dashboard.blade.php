@@ -24,16 +24,22 @@
                                             </button>
                                         </div>
                                         <div class="col-sm d-flex justify-content-center my-4">
-                                            <button type="button"
-                                                    class="btn btn-outline-secondary btn-lg btn-block text-center rounded-pill"
-                                                    onclick="location.href='{{ route('admin.reports') }}'">
+                                            <a class="btn btn-outline-secondary btn-lg btn-block text-center rounded-pill"
+                                               href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false">
                                                 Reports
-                                            </button>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="{{ route('admin.users.index') }}">Users
+                                                    report</a>
+                                                <a class="dropdown-item" href="{{ route('admin.services.index') }}">Services
+                                                    report</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm has-text-centered">
-                                    <img class="my-3" src="/images/CrC.png"  width="100" height="100" alt="">
+                                    <img class="my-3" src="/images/CrC.png" width="100" height="100" alt="">
                                     <p>Chech-in, Relax, Check-out&trade;</p>
                                 </div>
                                 <div class="col-sm">

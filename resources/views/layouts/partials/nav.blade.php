@@ -28,6 +28,12 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('guests.index')}}">
+                        {{ __('My guests') }}
+                    </a>
+                    <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('bookings.index')}}">
+                        {{ __('My bookings') }}
+                    </a>
                     <a class="dropdown-item has-text-black has-text-weight-bold" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">

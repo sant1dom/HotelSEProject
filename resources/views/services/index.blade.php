@@ -14,6 +14,14 @@
                         <h5 class="card-header d-flex justify-content-center">
                             {{ $services->links( "pagination::bootstrap-4" ) }}
                         </h5>
+                        @if(session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session()->get('success') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                         <div class="card-body">
                             <div id="collapse1">
                                 <div class="table-responsive-sm">
@@ -135,6 +143,13 @@
         .header {
             position: sticky;
             top: 0;
+        }
+
+        .alert {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 999;
         }
 
     </style>
