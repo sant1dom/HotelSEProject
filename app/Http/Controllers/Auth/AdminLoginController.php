@@ -17,7 +17,7 @@ class AdminLoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.admin-login');
+        return view('auth.admin-login', compact('guard'));
     }
 
     protected function guard(){
