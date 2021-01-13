@@ -83,6 +83,7 @@
                                          id="guestContainer">
                                         <form method="POST" action="{{ route('guests.store') }}"
                                               enctype="multipart/form-data" id="sub-form">@csrf</form>
+                                        <input name="user_id" type="hidden" value="{{$user->id}}" form="sub-form">
                                         <div class="col-sm-6 my-3">
                                             <div class="card">
                                                 <div class="card-body">

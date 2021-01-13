@@ -22,6 +22,7 @@ class Guest extends Model
         'birthdate',
         'doctype',
         'numdoc',
+        'user_id',
 
     ];
     /**

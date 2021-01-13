@@ -93,7 +93,8 @@ class RoomsController extends Controller
         $room->availability = strcmp(\request('availability'), 'On');
         $room->update($request->all(['type', 'numroom', 'price', 'capacity', 'description']));
 
-        return redirect()->route('rooms.show', ['room' => $room]);
+        $rooms = Room::get()->sortBy('numroom');
+        return redirect()->route('rooms.index', ['rooms' => $rooms]);
     }
 
     public function deleteImage(Image $image){

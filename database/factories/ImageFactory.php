@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use phpDocumentor\Reflection\Types\Integer;
 
 class ImageFactory extends Factory
 {
@@ -14,6 +15,16 @@ class ImageFactory extends Factory
      */
     protected $model = Image::class;
 
+
+    public function configure()
+    {
+        return $this->afterMaking(function () {
+
+        })->afterCreating(function (Image $model) {
+
+        });
+    }
+
     /**
      * Define the model's default state.
      *
@@ -23,8 +34,7 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'path'=>$this->faker->image('public/images/', 400, 300, null, false),
-            'room_id'=>1
+            'path'=>$this->faker->image('public/storage/', 400, 300, null, false),
         ];
     }
 }

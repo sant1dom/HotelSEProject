@@ -50,7 +50,11 @@ Route::get('/home', function (){
  * Routes for the rooms views
  */
 Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
+Route::get('/rooms/disableRoom{room}', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
 Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contacts.userIndex');
+Route::get('/services/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
+Route::get('/rooms/delImage',[RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
+
 
 /**
  * Routes for the guests views
@@ -60,7 +64,7 @@ Route::resource('guests', GuestsController::class)->middleware('auth');
 /**
  * Route for the booking view
  */
-Route::resource('bookings', BookingsController::class);
+Route::resource('bookings', BookingsController::class)->middleware('auth');
 Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('bookings.confirmation');
 
 /**
@@ -79,9 +83,6 @@ Route::prefix('admin')->group(function() {
      * Routes for the rooms views
      */
     Route::resource('rooms', RoomsController::class)->middleware('auth:admin');
-    Route::get('/rooms/disableRoom{room}', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
-    Route::get('/rooms/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
-    Route::get('/rooms/delImage',[RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
 
     /**
      * Routes for report generation

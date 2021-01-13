@@ -89,7 +89,7 @@
         }
 
         #collapse1 {
-            height: 34rem;
+            max-height: 34rem;
             width: 100%;
         }
 

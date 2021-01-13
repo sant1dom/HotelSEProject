@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ModelsController;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guest;
+use App\Models\User;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,6 @@ class GuestsController extends Controller
     //inserisce l'oggetto nel DB
     public function store(Request $request)
     {
-
         $this->validateGuest();
 
         $names = $request->name;
@@ -51,6 +51,7 @@ class GuestsController extends Controller
                 'birthdate' => $birthdates[$count],
                 'doctype' => $doctypes[$count],
                 'numdoc' => $numdocs[$count],
+                'user_id' => $request->user_id,
             ]);
             $guest->save();
         }

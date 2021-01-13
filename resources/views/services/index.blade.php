@@ -77,9 +77,6 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-                                    <div class="d-flex justify-content-center">
-                                        {!! $services->links() !!}
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +96,7 @@
         }
 
         #collapse1 {
-            height: 34rem;
+            max-height: 34rem;
             width: 100%;
         }
 

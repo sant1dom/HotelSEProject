@@ -31,7 +31,8 @@ class BookingsController extends Controller
         $services = Service::all()->unique('name');
         $rooms = Room::all()->unique('type');
         $guests = Auth::user()->guests()->get();
-        return view('bookings.create', compact('rooms', 'services', 'guests'));
+        $user = Auth::user();
+        return view('bookings.create', compact('rooms', 'services', 'guests', 'user'));
     }
 
     public function confirmation(Request $request)
@@ -43,7 +44,6 @@ class BookingsController extends Controller
     //inserisce l'oggetto nel DB
     public function store(Request $request)
     {
-        dd($request);
         $this->validateBooking($request);
 
         Booking::create($request->all());
