@@ -39,14 +39,15 @@ Route::get('/', function (){
     return view('home');
 })->name('home');
 
+Route::get('/home', function (){
+    return redirect('/');
+});
+
 /**
  * Routes for the rooms views
  */
 Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
-Route::get('/rooms/disableRoom{room}', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
 Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contacts.userIndex');
-Route::get('/rooms/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
-Route::get('/rooms/delImage',[RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
 
 /**
  * Routes for the guests views
@@ -60,7 +61,7 @@ Route::resource('bookings', BookingsController::class)->middleware('auth');
 Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('bookings.confirmation');
 
 /**
- * Route for the admin authentication
+ * Route for the admin operations
  */
 Route::prefix('admin')->group(function() {
     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
@@ -75,15 +76,18 @@ Route::prefix('admin')->group(function() {
      * Routes for the rooms views
      */
     Route::resource('rooms', RoomsController::class)->middleware('auth:admin');
+    Route::get('/rooms/disableRoom{room}', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
+    Route::get('/rooms/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
+    Route::get('/rooms/delImage',[RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
 
     /**
      * Routes for report generation
      */
-    Route::get('/reports', [ReportController::class, 'index'])->name('admin.reports');
-    Route::get('/reports/users', [ReportController::class, 'usersIndex'])->name('admin.users.index');
-    Route::get('/reports/services', [ReportController::class, 'servicesIndex'])->name('admin.services.index');
-    Route::get('/reports/users/{user}', [ReportController::class, 'usersShow'])->name('report.user.show');
-    Route::get('/reports/services/{service}', [ReportController::class, 'servicesShow'])->name('report.service.show');
+    Route::get('/reports', [ReportController::class, 'index'])->name('admin.reports')->middleware('auth:admin');
+    Route::get('/reports/users', [ReportController::class, 'usersIndex'])->name('admin.users.index')->middleware('auth:admin');
+    Route::get('/reports/services', [ReportController::class, 'servicesIndex'])->name('admin.services.index')->middleware('auth:admin');
+    Route::get('/reports/users/{user}', [ReportController::class, 'usersShow'])->name('report.user.show')->middleware('auth:admin');
+    Route::get('/reports/services/{service}', [ReportController::class, 'servicesShow'])->name('report.service.show')->middleware('auth:admin');
 });
 
 
