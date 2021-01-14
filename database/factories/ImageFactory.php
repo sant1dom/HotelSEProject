@@ -34,7 +34,8 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'path'=>$this->faker->image('public/storage/', 400, 300, null, false),
+            //$this->faker->image('public/storage/', 400, 300, null, false),
+            'path' => 'https://via.placeholder.com/1000.png/00dd99',
         ];
     }
 }

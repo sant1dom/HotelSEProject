@@ -42,4 +42,8 @@ class Guest extends Model
     public function bookings(){
         return $this->belongsToMany(Booking::class);
     }
+
+    public function reports(){
+        return $this->hasMany(Report::class);
+    }
 }

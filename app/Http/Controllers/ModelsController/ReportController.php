@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ModelsController;
 use App\Http\Controllers\Controller;
 use App\Models\Guest;
 use App\Models\Report;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,5 +31,16 @@ class ReportController extends Controller
         $guests = $user->guests()->get();
         //$bookings = $user->bookings()->get();
         return view('reports.users.show', compact('user', 'guests'));
+    }
+
+    public function servicesIndex()
+    {
+        $services = Service::orderBy('name')->Paginate(10);
+        return view('reports.services.index', compact('services'));
+    }
+
+    public function servicesReport(Service $service){
+        //da generare il pdf
+        return redirect()->route('admin.services.index')->with('success', 'Report generated, check your downloads');
     }
 }

@@ -9,5 +9,17 @@ class Report extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'enteredAt',
+        'exitAt'
+    ];
+
+    public function services(){
+        return $this->belongsTo(Service::class);
+    }
+
+    public function guests(){
+        return $this->belongsTo(Guest::class);
+    }
 
 }

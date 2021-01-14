@@ -29,4 +29,8 @@ class Service extends Model
     {
         return $this->belongsTo(Hotel::class);
     }
+
+    public function reports(){
+        return $this->hasMany(Report::class);
+    }
 }

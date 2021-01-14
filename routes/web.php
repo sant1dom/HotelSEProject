@@ -55,6 +55,8 @@ Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contac
 Route::get('/services/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
 Route::get('/rooms/delImage',[RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
 
+Route::get('/services', [ServicesController::class, 'index_users'])->name('services.userIndex');
+
 
 /**
  * Routes for the guests views
@@ -89,9 +91,9 @@ Route::prefix('admin')->group(function() {
      */
     Route::get('/reports', [ReportController::class, 'index'])->name('admin.reports')->middleware('auth:admin');
     Route::get('/reports/users', [ReportController::class, 'usersIndex'])->name('admin.users.index')->middleware('auth:admin');
+    Route::get('/reports/users/{user}', [ReportController::class, 'usersShow'])->name('report.users.show')->middleware('auth:admin');
     Route::get('/reports/services', [ReportController::class, 'servicesIndex'])->name('admin.services.index')->middleware('auth:admin');
-    Route::get('/reports/users/{user}', [ReportController::class, 'usersShow'])->name('report.user.show')->middleware('auth:admin');
-    Route::get('/reports/services/{service}', [ReportController::class, 'servicesShow'])->name('report.service.show')->middleware('auth:admin');
+    Route::get('/reports/services/{service}', [ReportController::class, 'servicesReport'])->name('report.services.report')->middleware('auth:admin');
 });
 
 

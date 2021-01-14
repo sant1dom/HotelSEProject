@@ -11,35 +11,45 @@
                     </div>
                     <div class="card dashboard">
                         <h5 class="card-header d-flex justify-content-center">
-                            {{ $users->links( "pagination::bootstrap-4" ) }}
+                            {{ $services->links( "pagination::bootstrap-4" ) }}
                         </h5>
+                        @if(session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session()->get('success') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                         <div>
                             <input type="text" id="search" class="form-control my-3" onkeyup="myFunction()" placeholder="Search for names..">
-                            <table class="table table-fixed table-striped header-fixed" id="users">
-                            <thead style="position: sticky; top: 0" class="thead-dark">
-                            <tr>
-                                <th class="header has-text-centered" scope="col">Name</th>
-                                <th class="header has-text-centered" scope="col">Email</th>
-                                <th class="header has-text-centered" scope="col">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($users as $user)
+                            <table class="table table-fixed table-striped header-fixed" id="services">
+                                <thead style="position: sticky; top: 0" class="thead-dark">
+                                <tr>
+                                    <th class="header has-text-centered" scope="col">Name</th>
+                                    <th class="header has-text-centered" scope="col">Price</th>
+                                    <th class="header has-text-centered" scope="col">Current In</th>
+                                    <th class="header has-text-centered" scope="col">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($services as $service)
                                     <tr>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
+                                        <td>{{$service->name}}</td>
+                                        <td class="has-text-centered">{{$service->price}}</td>
+                                        <td class="has-text-centered">{{$service->reports->whereNotNull('enteredAt')->whereNull('exitAt')->count()}}</td>
 
                                         <td>
                                             <div class="row" style="margin: auto">
                                                 <div class="col-sm ">
                                                     <a class="btn btn-primary btn-block"
-                                                       href="{{route('report.users.show', $user)}}">Show report</a>
+                                                       href="{{route('report.services.report', $service)}}">Show report</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                 @endforeach
-                            </tbody>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -55,7 +65,7 @@
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("search");
         filter = input.value.toUpperCase();
-        table = document.getElementById("users");
+        table = document.getElementById("services");
         tr = table.getElementsByTagName("tr");
 
         // Loop through all table rows, and hide those who don't match the search query

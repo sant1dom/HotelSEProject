@@ -14,7 +14,7 @@
                             <h5 class="card-header d-flex justify-content-center">
                                 User Data
                             </h5>
-                            <table class="table table-fixed table-striped header-fixed" id="guests">
+                            <table class="table table-fixed table-striped header-fixed" id="users">
                                 <thead style="position: sticky; top: 0" class="thead-dark">
                                 <tr>
                                     <th class="header has-text-centered" scope="col">Name</th>
