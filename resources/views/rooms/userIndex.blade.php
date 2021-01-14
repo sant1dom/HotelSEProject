@@ -35,7 +35,7 @@
                                 <option>
                                     None
                                 </option>
-                                @if(isset($types))
+                                @if($types)
                                     @foreach($types as $type)
                                         <option>
                                             {{$type->type}}
@@ -56,118 +56,132 @@
         </div>
     </section>
     <div class="margin"></div>
-    <div class="bootstrap-iso min-vh-100">
-        @if(isset($rooms))
+    <div class="bootstrap-iso">
+        @if($rooms)
             @foreach($rooms as $j => $room)
                 @if($j % 2 == 0)
-                    <div class="row d-flex justify-content-center"
-                         style="background-color: white; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);">
-                        <div class="col-sm has-text-centered roomImage" style="margin: 2rem; vertical-align: middle;">
-                            <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <?php $i = 0;?>
-                                    @foreach ($room->images as $image)
-                                        <?php if ($i == 0) {
-                                            $set_ = 'active';
-                                        } else {
-                                            $set_ = '';
-                                        } ?>
-                                        <li data-target="#carouselIndicators{{$j}}" data-slide-to="{{$i}}"
-                                            class="{{$set_}}"></li>
-                                        <?php $i++;?>
-                                    @endforeach
-                                </ol>
-                                <div class='carousel-inner'>
-                                    <?php $i = 0;?>
-                                    @foreach ($room->images as $image)
-                                        <?php if ($i == 0) {
-                                            $set_ = 'active';
-                                        } else {
-                                            $set_ = '';
-                                        } ?>
-                                        <div class='carousel-item  <?php echo $set_; ?>'>
-                                            <img src="/storage/{{$image->path}}" class='imageRoom' alt=""
-                                                 style="margin: auto; object-fit: contain;">
-                                        </div>
-                                        <?php $i++;?>
-                                    @endforeach
+                    <form method="GET" action="{{route('bookings.create')}}">
+                        <input name="userIndexRoomId" type="hidden" value="{{$room->id}}">
+                        <div class="row d-flex justify-content-center"
+                             style="background-color: white; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);">
+                            <div class="col-sm has-text-centered roomImage"
+                                 style="margin: 2rem; vertical-align: middle;">
+                                <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <?php $i = 0;?>
+                                        @foreach ($room->images as $image)
+                                            <?php if ($i == 0) {
+                                                $set_ = 'active';
+                                            } else {
+                                                $set_ = '';
+                                            } ?>
+                                            <li data-target="#carouselIndicators{{$j}}" data-slide-to="{{$i}}"
+                                                class="{{$set_}}"></li>
+                                            <?php $i++;?>
+                                        @endforeach
+                                    </ol>
+                                    <div class='carousel-inner'>
+                                        <?php $i = 0;?>
+                                        @foreach ($room->images as $image)
+                                            <?php if ($i == 0) {
+                                                $set_ = 'active';
+                                            } else {
+                                                $set_ = '';
+                                            } ?>
+                                            <div class='carousel-item  <?php echo $set_; ?>'>
+                                                <img src="/storage/{{$image->path}}" class='imageRoom' alt=""
+                                                     style="margin: auto; object-fit: contain;">
+                                            </div>
+                                            <?php $i++;?>
+                                        @endforeach
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselIndicators{{$j}}" role="button"
+                                       data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselIndicators{{$j}}" role="button"
+                                       data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselIndicators{{$j}}" role="button"
-                                   data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselIndicators{{$j}}" role="button"
-                                   data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
+                            </div>
+                            <div class="col-sm has-text-centered" style="margin: 2rem;">
+                                <h1>{{$room->type}}</h1>
+                                <br>
+                                <p>{{$room->description}}</p>
+                                <br>
+                                <div class="row has-text-centered bottomLine">
+                                    <p>For max {{$room->capacity}} people. Price per person: {{$room->price}}€
+                                        <button class="btn shadow-none" type="submit"><h5>Get this room!</h5></button>
+                                    </p>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm has-text-centered" style="margin: 2rem;">
-                            <h1>{{$room->type}}</h1>
-                            <br>
-                            <p>{{$room->description}}</p>
-                            <br>
-                            <div class="row has-text-centered bottomLine">
-                                <p>For max {{$room->capacity}} people. Price: {{$room->price}}€</p>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 @else
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-sm has-text-centered" style="margin: 2rem;">
-                            <h1>{{$room->type}}</h1>
-                            <br>
-                            <p>{{$room->description}}</p>
-                            <br>
-                            <div class="row has-text-centered bottomLine">
-                                <p>For max {{$room->capacity}} people. Price: {{$room->price}}€</p>
-                            </div>
-                        </div>
-                        <div class="col-sm has-text-centered roomImage" style="margin: 2rem; vertical-align: middle;">
-                            <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <?php $i = 0;?>
-                                    @foreach ($room->images as $image)
-                                        <?php if ($i == 0) {
-                                            $set_ = 'active';
-                                        } else {
-                                            $set_ = '';
-                                        } ?>
-                                        <li data-target="#carouselIndicators{{$j}}" data-slide-to="{{$i}}"
-                                            class="{{$set_}}"></li>
-                                        <?php $i++;?>
-                                    @endforeach
-                                </ol>
-                                <div class='carousel-inner'>
-                                    <?php $i = 0;?>
-                                    @foreach ($room->images as $image)
-                                        <?php if ($i == 0) {
-                                            $set_ = 'active';
-                                        } else {
-                                            $set_ = '';
-                                        } ?>
-                                        <div class='carousel-item  <?php echo $set_; ?>'>
-                                            <img src="/storage/{{$image->path}}" class='imageRoom img-responsive' alt=""
-                                                 style="margin: auto;">
-                                        </div>
-                                        <?php $i++;?>
-                                    @endforeach
+                    <form method="GET" action="{{route('bookings.create')}}">
+                        <input name="userIndexRoomId" type="hidden" value="{{$room->id}}">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-sm has-text-centered" style="margin: 2rem;">
+                                <h1>{{$room->type}}</h1>
+                                <br>
+                                <p>{{$room->description}}</p>
+                                <br>
+                                <div class="row has-text-centered bottomLine">
+                                    <p>For max {{$room->capacity}} people. Price per person: {{$room->price}}€
+                                        <button class="btn shadow-none" type="submit"><h5>Get this room!</h5></button>
+                                    </p>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselIndicators{{$j}}" role="button"
-                                   data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselIndicators{{$j}}" role="button"
-                                   data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
+                            </div>
+                            <div class="col-sm has-text-centered roomImage"
+                                 style="margin: 2rem; vertical-align: middle;">
+                                <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <?php $i = 0;?>
+                                        @foreach ($room->images as $image)
+                                            <?php if ($i == 0) {
+                                                $set_ = 'active';
+                                            } else {
+                                                $set_ = '';
+                                            } ?>
+                                            <li data-target="#carouselIndicators{{$j}}" data-slide-to="{{$i}}"
+                                                class="{{$set_}}"></li>
+                                            <?php $i++;?>
+                                        @endforeach
+                                    </ol>
+                                    <div class='carousel-inner'>
+                                        <?php $i = 0;?>
+                                        @foreach ($room->images as $image)
+                                            <?php if ($i == 0) {
+                                                $set_ = 'active';
+                                            } else {
+                                                $set_ = '';
+                                            } ?>
+                                            <div class='carousel-item  <?php echo $set_; ?>'>
+                                                <img src="/storage/{{$image->path}}" class='imageRoom img-responsive'
+                                                     alt=""
+                                                     style="margin: auto;">
+                                            </div>
+                                            <?php $i++;?>
+                                        @endforeach
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselIndicators{{$j}}" role="button"
+                                       data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselIndicators{{$j}}" role="button"
+                                       data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 @endif
             @endforeach
         @endif
@@ -175,11 +189,6 @@
     </div>
 
     <style>
-        .separatorEnd {
-            flex: 1;
-            border-bottom: 1px solid #000;
-        }
-
         .margin {
             height: 10rem;
             background-color: rgb(242, 242, 242);
@@ -224,5 +233,11 @@
             margin: auto;
         }
     </style>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 @endsection
 

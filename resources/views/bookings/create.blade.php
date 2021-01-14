@@ -35,13 +35,15 @@
                                         </div>
                                         <label for="startDate">Start Date: </label>
                                         <input id="startDate" type="date"
-                                               class="form-control @error('startDate') is-invalid @enderror" name="startDate"
+                                               class="form-control @error('startDate') is-invalid @enderror"
+                                               name="startDate"
                                                value="{{ old('startDate') }}"
                                                min="<?php echo date('Y-m-d'); ?>"
                                                max="2030-12-31" form="main-form"/>
                                         <label for="endDate">End Date: </label>
                                         <input id="endDate" type="date"
-                                               class="form-control @error('endDate') is-invalid @enderror" name="endDate"
+                                               class="form-control @error('endDate') is-invalid @enderror"
+                                               name="endDate"
                                                value="{{ old('endDate') }}" min="<?php echo date('Y-m-d'); ?>"
                                                max="2030-12-31" form="main-form"/>
                                         <label for="ourRooms">Our rooms: </label>
@@ -49,9 +51,15 @@
                                                 id="ourRooms"
                                                 name="ourRooms" form="main-form">
                                             @foreach($rooms as $room)
-                                                <option value="{{$room->id}}">
-                                                    {{$room->type}}
-                                                </option>
+                                                @if(isset($userIndexRoomId) && $room->id == $userIndexRoomId)
+                                                    <option value="{{$room->id}}" selected>
+                                                        {{$room->type}}
+                                                    </option>
+                                                @else
+                                                    <option value="{{$room->id}}">
+                                                        {{$room->type}}
+                                                    </option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -129,37 +137,30 @@
                                         <div class="separator"><h4 class=" has-text-centered">Services</h4></div>
                                         <div class="card">
                                             <div class="card-body">
-                                                <div id="collapse2">
-                                                    <div class="table-responsive-sm">
-                                                        <table class="table table-fixed table-striped header-fixed">
-                                                            <thead style="position: sticky; top: 0" class="thead-dark">
-                                                            <tr>
-                                                                <th class="header has-text-centered" scope="col">Name
-                                                                </th>
-                                                                <th class="header has-text-centered" scope="col">
-                                                                    Select
-                                                                </th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            @if($services)
-                                                                @foreach($services as $service)
-                                                                    <tr>
-                                                                        <td>{{$service->name}}</td>
-                                                                        <td>
-                                                                            <input
-                                                                                class="form-check-input position-static @error('guest') is-invalid @enderror"
-                                                                                type="checkbox" id="guest"
-                                                                                value="{{$service->id }}"
-                                                                                name="service[]"
-                                                                                aria-label="..." form="main-form">
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            @endif
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                <div class="row d-flex justify-content-center mx-3">
+                                                    <select
+                                                        class="my-select dropdown show-tick  @error('service') is-invalid @enderror"
+                                                        multiple
+                                                        data-live-search="true"
+                                                        name="service[]"
+                                                        form="main-form" id="services"
+                                                        title="Choose the services you want"
+                                                        data-style="btn-info" data-width="100%"
+                                                        data-size="10"
+                                                        data-actions-box="true" data-container="body">
+                                                        @if($services)
+                                                            @foreach($services as $service)
+                                                                <option
+                                                                    value="{{$service->id }}">{{$service->name}}
+                                                                </option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+
+                                                <div class="container-fluid my-4" id="servicesContainer">
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -207,23 +208,6 @@
             box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
         }
 
-        #collapse2 {
-            max-height: 25rem;
-            width: 100%;
-            overflow-y: scroll;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        #collapse2::-webkit-scrollbar {
-            display: none;
-        }
-
-        .header {
-            position: sticky;
-            top: 0;
-        }
-
         .alert {
             position: absolute;
             left: 0;
@@ -235,6 +219,38 @@
     <script>
         $(function () {
             $('.my-select').selectpicker();
+        });
+
+        $(document).on("change", "#services", function () {
+            let serviceSelect = document.querySelector('#services');
+            let selected = Array.from(serviceSelect.options).filter(function (option) {
+                return option.selected;
+            }).map(function (option) {
+                return option.text;
+            });
+
+            let servicesContainer = document.querySelector('#servicesContainer');
+            let serviceContainerChild = Array.from(servicesContainer.childNodes);
+            serviceContainerChild.forEach(function (child) {
+                child.remove();
+            });
+
+            selected.forEach(function (option) {
+                $("#servicesContainer").append('<label>' +
+                    option +
+                    '</label>' +
+                    '<div class="card">' +
+                    '<div class="card-body">' +
+                    '@for($i=0; $i<10; $i++)' +
+                    '<div class="form-check form-check-inline">' +
+                    '<input class="form-check-input" type="checkbox" name="'+ option +'[]" value="{{$i}}" form="main-form">' +
+                    '<label class="form-check-label" for="inlineCheckbox1">day</label>' +
+                    '</div>' +
+                    '@endfor' +
+                    '</div>' +
+                    '</div>'
+                );
+            });
         });
     </script>
 @endsection

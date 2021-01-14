@@ -40,7 +40,6 @@
                                         <select class="form-control @error('type') is-invalid @enderror" id="type" name="type">
                                             <option>Social</option>
                                             <option>Email</option>
-                                            <option>Address</option>
                                             <option>Phone</option>
                                         </select>
                                     </div>

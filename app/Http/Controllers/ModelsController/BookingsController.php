@@ -26,58 +26,71 @@ class BookingsController extends Controller
     }
 
     //Mostra una vista per creare un nuovo oggetto
-    public function create()
+    public function create(Request $request)
     {
         $services = Service::all()->unique('name');
         $rooms = Room::all()->unique('type');
         $guests = Auth::user()->guests()->get();
         $user = Auth::user();
-        return view('bookings.create', compact('rooms', 'services', 'guests', 'user'));
-    }
+        $userIndexRoomId = $request->userIndexRoomId;
 
-    public function confirmation(Request $request)
-    {
-        $this->validateBooking($request);
-        return view('bookings.confirmation', $request);
-    }
-
-    //inserisce l'oggetto nel DB
-    public function store(Request $request)
-    {
-        $this->validateBooking($request);
-
-        Booking::create($request->all());
-        return redirect()->route('bookings.index')
-            ->with('success', 'Booking created successfully.');
+        if ($userIndexRoomId != null) {
+            return view('bookings.create', compact('rooms', 'services', 'guests', 'user', 'userIndexRoomId'));
+        } else {
+            return view('bookings.create', compact('rooms', 'services', 'guests', 'user'));
+        }
     }
 
 
-    public function edit(Booking $booking)
-    {
-        //compact è un modo veloce per scrivere ['article' => $article]
-        return view('bookings.edit', compact('booking'));
-    }
+public
+function confirmation(Request $request)
+{
+    $this->validateBooking($request);
+    return view('bookings.confirmation', $request);
+}
 
-    //elimina l'oggetto dal database
+//inserisce l'oggetto nel DB
+public
+function store(Request $request)
+{
+    $this->validateBooking($request);
 
-    public function update(Booking $booking, Request $request)
-    {
-        $this->validateBooking($request);
-        $booking->update($request->all());
-        return redirect()->route('bookings.index')
-            ->with('success', 'Booking updated successfully');
-    }
+    Booking::create($request->all());
+    return redirect()->route('bookings.index')
+        ->with('success', 'Booking created successfully.');
+}
 
-    public function destroy(Booking $booking)
-    {
-    }
 
-    protected function validateBooking(Request $request)
-    {
-        $this->validate($request, [
-            'from' => 'required',
-            'to' => 'required',
-        ]);
-    }
+public
+function edit(Booking $booking)
+{
+    //compact è un modo veloce per scrivere ['article' => $article]
+    return view('bookings.edit', compact('booking'));
+}
+
+//elimina l'oggetto dal database
+
+public
+function update(Booking $booking, Request $request)
+{
+    $this->validateBooking($request);
+    $booking->update($request->all());
+    return redirect()->route('bookings.index')
+        ->with('success', 'Booking updated successfully');
+}
+
+public
+function destroy(Booking $booking)
+{
+}
+
+protected
+function validateBooking(Request $request)
+{
+    $this->validate($request, [
+        'from' => 'required',
+        'to' => 'required',
+    ]);
+}
 
 }

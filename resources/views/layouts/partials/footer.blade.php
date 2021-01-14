@@ -11,7 +11,7 @@
                     <ul class="list-unstyled">
                         <li><b>Contacts</b></li>
                         @foreach($contacts as $contact)
-                            @if($contact->type == 'phone' || $contact->type == 'email')
+                            @if($contact->type == 'Phone' || $contact->type == 'Email')
                                 <li>{{ $contact->contact_string }}</li>
                             @endif
                         @endforeach
@@ -29,7 +29,7 @@
                     <ul class="list-unstyled">
                         <li><b>Social</b></li>
                         @foreach($contacts as $contact)
-                            @if($contact->type == 'social')
+                            @if($contact->type == 'Social')
                                 <li>{{ $contact->contact_string }}</li>
                             @endif
                         @endforeach

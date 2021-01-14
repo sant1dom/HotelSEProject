@@ -8,7 +8,7 @@
                     <ul class="list-unstyled">
                         <li><b>Contacts</b></li>
                         @foreach($contacts as $contact)
-                            @if($contact->type == 'phone' || $contact->type == 'email')
+                            @if($contact->type == 'Phone' || $contact->type == 'Email')
                                 <li>{{ $contact->contact_string }}</li>
                             @endif
                         @endforeach
@@ -20,7 +20,7 @@
                     <ul class="list-unstyled">
                         <li><b>Social</b></li>
                         @foreach($contacts as $contact)
-                            @if($contact->type == 'social')
+                            @if($contact->type == 'Social')
                                 <li>{{ $contact->contact_string }}</li>
                             @endif
                         @endforeach
@@ -37,5 +37,6 @@
         background-image: url("https://www.atlantis.com/-/media/atlantis/dubai/atp/resort/exterior/AtlantisThePalm-Exterior-FrontShotWithRoyalPool.jpg?sc_lang=it");
         background-size: cover;
         background-attachment: fixed;
+        height: 78%;
     }
 </style>
