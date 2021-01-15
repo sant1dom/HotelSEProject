@@ -71,7 +71,7 @@
                                             <label>Select your guests and yourself</label>
                                         </div>
                                         <div class="row d-flex justify-content-center mx-3">
-                                            <select class="my-select dropdown show-tick" multiple
+                                            <select class="my-select show-tick" multiple
                                                     data-live-search="true"
                                                     name="guest[]"
                                                     form="main-form" id="guests" title="Choose from your guests"
@@ -139,7 +139,7 @@
                                             <div class="card-body">
                                                 <div class="row d-flex justify-content-center mx-3">
                                                     <select
-                                                        class="my-select dropdown show-tick  @error('service') is-invalid @enderror"
+                                                        class="my-select show-tick  @error('service') is-invalid @enderror"
                                                         multiple
                                                         data-live-search="true"
                                                         name="service[]"
@@ -217,8 +217,11 @@
     </style>
 
     <script>
+
         $(function () {
-            $('.my-select').selectpicker();
+            $('.my-select').selectpicker(
+                {dropupAuto: false}
+            );
         });
 
         $(document).on("change", "#services", function () {

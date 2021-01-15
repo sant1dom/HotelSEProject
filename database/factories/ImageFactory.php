@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use phpDocumentor\Reflection\Types\Integer;
 
 class ImageFactory extends Factory
 {

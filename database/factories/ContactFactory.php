@@ -32,7 +32,7 @@ class ContactFactory extends Factory
         ];
     }
 
-    public function buildContactString($type)
+    public function buildContactString($type): string
     {
         switch ($type) {
             case 'social':
@@ -41,6 +41,8 @@ class ContactFactory extends Factory
                 return 'Phone' . ': ' . $this->faker->phoneNumber;
             case 'email':
                 return 'Email' . ': ' . $this->faker->email;
+            default:
+                return 'error';
         }
     }
 }

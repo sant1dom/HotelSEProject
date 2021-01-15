@@ -55,13 +55,13 @@ class ServicesController extends Controller
         {
             if ($service->availability) {
                 Service::find($service->id)->update(['availability' => 0]);
+                $services = Service::orderBy('name')->Paginate(8);
+                return redirect()->route('services.index', ['services' => $services])->with('success', 'Service disabled successfully.');
             } else {
-
                 Service::find($service->id)->update(['availability' => 1]);
+                $services = Service::orderBy('name')->Paginate(8);
+                return redirect()->route('services.index', ['services' => $services])->with('success', 'Service enabled successfully.');
             }
-
-            $services = Service::get();
-            return redirect()->route('services.index', ['services' => $services]);
         }
     }
 

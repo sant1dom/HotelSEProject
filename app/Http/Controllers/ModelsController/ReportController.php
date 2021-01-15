@@ -23,7 +23,7 @@ class ReportController extends Controller
 
     public function usersIndex()
     {
-        $users = User::orderBy('name')->Paginate(10);
+        $users = User::orderBy('name')->Paginate(7);
         return view('reports.users.index', compact('users'));
     }
 
@@ -35,12 +35,17 @@ class ReportController extends Controller
 
     public function servicesIndex()
     {
-        $services = Service::orderBy('name')->Paginate(10);
+        $services = Service::orderBy('name')->Paginate(7);
         return view('reports.services.index', compact('services'));
     }
 
     public function servicesReport(Service $service){
         //da generare il pdf
         return redirect()->route('admin.services.index')->with('success', 'Report generated, check your downloads');
+    }
+
+    public function usersReport(User $user){
+        //da generare il pdf
+        return redirect()->route('reports.users.index')->with('success', 'Report generated, check your downloads');
     }
 }

@@ -1,0 +1,46 @@
+.card.hoverCard {
+    width: 68%;
+    height: 100%;
+    border-color: black;
+    border-radius: 20px;
+    left: 13%;
+    bottom: 5%;
+    position: absolute;
+}
+
+.card.dashboard {
+    z-index: 1;
+    width: 70%;
+    border-color: black;
+    border-radius: 20px;
+    background-color: white !important;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+
+}
+
+.container.dashboard {
+    max-width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+}
+
+.alert {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}

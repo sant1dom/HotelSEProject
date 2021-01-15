@@ -13,7 +13,7 @@ class RoomsController extends Controller
 {
     public function index()
     {
-        $rooms = room::orderBy('numroom')->paginate(8);
+        $rooms = room::orderBy('numroom')->paginate(7);
 
         return view('rooms.index', ['rooms' => $rooms]);
 
@@ -64,7 +64,7 @@ class RoomsController extends Controller
 
 
         return redirect()->route('rooms.index')
-            ->with('success', 'Service created successfully.');
+            ->with('success', 'Room created successfully.');
     }
 
     //Mostra una vista per modificare un oggetto esistente
@@ -77,13 +77,13 @@ class RoomsController extends Controller
     {
         if ($room->availability) {
             Room::find($room->id)->update(['availability' => 0]);
+            $rooms = room::orderBy('numroom')->paginate(7);
+            return redirect()->route('rooms.index', ['rooms' => $rooms])->with('success', 'Room disabled successfully.');
         } else {
-
             Room::find($room->id)->update(['availability' => 1]);
+            $rooms = room::orderBy('numroom')->paginate(7);
+            return redirect()->route('rooms.index', ['rooms' => $rooms])->with('success', 'Room enabled successfully.');
         }
-
-        $rooms = Room::get()->sortBy('numroom');
-        return redirect()->route('rooms.index', ['rooms' => $rooms]);
     }
 
     //aggiorana nel database l'oggetto con la modifica
@@ -94,7 +94,7 @@ class RoomsController extends Controller
         $room->update($request->all(['type', 'numroom', 'price', 'capacity', 'description']));
 
         $rooms = Room::get()->sortBy('numroom');
-        return redirect()->route('rooms.index', ['rooms' => $rooms]);
+        return redirect()->route('rooms.index', ['rooms' => $rooms])->with('success', 'Room updated successfully.');
     }
 
     public function deleteImage(Image $image){
