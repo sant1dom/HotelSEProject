@@ -69,6 +69,10 @@
                                                     <a class="btn btn-primary btn-block"
                                                        href="{{route('services.edit', $service)}}">Edit/Show</a>
                                                 </div>
+                                                <div class="col-sm ">
+                                                    <a class="btn btn-primary btn-block"
+                                                       href="{{route('report.services.pdf', $service)}}">Generate Report</a>
+                                                </div>
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="col-sm ">

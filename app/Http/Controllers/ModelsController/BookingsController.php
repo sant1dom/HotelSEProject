@@ -42,55 +42,54 @@ class BookingsController extends Controller
     }
 
 
-public
-function confirmation(Request $request)
-{
-    $this->validateBooking($request);
-    return view('bookings.confirmation', $request);
-}
+    public
+    function confirmation(Request $request)
+    {
+        $this->validateBooking($request);
+        return view('bookings.confirmation', $request);
+    }
 
-//inserisce l'oggetto nel DB
-public
-function store(Request $request)
-{
-    $this->validateBooking($request);
+    //inserisce l'oggetto nel DB
+    public
+    function store(Request $request)
+    {
+        $this->validateBooking($request);
 
-    Booking::create($request->all());
-    return redirect()->route('bookings.index')
-        ->with('success', 'Booking created successfully.');
-}
+        Booking::create($request->all());
+        return redirect()->route('bookings.index')
+            ->with('success', 'Booking created successfully.');
+    }
 
 
-public
-function edit(Booking $booking)
-{
-    //compact è un modo veloce per scrivere ['article' => $article]
-    return view('bookings.edit', compact('booking'));
-}
+    public
+    function edit(Booking $booking)
+    {
+        //compact è un modo veloce per scrivere ['article' => $article]
+        return view('bookings.edit', compact('booking'));
+    }
 
-//elimina l'oggetto dal database
+    //elimina l'oggetto dal database
 
-public
-function update(Booking $booking, Request $request)
-{
-    $this->validateBooking($request);
-    $booking->update($request->all());
-    return redirect()->route('bookings.index')
-        ->with('success', 'Booking updated successfully');
-}
+    public
+    function update(Booking $booking, Request $request)
+    {
+        $this->validateBooking($request);
+        $booking->update($request->all());
+        return redirect()->route('bookings.index')
+            ->with('success', 'Booking updated successfully');
+    }
 
-public
-function destroy(Booking $booking)
-{
-}
+    public
+    function destroy(Booking $booking)
+    {
+    }
 
-protected
-function validateBooking(Request $request)
-{
-    $this->validate($request, [
-        'from' => 'required',
-        'to' => 'required',
-    ]);
-}
-
+    protected
+    function validateBooking(Request $request)
+    {
+        $this->validate($request, [
+            'from' => 'required',
+            'to' => 'required',
+        ]);
+    }
 }

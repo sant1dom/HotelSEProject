@@ -7,6 +7,7 @@ use App\Models\Guest;
 use App\Models\Report;
 use App\Models\Service;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -40,12 +41,24 @@ class ReportController extends Controller
     }
 
     public function servicesReport(Service $service){
-        //da generare il pdf
-        return redirect()->route('admin.services.index')->with('success', 'Report generated, check your downloads');
+        return $this->generatePDFService($service);
     }
 
     public function usersReport(User $user){
-        //da generare il pdf
-        return redirect()->route('reports.users.index')->with('success', 'Report generated, check your downloads');
+        return $this->generatePDFUser($user);
+    }
+
+    protected function generatePDFUser(User $user)
+    {
+        $guests = $user->guests()->get();
+        //$bookings = $user->bookings()->get();
+        $pdf = PDF::loadView('reportPDF', compact('user', 'guests'));
+        return $pdf->download('report.pdf');
+    }
+
+    protected function generatePDFService(Service $service){
+        $reports = $service->reports();
+        $pdf = PDF::loadView('reportPDFService', compact('service', 'reports'));
+        return $pdf->download('report.pdf');
     }
 }

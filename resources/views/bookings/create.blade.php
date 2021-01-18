@@ -245,10 +245,10 @@
                     '<div class="card">' +
                     '<div class="card-body">' +
                     '@for($i=0; $i<10; $i++)' +
-                    '<div class="form-check form-check-inline">' +
-                    '<input class="form-check-input" type="checkbox" name="'+ option +'[]" value="{{$i}}" form="main-form">' +
-                    '<label class="form-check-label" for="inlineCheckbox1">day</label>' +
-                    '</div>' +
+                        '<div class="form-check form-check-inline">' +
+                        '<input class="form-check-input" type="checkbox" name="'+ option +'[]" value="{{$i}}" form="main-form">' +
+                        '<label class="form-check-label" for="inlineCheckbox1">day</label>' +
+                        '</div>' +
                     '@endfor' +
                     '</div>' +
                     '</div>'

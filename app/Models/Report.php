@@ -14,11 +14,11 @@ class Report extends Model
         'exitAt'
     ];
 
-    public function services(){
+    public function service(){
         return $this->belongsTo(Service::class);
     }
 
-    public function guests(){
+    public function guest(){
         return $this->belongsTo(Guest::class);
     }
 

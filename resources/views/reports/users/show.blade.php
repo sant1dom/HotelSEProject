@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-success btn-block" href="">Generate report</a>
+                        <a class="btn btn-success btn-block" href="{{route('report.users.pdf', $user)}}">Generate report</a>
                     </div>
                 </div>
             </div>

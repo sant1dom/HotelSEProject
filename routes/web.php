@@ -92,8 +92,9 @@ Route::prefix('admin')->group(function() {
     Route::get('/reports', [ReportController::class, 'index'])->name('admin.reports')->middleware('auth:admin');
     Route::get('/reports/users', [ReportController::class, 'usersIndex'])->name('admin.users.index')->middleware('auth:admin');
     Route::get('/reports/users/{user}', [ReportController::class, 'usersShow'])->name('report.users.show')->middleware('auth:admin');
+    Route::get('/reports/users/{user}/pdf', [ReportController::class, 'usersReport'])->name('report.users.pdf')->middleware('auth:admin');
     Route::get('/reports/services', [ReportController::class, 'servicesIndex'])->name('admin.services.index')->middleware('auth:admin');
-    Route::get('/reports/services/{service}', [ReportController::class, 'servicesReport'])->name('report.services.report')->middleware('auth:admin');
+    Route::get('/reports/services/{service}', [ReportController::class, 'servicesReport'])->name('report.services.pdf')->middleware('auth:admin');
 });
 
 

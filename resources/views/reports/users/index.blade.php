@@ -20,6 +20,14 @@
                     <h5 class="card-header d-flex justify-content-center">
                         {{ $users->links( "pagination::bootstrap-4" ) }}
                     </h5>
+                    @if(session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session()->get('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div>
                         <div class="card-body">
                         <input type="text" id="search" class="form-control my-3" onkeyup="myFunction()"
