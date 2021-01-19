@@ -2,24 +2,25 @@
 
 namespace Database\Factories;
 
-use App\Models\Image;
+use App\Models\ImageRoom;
+use App\Models\ImageService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ImageFactory extends Factory
+class ImageServiceFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Image::class;
+    protected $model = ImageService::class;
 
 
     public function configure()
     {
         return $this->afterMaking(function () {
 
-        })->afterCreating(function (Image $model) {
+        })->afterCreating(function (ImageService $model) {
 
         });
     }

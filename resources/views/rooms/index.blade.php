@@ -17,9 +17,10 @@
                     </div>
                 </div>
                 <div class="card dashboard">
-                    <h5 class="card-header d-flex justify-content-center">
-                        {{ $rooms->links( "pagination::bootstrap-4" ) }}
-                    </h5>
+                    <div class="card-header d-flex justify-content-center">
+                        <input type="text" id="search" class="form-control my-3" onkeyup="searchTable('roomsTable')"
+                               placeholder="Search for room number..">
+                    </div>
                     @if(session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session()->get('success') }}
@@ -29,51 +30,53 @@
                         </div>
                     @endif
                     <div class="card-body">
-                        <table class="table table-fixed table-striped header-fixed">
-                            <thead style="position: sticky; top: 0" class="thead-dark">
-                            <tr>
-                                <th class="header has-text-centered" scope="col">Room number</th>
-                                <th class="header has-text-centered" scope="col">Type</th>
-                                <th class="header has-text-centered" scope="col">Availability</th>
-                                <th class="header has-text-centered" scope="col">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($rooms as $room)
+                        <div class="table-wrapper-scroll-y table-scrollbar">
+                            <table class="table table-fixed table-striped header-fixed table-bordered" id="roomsTable">
+                                <thead class="thead-dark">
                                 <tr>
-                                    <td>{{$room->numroom}}</td>
-                                    <td>{{$room->type}}</td>
-                                    <td class="has-text-centered">
-                                        @if($room->availability)
-                                            <span class="dot" style="background-color: green"></span>
-                                        @else
-                                            <span class="dot" style="background-color: red"></span>
-                                        @endif
-                                    </td>
-
-                                    <td>
-                                        <div class="row" style="margin: auto">
-                                            @if($room->availability)
-                                                <div class="col-sm">
-                                                    <a class="btn btn-danger btn-block"
-                                                       href="{{route('rooms.disable', $room)}}">Disable</a>
-                                                </div>
-                                            @else
-                                                <div class="col-sm">
-                                                    <a class="btn btn-success btn-block"
-                                                       href="{{route('rooms.disable', $room)}}">Enable</a>
-                                                </div>
-                                            @endif
-                                            <div class="col-sm ">
-                                                <a class="btn btn-primary btn-block"
-                                                   href="{{route('rooms.edit', $room)}}">Edit/Show</a>
-                                            </div>
-                                        </div>
-                                    </td>
+                                    <th class="header has-text-centered" scope="col">Room number</th>
+                                    <th class="header has-text-centered" scope="col">Type</th>
+                                    <th class="header has-text-centered" scope="col">Availability</th>
+                                    <th class="header has-text-centered" scope="col">Actions</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($rooms as $room)
+                                    <tr>
+                                        <td>{{$room->numroom}}</td>
+                                        <td>{{$room->type}}</td>
+                                        <td class="has-text-centered">
+                                            @if($room->availability)
+                                                <span class="dot" style="background-color: green"></span>
+                                            @else
+                                                <span class="dot" style="background-color: red"></span>
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            <div class="row" style="margin: auto">
+                                                @if($room->availability)
+                                                    <div class="col-sm">
+                                                        <a class="btn btn-danger btn-block"
+                                                           href="{{route('rooms.disable', $room)}}">Disable</a>
+                                                    </div>
+                                                @else
+                                                    <div class="col-sm">
+                                                        <a class="btn btn-success btn-block"
+                                                           href="{{route('rooms.disable', $room)}}">Enable</a>
+                                                    </div>
+                                                @endif
+                                                <div class="col-sm ">
+                                                    <a class="btn btn-primary btn-block"
+                                                       href="{{route('rooms.edit', $room)}}">Edit/Show</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <a class="btn btn-success btn-block" href="{{route('rooms.create')}}">Create a new room</a>
@@ -84,5 +87,6 @@
     </section>
 
     <link href="{{ asset('css/adminIndex.css') }}" rel="stylesheet">
+    <script src="{{asset('js/searchTable.js')}}"></script>
 @endsection
 

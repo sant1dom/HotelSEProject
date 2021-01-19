@@ -17,9 +17,10 @@
                     </div>
                 </div>
                 <div class="card dashboard">
-                    <h5 class="card-header d-flex justify-content-center">
-                        {{ $contacts->links( "pagination::bootstrap-4" ) }}
-                    </h5>
+                    <div class="card-header d-flex justify-content-center">
+                        <input type="text" id="search" class="form-control my-3" onkeyup="searchTable('contactsTable')"
+                               placeholder="Search for type..">
+                    </div>
                     @if(session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session()->get('success') }}
@@ -29,45 +30,46 @@
                         </div>
                     @endif
                     <div class="card-body">
-                        <table class="table table-fixed table-striped header-fixed">
-                            <thead style="position: sticky; top: 0" class="thead-dark">
-                            <tr>
-                                <th class="header has-text-centered" scope="col">Type</th>
-                                <th class="header has-text-centered" scope="col">Description</th>
-                                <th class="header has-text-centered" scope="col">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($contacts as $contact)
+                        <div class="table-wrapper-scroll-y table-scrollbar">
+                            <table class="table table-fixed table-striped header-fixed table-bordered" id="contactsTable">
+                                <thead style="position: sticky; top: 0" class="thead-dark">
                                 <tr>
-                                    <td class="text-capitalize">{{$contact->type}}</td>
-                                    <td class="has-text-centered">{{$contact->contact_string}}</td>
-                                    <td>
-                                        <form action="{{ route('contacts.destroy',$contact->id) }}"
-                                              method="POST">
-                                            <div class="row" style="margin: auto">
-                                                <div class="col-sm ">
-                                                    <a class="btn btn-primary btn-block"
-                                                       href="{{route('contacts.edit', $contact)}}">Edit/Show</a>
-                                                </div>
-                                                @csrf
-                                                @method('DELETE')
-                                                <div class="col-sm">
-                                                    <button type="submit" class="btn btn-danger btn-block">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </td>
+                                    <th class="header has-text-centered" scope="col">Type</th>
+                                    <th class="header has-text-centered" scope="col">Description</th>
+                                    <th class="header has-text-centered" scope="col">Actions</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($contacts as $contact)
+                                    <tr>
+                                        <td class="text-capitalize">{{$contact->type}}</td>
+                                        <td class="has-text-centered">{{$contact->contact_string}}</td>
+                                        <td>
+                                            <form action="{{ route('contacts.destroy',$contact->id) }}"
+                                                  method="POST">
+                                                <div class="row" style="margin: auto">
+                                                    <div class="col-sm ">
+                                                        <a class="btn btn-primary btn-block"
+                                                           href="{{route('contacts.edit', $contact)}}">Edit/Show</a>
+                                                    </div>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="col-sm">
+                                                        <button type="submit" class="btn btn-danger btn-block">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-success btn-block" href="{{ route('contacts.create') }}">Create a new
-                            contact</a>
+                        <a class="btn btn-success btn-block" href="{{route('contacts.create')}}">Create a new contact</a>
                     </div>
                 </div>
             </div>
@@ -75,5 +77,6 @@
     </section>
 
     <link href="{{ asset('css/adminIndex.css') }}" rel="stylesheet">
+    <script src="{{asset('js/searchTable.js')}}"></script>
 @endsection
 

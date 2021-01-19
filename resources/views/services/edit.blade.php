@@ -59,19 +59,18 @@
                                 <button class="btn btn-success btn-block" type="submit">Save</button>
                             </div>
                         </div>
-
                     </div>
                     <div class="row my-3">
                         <div class="container">
                             <div class="row d-flex justify-content-center" id="imageContainer">
-                               {{-- @foreach($service->images as $image)
+                                @foreach($service->imageServices as $image)
                                     <div class="col-sm-3 imgUp ">
                                         <div class="imagePreviewEdit"
-                                             style="background-image: URL('/storage/{{$image->path}}');">
+                                             style="background-image: URL('{{$image->path}}');">
                                         </div>
-                                        <i class="fa fa-times del" onclick=""></i>
+                                        <i class="fa fa-times del"></i>
                                     </div><!-- col-2 -->
-                                @endforeach--}}
+                                @endforeach
                             </div><!-- row -->
                         </div><!-- container -->
                     </div>
@@ -114,6 +113,17 @@
         .container-fluid.dashboard {
             max-width: 100%;
             max-height: 50%;
+        }
+
+        .imagePreviewEdit {
+            width: 100%;
+            height: 224px;
+            background-position: center;
+            background-color: #fff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: inline-block;
+            box-shadow: 0 -3px 6px 2px rgba(0, 0, 0, 0.2);
         }
     </style>
 

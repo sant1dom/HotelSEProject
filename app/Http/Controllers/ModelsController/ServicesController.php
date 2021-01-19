@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ModelsController;
 use App\Http\Controllers\Controller;
+use App\Models\ImageService;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,20 @@ class ServicesController extends Controller
     {
         $this->validateService($request);
 
-        Service::create($request->all());
+        $service = Service::create($request->all());
+
+        if ($request->hasfile('images')) {
+            foreach ($request->file('images') as $file) {
+                $name = time() . rand(1, 100) . '.' . $file->extension();
+                $file->move(public_path('storage'), $name);
+
+                $image = new ImageService();
+                $image->path = $name;
+                $image->service_id = $service->id;
+                $image->save();
+            }
+        }
+
         return redirect()->route('services.index')
             ->with('success','Service created successfully.');
     }
@@ -73,6 +87,19 @@ class ServicesController extends Controller
             //TODO Inviare mail di rimborso se viene disabilitato il servizio
         }
         $service->update($request->all());
+
+        if ($request->hasfile('images')) {
+            foreach ($request->file('images') as $file) {
+                $name = time() . rand(1, 100) . '.' . $file->extension();
+                $file->move(public_path('storage'), $name);
+
+                $image = new ImageService();
+                $image->path = $name;
+                $image->service_id = $service->id;
+                $image->save();
+            }
+        }
+
         return redirect()->route('services.index')
             ->with('success', 'Service updated successfully');
     }

@@ -61,7 +61,7 @@
                 @if($i % 2 == 0)
                     <div class="row d-flex justify-content-center" style="background-color: white; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);">
                         <div class="col-sm has-text-centered roomImage" style="margin: 2rem">
-                            <img class="imageRoom img-responsive" src="/storage/{{$room->images[0]->path}}" alt="">
+                            <img class="imageRoom img-responsive" src="{{$room->imageRooms[0]->path}}" alt="">
                             <div class="middle">
                                 <button type="button"
                                         class="btn btn-primary btn-lg text-uppercase text-center rounded-pill"
@@ -84,7 +84,7 @@
                             <p>{{$room->description}}</p>
                         </div>
                         <div class="col-sm has-text-centered roomImage" style="margin: 2rem">
-                            <img class="imageRoom img-responsive" src="/storage/{{$room->images[0]->path}}" alt="">
+                            <img class="imageRoom img-responsive" src="{{$room->imageRooms[0]->path}}" alt="">
                             <div class="middle">
                                 <button type="button"
                                         class="btn btn-primary btn-lg text-uppercase text-center rounded-pill"

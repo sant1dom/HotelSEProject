@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\DB;
  * @method static create(array $array)
  * @method static where(string $string, int $int)
  */
-class Image extends Model
+class ImageService extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'room_id',
+        'service_id',
         'path'
     ];
 

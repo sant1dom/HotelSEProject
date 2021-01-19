@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Image;
+use App\Models\ImageRoom;
 use App\Models\Room;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;

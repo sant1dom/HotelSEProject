@@ -34,8 +34,8 @@ class Room extends Model
         return $this->belongsToMany(Booking::class);
     }
 
-    public function images(){
-        return $this->hasMany(Image::class);
+    public function imageRooms(){
+        return $this->hasMany(ImageRoom::class);
     }
 
     public function hotel(){

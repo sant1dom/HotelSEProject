@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ModelsController;
 
-use App\Models\Image;
+use App\Models\ImageRoom;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -55,7 +55,7 @@ class RoomsController extends Controller
                 $name = time() . rand(1, 100) . '.' . $file->extension();
                 $file->move(public_path('storage'), $name);
 
-                $image = new Image();
+                $image = new ImageRoom();
                 $image->path = $name;
                 $image->room_id = $room->id;
                 $image->save();
@@ -93,11 +93,23 @@ class RoomsController extends Controller
         $room->availability = strcmp(\request('availability'), 'On');
         $room->update($request->all(['type', 'numroom', 'price', 'capacity', 'description']));
 
+        if ($request->hasfile('images')) {
+            foreach ($request->file('images') as $file) {
+                $name = time() . rand(1, 100) . '.' . $file->extension();
+                $file->move(public_path('storage'), $name);
+
+                $image = new ImageRoom();
+                $image->path = $name;
+                $image->room_id = $room->id;
+                $image->save();
+            }
+        }
+
         $rooms = Room::get()->sortBy('numroom');
         return redirect()->route('rooms.index', ['rooms' => $rooms])->with('success', 'Room updated successfully.');
     }
 
-    public function deleteImage(Image $image){
+    public function deleteImage(ImageRoom $image){
         dd($image);
     }
 

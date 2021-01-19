@@ -5,7 +5,8 @@ namespace Database\Factories;
 use App\Models\Admin;
 use App\Models\Guest;
 use App\Models\Hotel;
-use App\Models\Image;
+use App\Models\ImageRoom;
+use App\Models\ImageService;
 use App\Models\Room;
 use App\Models\Service;
 use App\Models\User;
@@ -28,7 +29,7 @@ class HotelFactory extends Factory
         })->afterCreating(function (Hotel $model) {
             Admin::factory()->create();
             $room = Room::factory()
-                ->has(Image::factory()->count(3)->state(function (array $attributes, Room $room) {
+                ->has(ImageRoom::factory()->count(3)->state(function (array $attributes, Room $room) {
                     return ['room_id' => $room->id];
                 })
                 )
@@ -40,7 +41,12 @@ class HotelFactory extends Factory
                 })
                 )
                 ->create();
-            Service::factory()->count(10)->create();
+            Service::factory()
+                ->has(ImageService::factory()->count(3)->state(function (array $attributes, Service $service) {
+                    return ['service_id' => $service->id];
+                })
+                )
+                ->count(10)->create();
 
         });
     }

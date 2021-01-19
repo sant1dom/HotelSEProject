@@ -47,10 +47,10 @@
                         Guests
                     </h5>
                     <div class="card-body">
-                        <input type="text" id="searchGuests" class="form-control my-3" onkeyup="searchGuestsFunction()"
+                        <input type="text" id="search" class="form-control my-3" onkeyup="searchTable('guestsTable')"
                                placeholder="Search for names..">
                         <div class="table-wrapper-scroll-y table-scrollbar">
-                            <table class="table table-fixed table-striped header-fixed table-bordered" id="guests"
+                            <table class="table table-fixed table-striped header-fixed table-bordered" id="guestsTable"
                                    style="overflow: scroll;">
                                 <thead style="position: sticky; top: 0" class="thead-dark">
                                 <tr>
@@ -79,10 +79,10 @@
 
                             {{--TODO: da inserire la lista delle prenotazioni--}}
 
-                            <input type="text" id="searchBookings" class="form-control my-3" onkeyup="searchBookingsFunction()"
+                            <input type="text" id="searchBookings" class="form-control my-3" onkeyup="searchTableBooking('bookingsTable')"
                                    placeholder="Search for names..">
                             <div class="table-wrapper-scroll-y table-scrollbar">
-                                <table class="table table-fixed table-striped header-fixed table-bordered" id="bookings"
+                                <table class="table table-fixed table-striped header-fixed table-bordered" id="bookingsTable"
                                        style="overflow: scroll;">
                                     <thead style="position: sticky; top: 0" class="thead-dark">
                                     <tr>
@@ -110,59 +110,18 @@
                 </div>
             </div>
         </div>
-
     </section>
 
-    <style>
-        .table-scrollbar {
-            position: relative;
-            max-height: 21.6rem;  /*sostituire con height: 21.6rem; se non si vuole il ridimensionamento dinamico*/
-            overflow: auto;
-            display: block;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .table-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        table {
-            border-color: black;
-        }
-    </style>
-
     <link href="{{ asset('css/adminIndex.css') }}" rel="stylesheet">
+    <script src="{{asset('js/searchTable.js')}}"></script>
 
     <script>
-        function searchGuestsFunction() {
-            // Declare variables
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("searchGuests");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("guests");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-
-        function searchBookingsFunction() {
+        function searchTableBooking(idTable) {
             // Declare variables
             var input, filter, table, tr, td, i, txtValue;
             input = document.getElementById("searchBookings");
             filter = input.value.toUpperCase();
-            table = document.getElementById("bookings");
+            table = document.getElementById(idTable);
             tr = table.getElementsByTagName("tr");
 
             // Loop through all table rows, and hide those who don't match the search query

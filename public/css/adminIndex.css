@@ -16,7 +16,6 @@
     background-color: white !important;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     position: relative;
-
 }
 
 .container.dashboard {
@@ -43,4 +42,23 @@
     width: 15px;
     border-radius: 50%;
     display: inline-block;
+}
+
+.table-scrollbar {
+    position: relative;
+    height: 26rem;  /*sostituire con height: 21.6rem; se non si vuole il ridimensionamento dinamico*/
+    overflow: scroll;
+    display: block;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.table-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 999
 }

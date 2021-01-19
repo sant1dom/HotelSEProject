@@ -88,10 +88,10 @@
                     <div class="row my-3">
                         <div class="container">
                             <div class="row d-flex justify-content-center" id="imageContainer">
-                                @foreach($room->images as $image)
+                                @foreach($room->imageRooms as $image)
                                     <div class="col-sm-3 imgUp ">
                                         <div class="imagePreviewEdit"
-                                             style="background-image: URL('/storage/{{$image->path}}');">
+                                             style="background-image: URL('{{$image->path}}');">
                                         </div>
                                         <i class="fa fa-times del" onclick="{{ route('rooms.deleteImage', $image) }}"></i>
                                     </div><!-- col-2 -->
@@ -147,7 +147,6 @@
             background-color: #fff;
             background-size: cover;
             background-repeat: no-repeat;
-
             display: inline-block;
             box-shadow: 0 -3px 6px 2px rgba(0, 0, 0, 0.2);
         }
@@ -160,7 +159,6 @@
     <script src="{{asset('js/typesAutocomplete.js')}}"></script>
 
     <script>
-        /*An array containing all the country names in the world:*/
         var types =  <?php
             use App\Models\Room;
             $types = room::get();

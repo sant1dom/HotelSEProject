@@ -69,7 +69,7 @@
                                 <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <?php $i = 0;?>
-                                        @foreach ($room->images as $image)
+                                        @foreach ($room->imageRooms as $image)
                                             <?php if ($i == 0) {
                                                 $set_ = 'active';
                                             } else {
@@ -82,14 +82,14 @@
                                     </ol>
                                     <div class='carousel-inner'>
                                         <?php $i = 0;?>
-                                        @foreach ($room->images as $image)
+                                        @foreach ($room->imageRooms as $image)
                                             <?php if ($i == 0) {
                                                 $set_ = 'active';
                                             } else {
                                                 $set_ = '';
                                             } ?>
                                             <div class='carousel-item  <?php echo $set_; ?>'>
-                                                <img src="/storage/{{$image->path}}" class='imageRoom' alt=""
+                                                <img src="{{$image->path}}" class='imageRoom' alt=""
                                                      style="margin: auto; object-fit: contain;">
                                             </div>
                                             <?php $i++;?>
@@ -141,7 +141,7 @@
                                 <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <?php $i = 0;?>
-                                        @foreach ($room->images as $image)
+                                        @foreach ($room->imageRooms as $image)
                                             <?php if ($i == 0) {
                                                 $set_ = 'active';
                                             } else {
@@ -154,14 +154,14 @@
                                     </ol>
                                     <div class='carousel-inner'>
                                         <?php $i = 0;?>
-                                        @foreach ($room->images as $image)
+                                        @foreach ($room->imageRooms as $image)
                                             <?php if ($i == 0) {
                                                 $set_ = 'active';
                                             } else {
                                                 $set_ = '';
                                             } ?>
                                             <div class='carousel-item  <?php echo $set_; ?>'>
-                                                <img src="/storage/{{$image->path}}" class='imageRoom img-responsive'
+                                                <img src="{{$image->path}}" class='imageRoom img-responsive'
                                                      alt=""
                                                      style="margin: auto;">
                                             </div>

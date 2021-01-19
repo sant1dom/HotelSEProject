@@ -17,9 +17,10 @@
                     </div>
                 </div>
                 <div class="card dashboard">
-                    <h5 class="card-header d-flex justify-content-center">
-                        {{ $users->links( "pagination::bootstrap-4" ) }}
-                    </h5>
+                    <div class="card-header d-flex justify-content-center">
+                        <input type="text" id="search" class="form-control my-3" onkeyup="searchTable('usersTable')"
+                               placeholder="Search for type..">
+                    </div>
                     @if(session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session()->get('success') }}
@@ -30,35 +31,36 @@
                     @endif
                     <div>
                         <div class="card-body">
-                        <input type="text" id="search" class="form-control my-3" onkeyup="myFunction()"
-                               placeholder="Search for names..">
-                        <table class="table table-fixed table-striped header-fixed" id="users">
-                            <thead style="position: sticky; top: 0" class="thead-dark">
-                            <tr>
-                                <th class="header has-text-centered" scope="col">Name</th>
-                                <th class="header has-text-centered" scope="col">Email</th>
-                                <th class="header has-text-centered" scope="col">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($users as $user)
-                                <tr>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
+                            <div class="table-wrapper-scroll-y table-scrollbar">
+                                <table class="table table-fixed table-striped header-fixed table-bordered"
+                                       id="usersTable">
+                                    <thead style="position: sticky; top: 0" class="thead-dark">
+                                    <tr>
+                                        <th class="header has-text-centered" scope="col">Name</th>
+                                        <th class="header has-text-centered" scope="col">Email</th>
+                                        <th class="header has-text-centered" scope="col">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($users as $user)
+                                        <tr>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->email}}</td>
 
-                                    <td>
-                                        <div class="row" style="margin: auto">
-                                            <div class="col-sm ">
-                                                <a class="btn btn-primary btn-block"
-                                                   href="{{route('report.users.show', $user)}}">Show report</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                            <td>
+                                                <div class="row" style="margin: auto">
+                                                    <div class="col-sm ">
+                                                        <a class="btn btn-primary btn-block"
+                                                           href="{{route('report.users.show', $user)}}">Show report</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,31 +68,7 @@
     </section>
 
     <link href="{{ asset('css/adminIndex.css') }}" rel="stylesheet">
-
-    <script>
-        function myFunction() {
-            // Declare variables
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("search");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("users");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
-
+    <script src="{{asset('js/searchTable.js')}}"></script>
 @endsection
 
 
