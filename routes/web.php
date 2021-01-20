@@ -6,6 +6,7 @@ use App\Http\Controllers\ModelsController\BookingsController;
 use App\Http\Controllers\ModelsController\ContactsController;
 use App\Http\Controllers\ModelsController\ReportController;
 use App\Http\Controllers\ModelsController\RoomsController;
+use App\Http\Controllers\TotemController;
 use App\Models\Room;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -95,6 +96,13 @@ Route::prefix('admin')->group(function() {
     Route::get('/reports/users/{user}/pdf', [ReportController::class, 'usersReport'])->name('report.users.pdf')->middleware('auth:admin');
     Route::get('/reports/services', [ReportController::class, 'servicesIndex'])->name('admin.services.index')->middleware('auth:admin');
     Route::get('/reports/services/{service}', [ReportController::class, 'servicesReport'])->name('report.services.pdf')->middleware('auth:admin');
+});
+
+Route::prefix('totem')->group(function() {
+    Route::get('/menu', [TotemController::class, 'menu'])->name('totem.menu');
+    Route::get('/checkin', [TotemController::class, 'checkin'])->name('totem.checkin');
+    Route::get('/checkout', [TotemController::class, 'checkout'])->name('totem.checkout');
+    Route::get('/changeCard', [TotemController::class, 'changeCard'])->name('totem.changeCard');
 });
 
 

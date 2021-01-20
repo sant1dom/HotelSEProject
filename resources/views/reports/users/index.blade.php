@@ -19,7 +19,7 @@
                 <div class="card dashboard">
                     <div class="card-header d-flex justify-content-center">
                         <input type="text" id="search" class="form-control my-3" onkeyup="searchTable('usersTable')"
-                               placeholder="Search for type..">
+                               placeholder="Search for name..">
                     </div>
                     @if(session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
