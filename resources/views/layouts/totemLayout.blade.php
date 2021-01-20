@@ -6,7 +6,6 @@
 <body>
 @yield('content')
 @include('layouts.partials.header')
-@include('layouts.partials.footer')
 @include('layouts.partials.footer-scripts')
 </body>
 </html>

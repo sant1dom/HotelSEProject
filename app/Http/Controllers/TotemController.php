@@ -11,7 +11,7 @@ class TotemController extends Controller
     }
 
     public function checkin(){
-        return view('totem.totemMenu');
+        return view('totem.checkIn');
     }
 
     public function checkout(){
