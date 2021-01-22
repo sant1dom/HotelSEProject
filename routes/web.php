@@ -100,6 +100,8 @@ Route::prefix('admin')->group(function() {
 
 Route::prefix('totem')->group(function() {
     Route::get('/menu', [TotemController::class, 'menu'])->name('totem.menu');
+    Route::get('/checkinView', [TotemController::class, 'checkinView'])->name('totem.checkinView');
+    Route::get('/checkoutView', [TotemController::class, 'checkoutView'])->name('totem.checkoutView');
     Route::get('/checkin', [TotemController::class, 'checkin'])->name('totem.checkin');
     Route::get('/checkout', [TotemController::class, 'checkout'])->name('totem.checkout');
     Route::get('/changeCard', [TotemController::class, 'changeCard'])->name('totem.changeCard');

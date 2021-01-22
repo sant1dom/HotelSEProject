@@ -10,12 +10,22 @@ class TotemController extends Controller
         return view('totem.totemMenu');
     }
 
+    public function checkinView(){
+        return view('totem.checkinView');
+    }
+
     public function checkin(){
-        return view('totem.checkIn');
+        return redirect()->route('totem.menu')
+            ->with('success','Check-in successful, now you can withdraw your cards and enjoy your stay in our hotel!');
+    }
+
+    public function checkoutView(){
+        return view('totem.checkoutView');
     }
 
     public function checkout(){
-        return view('totem.totemMenu');
+        return redirect()->route('totem.menu')
+            ->with('success','Check-out successful, insert all the cards into the reader. Thanks and come back soon!');
     }
 
     public function changeCard(){
