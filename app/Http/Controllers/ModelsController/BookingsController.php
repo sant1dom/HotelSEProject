@@ -4,7 +4,6 @@ namespace App\Http\Controllers\ModelsController;
 
 use App\Models\Booking;
 use App\Http\Controllers\Controller;
-use App\Models\Guest;
 use App\Models\Room;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -41,17 +40,43 @@ class BookingsController extends Controller
         }
     }
 
+    public function showStepOne(Request $request)
+    {
+        $rooms = Room::all()->unique('type');
+        if ($request != null) {
+            return view('bookings.stepOne', compact('rooms', 'request'));
+        } else {
+            return view('bookings.stepOne', compact('rooms'));
+        }
+    }
 
-    public
-    function confirmation(Request $request)
+    public function showStepTwo(Request $request)
+    {
+        $user = Auth::user();
+        $guests = Auth::user()->guests()->get();
+        return view('bookings.stepTwo', compact('guests', 'request', 'user'));
+    }
+
+    public function showStepThree(Request $request)
+    {
+        $services = Service::all()->unique('name');
+        return view('bookings.stepThree', compact('services', 'request'));
+    }
+
+    public function showStepFour(Request $request)
+    {
+        return view('bookings.stepFour', compact('request'));
+    }
+
+
+    public function confirmation(Request $request)
     {
         $this->validateBooking($request);
         return view('bookings.confirmation', $request);
     }
 
     //inserisce l'oggetto nel DB
-    public
-    function store(Request $request)
+    public function store(Request $request)
     {
         $this->validateBooking($request);
 
@@ -61,8 +86,7 @@ class BookingsController extends Controller
     }
 
 
-    public
-    function edit(Booking $booking)
+    public function edit(Booking $booking)
     {
         //compact è un modo veloce per scrivere ['article' => $article]
         return view('bookings.edit', compact('booking'));
@@ -70,8 +94,7 @@ class BookingsController extends Controller
 
     //elimina l'oggetto dal database
 
-    public
-    function update(Booking $booking, Request $request)
+    public function update(Booking $booking, Request $request)
     {
         $this->validateBooking($request);
         $booking->update($request->all());
@@ -79,13 +102,11 @@ class BookingsController extends Controller
             ->with('success', 'Booking updated successfully');
     }
 
-    public
-    function destroy(Booking $booking)
+    public function destroy(Booking $booking)
     {
     }
 
-    protected
-    function validateBooking(Request $request)
+    protected function validateBooking(Request $request)
     {
         $this->validate($request, [
             'from' => 'required',

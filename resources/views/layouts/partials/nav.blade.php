@@ -60,7 +60,7 @@
                 <a class="nav-link" href="{{route('rooms.userIndex')}}" style="color: black"><h5>Look all our rooms</h5></a>
             </li>
             <li class="nav-item active inline">
-                <a class="nav-link" href="{{route('bookings.create')}}" style="color: black"><h5>Booking</h5></a>
+                <a class="nav-link" href="{{route('bookings.stepOne')}}" style="color: black"><h5>Booking</h5></a>
             </li>
             <li class="nav-item active inline" >
                 <a class="nav-link" href="{{route('contacts.userIndex')}}" style="color: black"><h5>Contacts</h5></a>

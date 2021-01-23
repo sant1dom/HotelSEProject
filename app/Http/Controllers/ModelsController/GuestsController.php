@@ -7,6 +7,7 @@ use App\Models\Guest;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GuestsController extends Controller
 {
@@ -56,8 +57,9 @@ class GuestsController extends Controller
             $guest->save();
         }
 
-        return redirect()->route('bookings.create')
-            ->with('success', 'Service created successfully.');
+        $user = Auth::user();
+        $guests = Auth::user()->guests()->get();
+        return view('bookings.stepTwo', compact('guests', 'request', 'user'))->with('success', 'Service created successfully.');
     }
 
     //Mostra una vista per modificare un oggetto esistente

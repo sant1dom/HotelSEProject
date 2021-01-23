@@ -10,7 +10,8 @@
             </div>
         </div>
     </section>
-    <form method="POST" action="{{ route('bookings.store') }}" enctype="multipart/form-data" id="main-form">@csrf</form>
+    <form method="GET" action="{{ route('bookings.stepThree') }}" id="main-form"></form>
+    <form method="GET" action="{{ route('bookings.stepOne') }}" id="back-form"></form>
     <div class="bootstrap-iso">
         <section class="hero is-bold">
             <div class="hero-body" style="height: 100%">
@@ -28,42 +29,15 @@
                                         </button>
                                     </div>
                                 @endif
-                                <div class="card booking-form-inner mx-5 my-5">
-                                    <div class="card-body">
-                                        <div class="separator"><h4 class=" has-text-centered">Check-in &
-                                                Check-out</h4>
-                                        </div>
-                                        <label for="startDate">Start Date: </label>
-                                        <input id="startDate" type="date"
-                                               class="form-control @error('startDate') is-invalid @enderror"
-                                               name="startDate"
-                                               value="{{ old('startDate') }}"
-                                               min="<?php echo date('Y-m-d'); ?>"
-                                               max="2030-12-31" form="main-form"/>
-                                        <label for="endDate">End Date: </label>
-                                        <input id="endDate" type="date"
-                                               class="form-control @error('endDate') is-invalid @enderror"
-                                               name="endDate"
-                                               value="{{ old('endDate') }}" min="<?php echo date('Y-m-d'); ?>"
-                                               max="2030-12-31" form="main-form"/>
-                                        <label for="ourRooms">Our rooms: </label>
-                                        <select class="form-control @error('type') is-invalid @enderror"
-                                                id="ourRooms"
-                                                name="ourRooms" form="main-form">
-                                            @foreach($rooms as $room)
-                                                @if(isset($userIndexRoomId) && $room->id == $userIndexRoomId)
-                                                    <option value="{{$room->id}}" selected>
-                                                        {{$room->type}}
-                                                    </option>
-                                                @else
-                                                    <option value="{{$room->id}}">
-                                                        {{$room->type}}
-                                                    </option>
-                                                @endif
-                                            @endforeach
-                                        </select>
+                                @if(session()->has('success'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                         id="alert-success">
+                                        <h1>{{ session()->get('success') }}</h1>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                </div>
+                                @endif
                                 <div class="card booking-form-inner mx-5 my-5">
                                     <div class="card-body">
                                         <div class="separator"><h4 class=" has-text-centered">Guests</h4></div>
@@ -78,20 +52,36 @@
                                                     data-style="btn-info" data-width="100%" data-size="10"
                                                     data-actions-box="true" data-container="body">
                                                 @if($guests)
-                                                    @foreach($guests as $guest)
-                                                        <option value="{{$guest->id}}">{{$guest->name}}</option>
-                                                    @endforeach
+                                                    @for($j=0, $i=0; $i<count($guests); $i++)
+                                                        @if(isset($request->guestRQ[$j]) && $guests[$i]->id == $request->guestRQ[$j])
+                                                            <option value="{{$guests[$i]->id}}" selected>
+                                                                {{$guests[$i]->name}}
+                                                            </option>
+                                                            {{$j++}}
+                                                        @else
+                                                            <option
+                                                                value="{{$guests[$i]->id}}">{{$guests[$i]->name}}</option>
+                                                        @endif
+                                                    @endfor
                                                 @endif
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row d-flex justify-content-center"><i class="fa fa-plus formAdd"></i>
+                                    <div class="row d-flex justify-content-center"><i
+                                            class="fa fa-plus formAdd"></i>
                                     </div>
                                     <div class="row d-flex justify-content-center guestContainer"
                                          id="guestContainer">
                                         <form method="POST" action="{{ route('guests.store') }}"
                                               enctype="multipart/form-data" id="sub-form">@csrf</form>
-                                        <input name="user_id" type="hidden" value="{{$user->id}}" form="sub-form">
+                                        <input name="startDate" type="hidden" value="{{$request->startDate}}"
+                                               form="sub-form">
+                                        <input name="endDate" type="hidden" value="{{$request->endDate}}"
+                                               form="sub-form">
+                                        <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
+                                               form="sub-form">
+                                        <input name="user_id" type="hidden" value="{{$user->id}}"
+                                               form="sub-form">
                                         <div class="col-sm-6 my-3">
                                             <div class="card">
                                                 <div class="card-body">
@@ -132,46 +122,23 @@
                                         Save your new guests
                                     </button>
                                 </div>
-                                <div class="card booking-form-inner mx-5 my-5">
-                                    <div class="card-body">
-                                        <div class="separator"><h4 class=" has-text-centered">Services</h4></div>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row d-flex justify-content-center mx-3">
-                                                    <select
-                                                        class="my-select show-tick  @error('service') is-invalid @enderror"
-                                                        multiple
-                                                        data-live-search="true"
-                                                        name="service[]"
-                                                        form="main-form" id="services"
-                                                        title="Choose the services you want"
-                                                        data-style="btn-info" data-width="100%"
-                                                        data-size="10"
-                                                        data-actions-box="true" data-container="body">
-                                                        @if($services)
-                                                            @foreach($services as $service)
-                                                                <option
-                                                                    value="{{$service->id }}">{{$service->name}}
-                                                                </option>
-                                                            @endforeach
-                                                        @endif
-                                                    </select>
-                                                </div>
-
-                                                <div class="container-fluid my-4" id="servicesContainer">
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <input name="startDate" type="hidden" value="{{$request->startDate}}"
+                                       form="back-form">
+                                <input name="endDate" type="hidden" value="{{$request->endDate}}"
+                                       form="back-form">
+                                <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
+                                       form="back-form">
+                                <div style="text-align:center;">
+                                    <button class="btn btn-success" type="submit" id="prevBtn" style="width: 6rem"
+                                            form="back-form"><span>Previous</span></button>
+                                    <span class="step" style="background-color: #4CAF50;"></span>
+                                    <span class="step" style="opacity: 1;"></span>
+                                    <span class="step"></span>
+                                    <span class="step"></span>
+                                    <button class="btn btn-success" type="submit" id="nextBtn" style="width: 6rem"
+                                            form="main-form"><span>Next</span></button>
                                 </div>
                             </div>
-                            <button
-                                class="btn btn-lg btn-success text-uppercase text-center"
-                                type="submit" form="main-form">
-                                Complete your booking!
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -207,46 +174,35 @@
             background-color: white !important;
             box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
         }
+
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+        .alert {
+            position: absolute;
+            top: 25%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            width: 80%;
+            z-index: 999;
+        }
     </style>
 
     <script>
-
         $(function () {
             $('.my-select').selectpicker(
                 {dropupAuto: false}
             );
-        });
-
-        $(document).on("change", "#services", function () {
-            let serviceSelect = document.querySelector('#services');
-            let selected = Array.from(serviceSelect.options).filter(function (option) {
-                return option.selected;
-            }).map(function (option) {
-                return option.text;
-            });
-
-            let servicesContainer = document.querySelector('#servicesContainer');
-            let serviceContainerChild = Array.from(servicesContainer.childNodes);
-            serviceContainerChild.forEach(function (child) {
-                child.remove();
-            });
-
-            selected.forEach(function (option) {
-                $("#servicesContainer").append('<label>' +
-                    option +
-                    '</label>' +
-                    '<div class="card">' +
-                    '<div class="card-body">' +
-                    '@for($i=0; $i<10; $i++)' +
-                        '<div class="form-check form-check-inline">' +
-                        '<input class="form-check-input" type="checkbox" name="'+ option +'[]" value="{{$i}}" form="main-form">' +
-                        '<label class="form-check-label" for="inlineCheckbox1">day</label>' +
-                        '</div>' +
-                    '@endfor' +
-                    '</div>' +
-                    '</div>'
-                );
-            });
         });
     </script>
 @endsection

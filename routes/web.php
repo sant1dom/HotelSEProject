@@ -67,9 +67,13 @@ Route::resource('guests', GuestsController::class)->middleware('auth');
 /**
  * Route for the booking view
  */
-Route::resource('bookings', BookingsController::class)->middleware('auth');
-Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('bookings.confirmation');
-
+Route::prefix('bookings')->group(function() {
+    Route::get('/stepOne', [BookingsController::class, 'showStepOne'])->name('bookings.stepOne')->middleware('auth');
+    Route::get('/stepTwo', [BookingsController::class, 'showStepTwo'])->name('bookings.stepTwo')->middleware('auth');
+    Route::get('/stepThree', [BookingsController::class, 'showStepThree'])->name('bookings.stepThree')->middleware('auth');
+    Route::get('/stepFour', [BookingsController::class, 'showStepFour'])->name('bookings.stepFour')->middleware('auth');
+});
+Route::resource('bookings', ContactsController::class)->middleware('auth');
 /**
  * Route for the admin operations
  */
