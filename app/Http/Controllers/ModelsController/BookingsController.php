@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ModelsController;
 
 use App\Models\Booking;
 use App\Http\Controllers\Controller;
+use App\Models\Guest;
 use App\Models\Room;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -15,29 +16,25 @@ class BookingsController extends Controller
     public function index()
     {
         $bookings = Booking::orderBy('to')->Paginate(10);
-        return view('bookings.index', compact('bookings'));
+        //return view('bookings.index', compact('bookings'));
+        $rooms = Room::all()->unique('type');
+
+        return view('home', compact('rooms'));
     }
 
-    //Mostra un SINGOLO SPECIFICO oggetto
+    public function userIndex()
+    {
+        $bookings = Booking::orderBy('to')->Paginate(10);
+        //return view('bookings.index', compact('bookings'));
+        $rooms = Room::all()->unique('type');
+
+        return view('home', compact('rooms'));
+    }
+
+
     public function show(Booking $booking)
     {
         return view('bookings.show', compact('booking'));
-    }
-
-    //Mostra una vista per creare un nuovo oggetto
-    public function create(Request $request)
-    {
-        $services = Service::all()->unique('name');
-        $rooms = Room::all()->unique('type');
-        $guests = Auth::user()->guests()->get();
-        $user = Auth::user();
-        $userIndexRoomId = $request->userIndexRoomId;
-
-        if ($userIndexRoomId != null) {
-            return view('bookings.create', compact('rooms', 'services', 'guests', 'user', 'userIndexRoomId'));
-        } else {
-            return view('bookings.create', compact('rooms', 'services', 'guests', 'user'));
-        }
     }
 
     public function showStepOne(Request $request)
@@ -52,6 +49,7 @@ class BookingsController extends Controller
 
     public function showStepTwo(Request $request)
     {
+        $this->validateStepOne($request);
         $user = Auth::user();
         $guests = Auth::user()->guests()->get();
         return view('bookings.stepTwo', compact('guests', 'request', 'user'));
@@ -59,29 +57,51 @@ class BookingsController extends Controller
 
     public function showStepThree(Request $request)
     {
+        $this->validateStepTwo($request);
         $services = Service::all()->unique('name');
         return view('bookings.stepThree', compact('services', 'request'));
     }
 
     public function showStepFour(Request $request)
     {
-        return view('bookings.stepFour', compact('request'));
+
+        $this->validateStepThree($request);
+        $room = Room::where('id', 'LIKE', $request->ourRooms)->first();
+
+        $guestsId = [];
+        foreach ($request->guest as $i => $id){
+            $guestsId[$i] = $request->guest[$i];
+        }
+        $guests = Guest::whereIn('id', $guestsId )->get()->sortBy('id');
+
+        if($request->service != null){
+            $servicesId = [];
+            foreach ($request->service as $i => $id){
+                $servicesId[$i] = $request->service[$i];
+            }
+            $services = Guest::whereIn('id', $servicesId )->get()->sortBy('id');
+
+            return view('bookings.stepFour', compact('guests', 'services', 'request', 'room'));
+        } else {
+            return view('bookings.stepFour', compact('guests', 'request', 'room'));
+        }
     }
 
 
     public function confirmation(Request $request)
     {
         $this->validateBooking($request);
-        return view('bookings.confirmation', $request);
+        return view('userIndex');
     }
 
     //inserisce l'oggetto nel DB
     public function store(Request $request)
     {
-        $this->validateBooking($request);
+
 
         Booking::create($request->all());
-        return redirect()->route('bookings.index')
+
+        return redirect()->route('bookings.userIndex')
             ->with('success', 'Booking created successfully.');
     }
 
@@ -106,11 +126,25 @@ class BookingsController extends Controller
     {
     }
 
-    protected function validateBooking(Request $request)
+    protected function validateStepOne(Request $request)
     {
         $this->validate($request, [
             'from' => 'required',
             'to' => 'required',
+        ]);
+    }
+
+    protected function validateStepTwo(Request $request)
+    {
+        $this->validate($request, [
+            'guest' => 'required',
+        ]);
+    }
+
+    protected function validateStepThree(Request $request)
+    {
+        $this->validate($request, [
+            //TODO: deve validare se ha scelto il numero di giorni
         ]);
     }
 }

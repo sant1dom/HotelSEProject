@@ -39,7 +39,7 @@
                                     </div>
                                 @endif
                                 <div class="card booking-form-inner mx-5 my-5">
-                                    <div class="card-body">
+                                    <div class="card-body" style="min-height: 37rem">
                                         <div class="separator"><h4 class=" has-text-centered">Guests</h4></div>
                                         <div class="row d-flex justify-content-center">
                                             <label>Select your guests and yourself</label>
@@ -53,7 +53,7 @@
                                                     data-actions-box="true" data-container="body">
                                                 @if($guests)
                                                     @for($j=0, $i=0; $i<count($guests); $i++)
-                                                        @if(isset($request->guestRQ[$j]) && $guests[$i]->id == $request->guestRQ[$j])
+                                                        @if(isset($request->guest[$j]) && $guests[$i]->id == $request->guest[$j])
                                                             <option value="{{$guests[$i]->id}}" selected>
                                                                 {{$guests[$i]->name}}
                                                             </option>
@@ -66,54 +66,55 @@
                                                 @endif
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="row d-flex justify-content-center"><i
-                                            class="fa fa-plus formAdd"></i>
-                                    </div>
-                                    <div class="row d-flex justify-content-center guestContainer"
-                                         id="guestContainer">
-                                        <form method="POST" action="{{ route('guests.store') }}"
-                                              enctype="multipart/form-data" id="sub-form">@csrf</form>
-                                        <input name="startDate" type="hidden" value="{{$request->startDate}}"
-                                               form="sub-form">
-                                        <input name="endDate" type="hidden" value="{{$request->endDate}}"
-                                               form="sub-form">
-                                        <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
-                                               form="sub-form">
-                                        <input name="user_id" type="hidden" value="{{$user->id}}"
-                                               form="sub-form">
-                                        <div class="col-sm-6 my-3">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <label For="name">First name:</label>
-                                                    <input
-                                                        class="form-control @error('name') is-invalid @enderror"
-                                                        type="text" id="name"
-                                                        name="name[]" form="sub-form">
-                                                    <label for="surname">Last name:</label>
-                                                    <input
-                                                        class="form-control @error('surname') is-invalid @enderror"
-                                                        type="text" id="surname"
-                                                        name="surname[]" form="sub-form">
-                                                    <label for="doctype">Document type:</label>
-                                                    <input
-                                                        class="form-control @error('doctype') is-invalid @enderror"
-                                                        type="text" id="doctype"
-                                                        name="doctype[]" form="sub-form">
-                                                    <label for="numdoc">Document number:</label>
-                                                    <input
-                                                        class="form-control @error('numdoc') is-invalid @enderror"
-                                                        type="text" id="numdoc"
-                                                        name="numdoc[]" form="sub-form">
-                                                    <label for="birthdate">Birth date:</label>
-                                                    <input
-                                                        class="form-control @error('birthdate') is-invalid @enderror"
-                                                        type="date" id="birthdate"
-                                                        name="birthdate[]" form="sub-form"
-                                                        max="  <?php echo date('Y-m-d'); ?>  ">
+
+                                        <div class="row d-flex justify-content-center">
+                                            <i class="fa fa-plus formAdd my-2"></i>
+                                        </div>
+                                        <div class="row d-flex justify-content-center guestContainer"
+                                             id="guestContainer">
+                                            <form method="POST" action="{{ route('guests.store') }}"
+                                                  enctype="multipart/form-data" id="sub-form">@csrf</form>
+                                            <input name="from" type="hidden" value="{{$request->from}}"
+                                                   form="sub-form">
+                                            <input name="to" type="hidden" value="{{$request->to}}"
+                                                   form="sub-form">
+                                            <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
+                                                   form="sub-form">
+                                            <input name="user_id" type="hidden" value="{{$user->id}}"
+                                                   form="sub-form">
+                                            <div class="col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <label For="name">First name:</label>
+                                                        <input
+                                                            class="form-control @error('name') is-invalid @enderror"
+                                                            type="text" id="name"
+                                                            name="name[]" form="sub-form">
+                                                        <label for="surname">Last name:</label>
+                                                        <input
+                                                            class="form-control @error('surname') is-invalid @enderror"
+                                                            type="text" id="surname"
+                                                            name="surname[]" form="sub-form">
+                                                        <label for="doctype">Document type:</label>
+                                                        <input
+                                                            class="form-control @error('doctype') is-invalid @enderror"
+                                                            type="text" id="doctype"
+                                                            name="doctype[]" form="sub-form">
+                                                        <label for="numdoc">Document number:</label>
+                                                        <input
+                                                            class="form-control @error('numdoc') is-invalid @enderror"
+                                                            type="text" id="numdoc"
+                                                            name="numdoc[]" form="sub-form">
+                                                        <label for="birthdate">Birth date:</label>
+                                                        <input
+                                                            class="form-control @error('birthdate') is-invalid @enderror"
+                                                            type="date" id="birthdate"
+                                                            name="birthdate[]" form="sub-form"
+                                                            max="  <?php echo date('Y-m-d'); ?>  ">
+                                                    </div>
                                                 </div>
+                                                <i class="fa fa-times del"> </i>
                                             </div>
-                                            <i class="fa fa-times del"> </i>
                                         </div>
                                     </div>
                                     <button
@@ -122,12 +123,58 @@
                                         Save your new guests
                                     </button>
                                 </div>
-                                <input name="startDate" type="hidden" value="{{$request->startDate}}"
+                                <input name="from" type="hidden" value="{{$request->from}}"
+                                       form="sub-form">
+                                <input name="to" type="hidden" value="{{$request->to}}"
+                                       form="sub-form">
+                                <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
+                                       form="sub-form">
+                                @if(isset($request->guest))
+                                    @foreach($request->guest as $guest)
+                                        <input name="guest[]" type="hidden" value="{{$guest}}"
+                                               form="sub-form">
+                                    @endforeach
+                                @endif
+                                @if(isset($request->service))
+                                    @foreach($request->service as $service)
+                                        <input name="service[]" type="hidden" value="{{$service}}"
+                                               form="sub-form">
+                                    @endforeach
+                                @endif
+
+                                <input name="from" type="hidden" value="{{$request->from}}"
+                                       form="main-form">
+                                <input name="to" type="hidden" value="{{$request->to}}"
+                                       form="main-form">
+                                <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
+                                       form="main-form">
+
+                                @if(isset($request->service))
+                                    @foreach($request->service as $service)
+                                        <input name="service[]" type="hidden" value="{{$service}}"
+                                               form="main-form">
+                                    @endforeach
+                                @endif
+
+                                <input name="from" type="hidden" value="{{$request->from}}"
                                        form="back-form">
-                                <input name="endDate" type="hidden" value="{{$request->endDate}}"
+                                <input name="to" type="hidden" value="{{$request->to}}"
                                        form="back-form">
                                 <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
                                        form="back-form">
+
+                                @if(isset($request->guest))
+                                    @foreach($request->guest as $guest)
+                                        <input name="guest[]" type="hidden" value="{{$guest}}"
+                                               form="back-form">
+                                    @endforeach
+                                @endif
+                                @if(isset($request->service))
+                                    @foreach($request->service as $service)
+                                        <input name="service[]" type="hidden" value="{{$service}}"
+                                               form="back-form">
+                                    @endforeach
+                                @endif
                                 <div style="text-align:center;">
                                     <button class="btn btn-success" type="submit" id="prevBtn" style="width: 6rem"
                                             form="back-form"><span>Previous</span></button>

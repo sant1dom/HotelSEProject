@@ -1,5 +1,5 @@
 $(document).on("click", "i.formAdd", function () {
-    $("#guestContainer").append('<div class="col-sm-6 my-3">' +
+    $("#guestContainer").append('<div class="col-sm-6">' +
         '<div class="card">' +
         '<div class="card-body">' +
         '<label For="name">First name:</label>' +

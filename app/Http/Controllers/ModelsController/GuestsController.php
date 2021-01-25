@@ -59,7 +59,7 @@ class GuestsController extends Controller
 
         $user = Auth::user();
         $guests = Auth::user()->guests()->get();
-        return view('bookings.stepTwo', compact('guests', 'request', 'user'))->with('success', 'Service created successfully.');
+        return view('bookings.stepTwo', compact('guests', 'request', 'user'))->with('success', 'Guests created successfully.');
     }
 
     //Mostra una vista per modificare un oggetto esistente

@@ -33,27 +33,27 @@
                                             <div class="separator"><h4 class=" has-text-centered">Check-in &
                                                     Check-out</h4>
                                             </div>
-                                            <label for="startDate">Start Date: </label>
+                                            <label for="from">Start Date: </label>
 
-                                            <input id="startDate" type="date"
-                                                   class="form-control @error('startDate') is-invalid @enderror"
-                                                   name="startDate"
-                                                   @if(isset($request->startDate))
-                                                   value="{{$request->startDate}}"
+                                            <input id="from" type="date"
+                                                   class="form-control @error('from') is-invalid @enderror"
+                                                   name="from"
+                                                   @if(isset($request->from))
+                                                   value="{{$request->from}}"
                                                    @else
-                                                   value="{{old('startDate')}}"
+                                                   value="{{old('from')}}"
                                                    @endif
                                                    min="<?php echo date('Y-m-d'); ?>"
                                                    max="2030-12-31" form="main-form"/>
 
-                                            <label for="endDate">End Date: </label>
-                                            <input id="endDate" type="date"
-                                                   class="form-control @error('endDate') is-invalid @enderror"
-                                                   name="endDate"
-                                                   @if(isset($request->endDate))
-                                                   value="{{$request->endDate}}"
+                                            <label for="to">End Date: </label>
+                                            <input id="to" type="date"
+                                                   class="form-control @error('to') is-invalid @enderror"
+                                                   name="to"
+                                                   @if(isset($request->to))
+                                                   value="{{$request->to}}"
                                                    @else
-                                                   value="{{old('endDate')}}"
+                                                   value="{{old('to')}}"
                                                    @endif
                                                    min="<?php echo date('Y-m-d'); ?>"
                                                    max="2030-12-31" form="main-form"/>
@@ -79,6 +79,18 @@
                                             </select>
                                         </div>
                                     </div>
+                                        @if(isset($request->guest))
+                                            @foreach($request->guest as $guest)
+                                                <input name="guest[]" type="hidden" value="{{$guest}}"
+                                                       form="main-form">
+                                            @endforeach
+                                        @endif
+                                        @if(isset($request->service))
+                                            @foreach($request->service as $service)
+                                                <input name="service[]" type="hidden" value="{{$service}}"
+                                                       form="main-form">
+                                            @endforeach
+                                        @endif
                                     <div style="text-align:center;">
                                         <button class="btn btn-success" type="submit" id="prevBtn" style="width: 6rem"
                                                 disabled><span>Previous</span></button>

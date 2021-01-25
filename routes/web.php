@@ -58,7 +58,6 @@ Route::get('/rooms/delImage',[RoomsController::class, 'deleteImage'])->name('roo
 
 Route::get('/services', [ServicesController::class, 'index_users'])->name('services.userIndex');
 
-
 /**
  * Routes for the guests views
  */
@@ -72,8 +71,10 @@ Route::prefix('bookings')->group(function() {
     Route::get('/stepTwo', [BookingsController::class, 'showStepTwo'])->name('bookings.stepTwo')->middleware('auth');
     Route::get('/stepThree', [BookingsController::class, 'showStepThree'])->name('bookings.stepThree')->middleware('auth');
     Route::get('/stepFour', [BookingsController::class, 'showStepFour'])->name('bookings.stepFour')->middleware('auth');
+    Route::get('/userIndex', [BookingsController::class, 'userIndex'])->name('bookings.userIndex')->middleware('auth');
+    Route::get('/store', [BookingsController::class, 'store'])->name('bookings.store')->middleware('auth');
 });
-Route::resource('bookings', ContactsController::class)->middleware('auth');
+
 /**
  * Route for the admin operations
  */

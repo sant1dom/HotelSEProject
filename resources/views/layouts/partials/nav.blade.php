@@ -31,7 +31,7 @@
                     <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('guests.index')}}">
                         {{ __('My guests') }}
                     </a>
-                    <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('bookings.index')}}">
+                    <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('bookings.userIndex')}}">
                         {{ __('My bookings') }}
                     </a>
                     <a class="dropdown-item has-text-black has-text-weight-bold" href="{{ route('logout') }}"

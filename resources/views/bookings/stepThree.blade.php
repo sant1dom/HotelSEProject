@@ -32,58 +32,81 @@
                                 <div class="card booking-form-inner mx-5 my-5">
                                     <div class="card-body">
                                         <div class="separator"><h4 class=" has-text-centered">Services</h4></div>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row d-flex justify-content-center mx-3">
-                                                    <select
-                                                        class="my-select show-tick  @error('service') is-invalid @enderror"
-                                                        multiple
-                                                        data-live-search="true"
-                                                        name="service[]"
-                                                        form="main-form" id="services"
-                                                        title="Choose the services you want"
-                                                        data-style="btn-info" data-width="100%"
-                                                        data-size="10"
-                                                        data-actions-box="true" data-container="body">
-                                                        @if($services)
-                                                            @foreach($services as $service)
-                                                                <option
-                                                                    value="{{$service->id }}">{{$service->name}}
-                                                                </option>
-                                                            @endforeach
+                                        <div class="row d-flex justify-content-center mx-3">
+                                            <select
+                                                class="my-select show-tick  @error('service') is-invalid @enderror"
+                                                multiple
+                                                data-live-search="true"
+                                                name="service[]"
+                                                form="main-form" id="services"
+                                                title="Choose the services you want"
+                                                data-style="btn-info" data-width="100%"
+                                                data-size="10"
+                                                data-actions-box="true" data-container="body">
+                                                @if($services)
+                                                    @for($j=0, $i=0; $i<count($services); $i++)
+                                                        @if(isset($request->service[$j]) && $services[$i]->id == $request->service[$j])
+                                                            <option value="{{$services[$i]->id}}" selected>
+                                                                {{$services[$i]->name}}
+                                                            </option>
+                                                            {{$j++}}
+                                                        @else
+                                                            <option
+                                                                value="{{$services[$i]->id}}">{{$services[$i]->name}}</option>
                                                         @endif
-                                                    </select>
-                                                </div>
+                                                    @endfor
+                                                @endif
+                                            </select>
+                                        </div>
 
-                                                <div class="container-fluid my-4" id="servicesContainer">
+                                        <div class="container-fluid my-4" id="servicesContainer">
 
 
-                                                </div>
-                                            </div>
-                                            <input name="startDate" type="hidden" value="{{$request->startDate}}"
-                                                   form="back-form">
-                                            <input name="endDate" type="hidden" value="{{$request->endDate}}"
-                                                   form="back-form">
-                                            <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
-                                                   form="back-form">
-                                            @if(isset($request->guest))
-                                                @foreach($request->guest as $guest)
-                                                    <input name="guestRQ[]" type="hidden" value="{{$guest}}"
-                                                           form="back-form">
-                                                @endforeach
-                                            @endif
-                                            <div style="text-align:center;">
-                                                <button class="btn btn-success" type="submit" id="prevBtn"
-                                                        style="width: 6rem"
-                                                        form="back-form"><span>Previous</span></button>
-                                                <span class="step" style="background-color: #4CAF50;"></span>
-                                                <span class="step" style="background-color: #4CAF50;"></span>
-                                                <span class="step" style="opacity: 1;"></span>
-                                                <span class="step"></span>
-                                                <button class="btn btn-success" type="submit" id="nextBtn"
-                                                        style="width: 6rem"
-                                                        form="main-form"><span>Next</span></button>
-                                            </div>
+                                        </div>
+                                        <input name="from" type="hidden" value="{{$request->from}}"
+                                               form="main-form">
+                                        <input name="to" type="hidden" value="{{$request->to}}"
+                                               form="main-form">
+                                        <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
+                                               form="main-form">
+                                        @if(isset($request->guest))
+                                            @foreach($request->guest as $guest)
+                                                <input name="guest[]" type="hidden" value="{{$guest}}"
+                                                       form="main-form">
+                                            @endforeach
+                                        @endif
+
+                                        <input name="from" type="hidden" value="{{$request->from}}"
+                                               form="back-form" id="fromValue">
+                                        <input name="to" type="hidden" value="{{$request->to}}"
+                                               form="back-form" id="toValue">
+                                        <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
+                                               form="back-form">
+                                        @if(isset($request->guest))
+                                            @foreach($request->guest as $guest)
+                                                <input name="guest[]" type="hidden" value="{{$guest}}"
+                                                       form="back-form">
+                                            @endforeach
+                                        @endif
+                                        @if(isset($request->service))
+                                            @foreach($request->service as $service)
+                                                <input name="service[]" type="hidden" value="{{$service}}"
+                                                       form="back-form">
+                                            @endforeach
+                                        @endif
+
+
+                                        <div style="text-align:center;">
+                                            <button class="btn btn-success" type="submit" id="prevBtn"
+                                                    style="width: 6rem"
+                                                    form="back-form"><span>Previous</span></button>
+                                            <span class="step" style="background-color: #4CAF50;"></span>
+                                            <span class="step" style="background-color: #4CAF50;"></span>
+                                            <span class="step" style="opacity: 1;"></span>
+                                            <span class="step"></span>
+                                            <button class="btn btn-success" type="submit" id="nextBtn"
+                                                    style="width: 6rem"
+                                                    form="main-form"><span>Next</span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +166,15 @@
             );
         });
 
-        $(document).on("change", "#services", function () {
+        window.onload = function() {
+            selectDays();
+        };
+
+        $(document).on("change", "#services", function(){
+            selectDays();
+        });
+
+        function selectDays () {
             let serviceSelect = document.querySelector('#services');
             let selected = Array.from(serviceSelect.options).filter(function (option) {
                 return option.selected;
@@ -157,23 +188,35 @@
                 child.remove();
             });
 
+            let fromInput = document.getElementById('fromValue').value;
+            let from = fromInput.charAt(8) + fromInput.charAt(9);
+            parseInt(from);
+            let toInput = document.getElementById('toValue').value;
+            let to = toInput.charAt(8) + toInput.charAt(9);
+            parseInt(to);
+
+            let days = to - from;
+
             selected.forEach(function (option) {
+                let fromIteration = from;
+
                 $("#servicesContainer").append('<label>' +
                     option +
                     '</label>' +
-                    '<div class="card">' +
-                    '<div class="card-body">' +
-                    '@for($i=0; $i<10; $i++)' +
-                    '<div class="form-check form-check-inline">' +
-                    '<input class="form-check-input" type="checkbox" name="' + option + '[]" value="{{$i}}" form="main-form">' +
-                    '<label class="form-check-label" for="inlineCheckbox1">day</label>' +
-                    '</div>' +
-                    '@endfor' +
-                    '</div>' +
-                    '</div>'
-                );
-            });
-        });
+                    '<br>');
+
+                for (let i = days, j = 0; i > 0; i--, j++) {
+                    $("#servicesContainer").append(
+                        '<div class="form-check form-check-inline">' +
+                        '<input class="form-check-input" type="checkbox" name="' + option + '[]" value="' + j + '" form="main-form">' +
+                        '<label class="form-check-label" for="inlineCheckbox1">' + fromIteration++ + '</label>' +
+                        '</div>');
+                }
+
+                $("#servicesContainer").append(
+                    '<br>');
+            })
+        }
     </script>
 @endsection
 
