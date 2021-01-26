@@ -15,8 +15,7 @@ class GuestsController extends Controller
 
     public function index()
     {
-        $guests = Guest::orderBy('name')->simplePaginate(10);;
-
+        $guests = Auth::user()->guests()->get();
         return view('guests.index', compact('guests'));
     }
 
