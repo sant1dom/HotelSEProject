@@ -14,7 +14,6 @@ use App\Http\Controllers\ModelsController\ServicesController;
 use App\Http\Controllers\ModelsController\GuestsController;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +25,7 @@ use App\Http\Controllers\ModelsController\GuestsController;
 |
 */
 
-Route::get('/test', function (){
+Route::get('/test', function () {
     return view('test');
 })->name('test');
 
@@ -38,12 +37,12 @@ Auth::routes(['verify' => true]);
 /**
  * Route for the home view
  */
-Route::get('/', function (){
+Route::get('/', function () {
     $rooms = Room::take(4)->get()->unique('type');
     return view('home', compact('rooms'));
 })->name('home');
 
-Route::get('/home', function (){
+Route::get('/home', function () {
     return redirect('/');
 });
 
@@ -52,9 +51,9 @@ Route::get('/home', function (){
  */
 Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
 Route::get('/rooms/disableRoom{room}', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
-Route::get('/contacts',[ContactsController::class, 'index_users'])->name('contacts.userIndex');
+Route::get('/contacts', [ContactsController::class, 'index_users'])->name('contacts.userIndex');
 Route::get('/services/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
-Route::get('/rooms/delImage',[RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
+Route::get('/rooms/delImage', [RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
 
 Route::get('/services', [ServicesController::class, 'index_users'])->name('services.userIndex');
 
@@ -73,7 +72,7 @@ Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('b
 /**
  * Route for the admin operations
  */
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('auth:admin');

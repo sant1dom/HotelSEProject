@@ -57,7 +57,7 @@ class ReportController extends Controller
     }
 
     protected function generatePDFService(Service $service){
-        $reports = $service->reports();
+        $reports = $service->reports;
         $pdf = PDF::loadView('reportPDFService', compact('service', 'reports'));
         return $pdf->download('report.pdf');
     }

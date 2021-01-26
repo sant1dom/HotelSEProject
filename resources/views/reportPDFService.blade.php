@@ -41,7 +41,7 @@
                         <th class="header has-text-centered" scope="col">Surname</th>
                         <th class="header has-text-centered" scope="col">Birthday</th>
                         <th class="header has-text-centered" scope="col">Entered At</th>
-                        <th class="header has-text-centered" scope="col">Birthday</th>
+                        <th class="header has-text-centered" scope="col">Exit At</th>
                     </tr>
                     </thead>
                     <tbody id="table-guests-body">
@@ -63,3 +63,12 @@
 </body>
 </html>
 
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 5px;
+    }
+</style>
