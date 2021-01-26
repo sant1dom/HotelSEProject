@@ -9,10 +9,10 @@
                         <h5 class="card-title text-center">{{ __('Login') }}</h5>
                         <form class="form-signin" method="POST" action="{{ route('login') }}">
                             @csrf
-                            <div class="form-label-group">
+                            <div class="form-label-group my-1">
+                                <label for="email">{{ __('E-Mail Address') }}</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                <label for="email">{{ __('E-Mail Address') }}</label>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -20,11 +20,12 @@
                                 @enderror
                             </div>
 
-                            <div class="form-label-group">
+                            <div class="form-label-group my-1">
+                                <label for="password">Password</label>
                                 <input type="password" name="password" id="password"
                                        class="form-control @error('password') is-invalid @enderror"
                                        placeholder="Password" required>
-                                <label for="password">Password</label>
+
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

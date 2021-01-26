@@ -18,9 +18,13 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
-        'password',
+        'birthdate',
+        'doctype',
+        'numdoc',
     ];
+    //non funziona l'invio della mail
 
     /**
      * The attributes that should be hidden for arrays.
@@ -28,7 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password', //se si sposta il campo password nel fillable funziona
         'remember_token',
     ];
 

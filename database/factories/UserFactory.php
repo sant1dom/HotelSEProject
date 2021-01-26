@@ -25,7 +25,11 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->firstName,
+            'surname' => $this->faker->lastName,
+            'birthdate'=>$this->faker->date(),
+            'doctype'=>'IdCard',
+            'numdoc'=>Str::random(5),
             'email' => 'user@app.com',
             'email_verified_at' => now(),
             'password' => Hash::make('user'),   //'$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

@@ -58,20 +58,20 @@
                                                    min="<?php echo date('Y-m-d'); ?>"
                                                    max="2030-12-31" form="main-form"/>
                                             <label for="ourRooms">Our rooms: </label>
-                                            <select class="form-control @error('type') is-invalid @enderror"
-                                                    id="ourRooms"
+                                            <select class="selectpicker @error('type') is-invalid @enderror"
+                                                    id="ourRooms" data-width="100%" data-size="7" data-container="body"
                                                     name="ourRooms" form="main-form">
                                                 @foreach($rooms as $room)
                                                     @if(isset($request->userIndexRoomId) && $room->id == $request->userIndexRoomId)
-                                                        <option value="{{$room->id}}" selected>
+                                                        <option data-subtext="{{$room->price}}€" value="{{$room->id}}" selected>
                                                             {{$room->type}}
                                                         </option>
                                                     @elseif(isset($request->ourRooms) && $room->id == $request->ourRooms)
-                                                        <option value="{{$request->ourRooms}}" selected>
+                                                        <option data-subtext="{{$room->price}}€" value="{{$request->ourRooms}}" selected>
                                                             {{$room->type}}
                                                         </option>
                                                     @else
-                                                        <option value="{{$room->id}}">
+                                                        <option data-subtext="{{$room->price}}€" value="{{$room->id}}">
                                                             {{$room->type}}
                                                         </option>
                                                     @endif
