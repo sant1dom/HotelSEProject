@@ -1,5 +1,6 @@
 @extends('layouts.mainlayout')
 @section('content')
+
     <div class="">
      <div class="row mx-auto my-auto">
         <div class="col-lg-12 margin-tb">
