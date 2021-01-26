@@ -60,7 +60,7 @@
         @if($rooms)
             @foreach($rooms as $j => $room)
                 @if($j % 2 == 0)
-                    <form method="GET" action="{{route('bookings.create')}}">
+                    <form method="GET" action="{{route('bookings.stepOne')}}">
                         <input name="userIndexRoomId" type="hidden" value="{{$room->id}}">
                         <div class="row d-flex justify-content-center"
                              style="background-color: white; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);">
@@ -122,7 +122,7 @@
                         </div>
                     </form>
                 @else
-                    <form method="GET" action="{{route('bookings.create')}}">
+                    <form method="GET" action="{{route('bookings.stepOne')}}">
                         <input name="userIndexRoomId" type="hidden" value="{{$room->id}}">
                         <div class="row d-flex justify-content-center">
                             <div class="col-sm has-text-centered" style="margin: 2rem;">

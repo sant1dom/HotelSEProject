@@ -9,17 +9,3 @@
     background-color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
 }
-
-.formAdd {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #4bd7ef;
-    color: #fff;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    line-height: 30px;
-margin-bottom: 20px;
-    cursor: pointer;
-    font-size: 15px;
-}

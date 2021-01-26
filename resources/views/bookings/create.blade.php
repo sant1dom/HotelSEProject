@@ -207,13 +207,6 @@
             background-color: white !important;
             box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
         }
-
-        .alert {
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: 999;
-        }
     </style>
 
     <script>

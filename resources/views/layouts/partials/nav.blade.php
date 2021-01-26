@@ -31,7 +31,7 @@
                     <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('guests.index')}}">
                         {{ __('My guests') }}
                     </a>
-                    <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('bookings.index')}}">
+                    <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('bookings.userIndex')}}">
                         {{ __('My bookings') }}
                     </a>
                     <a class="dropdown-item has-text-black has-text-weight-bold" href="{{ route('logout') }}"
@@ -60,7 +60,7 @@
                 <a class="nav-link" href="{{route('rooms.userIndex')}}" style="color: black"><h5>Look all our rooms</h5></a>
             </li>
             <li class="nav-item active inline">
-                <a class="nav-link" href="{{route('bookings.create')}}" style="color: black"><h5>Booking</h5></a>
+                <a class="nav-link" href="{{route('bookings.stepOne')}}" style="color: black"><h5>Booking</h5></a>
             </li>
             <li class="nav-item active inline" >
                 <a class="nav-link" href="{{route('contacts.userIndex')}}" style="color: black"><h5>Contacts</h5></a>

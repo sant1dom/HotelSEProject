@@ -57,7 +57,6 @@ Route::get('/rooms/delImage', [RoomsController::class, 'deleteImage'])->name('ro
 
 Route::get('/services', [ServicesController::class, 'index_users'])->name('services.userIndex');
 
-
 /**
  * Routes for the guests views
  */
@@ -66,8 +65,14 @@ Route::resource('guests', GuestsController::class)->middleware('auth');
 /**
  * Route for the booking view
  */
-Route::resource('bookings', BookingsController::class)->middleware('auth');
-Route::get('confirmation', [BookingsController::class, 'confirmation'])->name('bookings.confirmation');
+Route::prefix('bookings')->group(function() {
+    Route::get('/stepOne', [BookingsController::class, 'showStepOne'])->name('bookings.stepOne')->middleware('auth');
+    Route::get('/stepTwo', [BookingsController::class, 'showStepTwo'])->name('bookings.stepTwo')->middleware('auth');
+    Route::get('/stepThree', [BookingsController::class, 'showStepThree'])->name('bookings.stepThree')->middleware('auth');
+    Route::get('/stepFour', [BookingsController::class, 'showStepFour'])->name('bookings.stepFour')->middleware('auth');
+    Route::get('/userIndex', [BookingsController::class, 'userIndex'])->name('bookings.userIndex')->middleware('auth');
+    Route::get('/store', [BookingsController::class, 'store'])->name('bookings.store')->middleware('auth');
+});
 
 /**
  * Route for the admin operations
@@ -99,6 +104,8 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('totem')->group(function() {
     Route::get('/menu', [TotemController::class, 'menu'])->name('totem.menu');
+    Route::get('/checkinView', [TotemController::class, 'checkinView'])->name('totem.checkinView');
+    Route::get('/checkoutView', [TotemController::class, 'checkoutView'])->name('totem.checkoutView');
     Route::get('/checkin', [TotemController::class, 'checkin'])->name('totem.checkin');
     Route::get('/checkout', [TotemController::class, 'checkout'])->name('totem.checkout');
     Route::get('/changeCard', [TotemController::class, 'changeCard'])->name('totem.changeCard');
