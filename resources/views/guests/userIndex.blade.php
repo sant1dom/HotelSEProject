@@ -8,12 +8,12 @@
         </div>
     </section>
         <section class="hero is-bold">
-            <div class="hero-body" style="height: 800px">
+            <div class="hero-body">
                 <div class="container dashboard">
                     <div class="card dashboard">
                         <div class="card-header d-flex justify-content-center">
-                            <input type="text" id="search" class="form-control my-3" onkeyup="searchTable('guestsTable')"
-                                   placeholder="Search for names..">
+                            <input type="text" id="search" class="form-control my-1" onkeyup="searchTable('guestsTable')"
+                                   placeholder="Search for names.." autocomplete="off">
                         </div>
                         @if(session()->has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -51,7 +51,6 @@
                                                         <a class="btn btn-primary btn-block"
                                                            href="{{route('guests.edit', $guest)}}">Edit/Show</a>
                                                     </div>
-
                                                 </div>
                                             </td>
                                         </tr>
@@ -65,10 +64,17 @@
             </div>
         </section>
 
-    </div>
 
     <script src="{{asset('js/searchTable.js')}}"></script>
     <style>
+        .hero-body {
+            background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 40%), url("https://www.atlantis.com/-/media/atlantis/dubai/atp/resort/exterior/AtlantisThePalm-Exterior-FrontShotWithRoyalPool.jpg?sc_lang=it");
+            background-position: center bottom;
+            background-size: cover;
+            background-attachment: fixed;
+            width: 100%;
+        }
+
         .header {
             position: sticky;
             top: 0;
@@ -90,7 +96,23 @@
         thead {
             position: sticky;
             top: 0;
-            z-index: 999
+            z-index: 999;
+        }
+
+        .container.dashboard {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card.dashboard {
+            z-index: 1;
+            width: 100%;
+            border-color: black;
+            border-radius: 20px;
+            background-color: white !important;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+        }
     </style>
 
 @endsection

@@ -8,6 +8,16 @@
                     Our rooms
                 </h4>
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
         </div>
 
         <div class="border border-warning rounded" id="searchBar">
@@ -19,14 +29,24 @@
                             <label for="startDate">Check-in</label>
                             <input id="startDate" type="date"
                                    class="form-control @error('date') is-invalid @enderror" name="startDate"
-                                   value="{{ old('date') }}" min="<?php echo date('Y-m-d'); ?>"
+                                   @if(isset($from))
+                                   value="{{$from}}"
+                                   @else
+                                   value="{{ old('startDate') }}"
+                                   @endif
+                                   min="<?php echo date('Y-m-d'); ?>"
                                    max="2030-12-31"/>
                         </div>
                         <div class="col-sm-3 float-left" style="margin: auto">
                             <label for="endDate">Check-out</label>
                             <input id="endDate" type="date"
                                    class="form-control @error('date') is-invalid @enderror" name="endDate"
-                                   value="{{ old('date') }}" min="<?php echo date('Y-m-d'); ?>"
+                                   @if(isset($to))
+                                   value="{{$to}}"
+                                   @else
+                                   value="{{ old('endDate') }}"
+                                   @endif
+                                   min="<?php echo date('Y-m-d'); ?>"
                                    max="2030-12-31"/>
                         </div>
                         <div class="col-sm-3 float-left" style="margin: auto">
@@ -35,11 +55,17 @@
                                 <option>
                                     None
                                 </option>
-                                @if($types)
-                                    @foreach($types as $type)
-                                        <option>
-                                            {{$type->type}}
-                                        </option>
+                                @if($roomsTypes)
+                                    @foreach($roomsTypes as $RoomsType)
+                                        @if(isset($selectedType) && $RoomsType->type == $selectedType)
+                                            <option selected>
+                                                {{$RoomsType->type}}
+                                            </option>
+                                        @else
+                                            <option>
+                                                {{$RoomsType->type}}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 @endif
                             </select>
@@ -114,7 +140,8 @@
                                 <br>
                                 <div class="row has-text-centered bottomLine">
                                     <p>For max {{$room->capacity}} people. Price per person: {{$room->price}}€
-                                        <button class="btn shadow-none" type="submit"><h5>Get this room!</h5></button>
+                                        <button class="btn shadow-none" type="submit">
+                                    <h5>Get this room!</h5></button>
                                     </p>
 
                                 </div>
@@ -132,7 +159,8 @@
                                 <br>
                                 <div class="row has-text-centered bottomLine">
                                     <p>For max {{$room->capacity}} people. Price per person: {{$room->price}}€
-                                        <button class="btn shadow-none" type="submit"><h5>Get this room!</h5></button>
+                                        <button class="btn shadow-none" type="submit">
+                                    <h5>Get this room!</h5></button>
                                     </p>
                                 </div>
                             </div>
@@ -189,6 +217,15 @@
     </div>
 
     <style>
+        .alert {
+            position: absolute;
+            left: 50%;
+            bottom: 0%;
+            width: 60%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+        }
+
         .margin {
             height: 10rem;
             background-color: rgb(242, 242, 242);

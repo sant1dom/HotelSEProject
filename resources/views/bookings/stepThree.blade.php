@@ -52,7 +52,8 @@
                                                             {{$j++}}
                                                         @else
                                                             <option
-                                                                value="{{$services[$i]->id}}">{{$services[$i]->name}}</option>
+                                                                value="{{$services[$i]->id}}">{{$services[$i]->name}}
+                                                            </option>
                                                         @endif
                                                     @endfor
                                                 @endif

@@ -51,19 +51,30 @@
                                                     form="main-form" id="guests" title="Choose from your guests"
                                                     data-style="btn-info" data-width="100%" data-size="10"
                                                     data-actions-box="true" data-container="body">
-                                                <option value="{{$user->id}}">
-                                                    {{$user->name}} {{$user->surname}} (me)
-                                                </option>
                                                 @if($guests)
                                                     @for($j=0, $i=0; $i<count($guests); $i++)
                                                         @if(isset($request->guest[$j]) && $guests[$i]->id == $request->guest[$j])
-                                                            <option value="{{$guests[$i]->id}}" selected>
-                                                                {{$guests[$i]->name}}
-                                                            </option>
+                                                            @if($guests[$i]->id == 1)
+                                                                <option value="1" selected>
+                                                                    {{$user->name}} {{$user->surname}} (me)
+                                                                </option>
+                                                            @else
+                                                                <option value="{{$guests[$i]->id}}" selected>
+                                                                    {{$guests[$i]->name}} {{$guests[$i]->surname}}
+                                                                </option>
+                                                            @endif
                                                             {{$j++}}
                                                         @else
-                                                            <option
-                                                                value="{{$guests[$i]->id}}">{{$guests[$i]->name}}</option>
+                                                            @if($guests[$i]->id == 1)
+                                                                <option value="1">
+                                                                    {{$user->name}} {{$user->surname}} (me)
+                                                                </option>
+                                                            @else
+                                                                <option
+                                                                    value="{{$guests[$i]->id}}">
+                                                                    {{$guests[$i]->name}} {{$guests[$i]->surname}}
+                                                                </option>
+                                                            @endif
                                                         @endif
                                                     @endfor
                                                 @endif

@@ -35,12 +35,22 @@ class HotelFactory extends Factory
                 )
                 ->count(10)->create();
 
-            $user =User::factory()
-                ->has(Guest::factory()->count(8)->state(function (array $attributes, User $user) {
-                    return ['user_id' => $user->id];
-                })
-                )
-                ->create();
+            $user = User::factory();
+
+            $user->has(Guest::factory()->state(function (array $attributes, User $user) {
+                return [
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'surname' => $user->surname,
+                    'birthdate' => $user->birthdate,
+                    'doctype' => $user->doctype,
+                    'numdoc' => $user->numdoc,
+                ];
+            }))->has(Guest::factory()->count(8)->state(function (array $attributes, User $user) {
+                return ['user_id' => $user->id];
+            }))->create();
+
+
             Service::factory()
                 ->has(ImageService::factory()->count(3)->state(function (array $attributes, Service $service) {
                     return ['service_id' => $service->id];

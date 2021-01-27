@@ -11,7 +11,10 @@
     background-color: white !important;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     position: absolute;
+    z-index: 1;
     left: 50%;
     top: 100%;
     transform: translate(-50%, -50%);
 }
+
+

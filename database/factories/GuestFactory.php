@@ -24,7 +24,7 @@ class GuestFactory extends Factory
     public function definition()
     {
         return [
-            'name'=> $this->faker->name,
+            'name'=> $this->faker->firstName,
             'surname'=>$this->faker->lastName,
             'birthdate'=>$this->faker->date(),
             'doctype'=>'IdCard',

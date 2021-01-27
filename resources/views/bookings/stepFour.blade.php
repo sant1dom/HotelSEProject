@@ -52,11 +52,6 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="row d-flex justify-content-center">
-                                        <button class="btn btn-primary" type="submit" id="pay"
-                                                style="width: 6rem"
-                                                form="main-form"><span>Pay</span></button>
-                                        </div>
                                     </div>
                                 </div>
                                 <input name="from" type="hidden" value="{{$request->from}}"
@@ -104,8 +99,9 @@
                                     <span class="step" style="background-color: #4CAF50;"></span>
                                     <span class="step" style="background-color: #4CAF50;"></span>
                                     <span class="step" style="opacity: 1;"></span>
-                                    <button class="btn btn-success" type="submit" id="nextBtn"
-                                            style="width: 6rem" disabled><span>Next</span></button>
+                                    <button class="btn btn-primary" type="submit" id="pay"
+                                            style="width: 6rem"
+                                            form="main-form"><span>Pay</span></button>
                                 </div>
                             </div>
                         </div>
@@ -117,26 +113,6 @@
 
 
     <style>
-        .paypal_btn {
-            display: inline-block;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: bold;
-            color: #fff;
-            text-align: center;
-            padding: 10px 14px;
-            margin: 0;
-            background: #ff6600;
-            border: 0;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .paypal_btn:hover {
-            background: #e05c04;
-        }
-
-
         .hero-body {
             background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 40%), url("https://www.atlantis.com/-/media/atlantis/dubai/atp/resort/exterior/AtlantisThePalm-Exterior-FrontShotWithRoyalPool.jpg?sc_lang=it");
             background-position: center bottom;

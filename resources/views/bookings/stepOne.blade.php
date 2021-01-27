@@ -144,5 +144,12 @@
             display: inline-block;
             opacity: 0.5;
         }
+
+        .alert {
+            position: absolute;
+            right: 0%;
+            top: 6%;
+            z-index: 999;
+        }
     </style>
 @endsection

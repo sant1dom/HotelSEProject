@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ModelsController;
 
+use App\Models\Booking;
 use App\Models\ImageRoom;
 use App\Models\Room;
 use Illuminate\Http\Request;
@@ -21,15 +22,43 @@ class RoomsController extends Controller
 
     public function userIndex(Request $request)
     {
-        $types = room::get();
-        $types->unique('type');
+        $roomsTypes = room::get()->unique('type');
         if (!($request->typeSelection === 'None')) {
             $type = $request->typeSelection;
             $rooms = Room::where('type', 'LIKE', $type)->get()->sortBy('id');
         } else {
             $rooms = Room::get();
         }
-        return view('rooms.userIndex', ['rooms' => $rooms, 'types' => $types]);
+        if($request->startDate != null || $request->endDate != null){
+            request()->validate([
+                'startDate' => 'required',
+                'endDate' => 'required',
+            ]);
+            $from = $request->startDate;
+            $to = $request->endDate;
+
+            $bookings = Booking::whereDate('from', '<=', $from)->whereDate('to', '>=', $to)->get();
+            if($bookings != null){
+                $excludedTypes = [];
+                foreach ($bookings as $i => $booking){
+                    $excludedTypes[$i] = $booking->rooms[0]->id;
+                }
+            }
+            if(isset($type)){
+                $rooms = Room::whereNotIn('id', $excludedTypes)->where('type', 'LIKE', $type)->get();
+            } else {
+                $rooms = Room::whereNotIn('id', $excludedTypes)->get();
+            }
+
+            return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'from' => $from, 'to' => $to, 'selectedType' => $type]);
+
+        } else {
+            if(isset($type)) {
+                return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'selectedType' => $type]);
+            }
+        }
+
+        return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes]);
 
     }
 

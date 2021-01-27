@@ -28,7 +28,7 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('guests.index')}}">
+                    <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('guests.userIndex')}}">
                         {{ __('My guests') }}
                     </a>
                     <a class="dropdown-item has-text-black has-text-weight-bold" href="{{route('bookings.userIndex')}}">

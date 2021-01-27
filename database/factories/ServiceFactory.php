@@ -23,8 +23,8 @@ class ServiceFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'price' => $this->faker->numberBetween($min=20,$max=30),
+            'name' => $this->faker->titleMale,
+            'price' => $this->faker->numberBetween($min=20,$max=70),
             'availability' => true,
             'hotel_id' => Hotel::first()
         ];

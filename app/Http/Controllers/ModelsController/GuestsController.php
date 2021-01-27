@@ -19,6 +19,13 @@ class GuestsController extends Controller
         return view('guests.index', compact('guests'));
     }
 
+    public function userIndex()
+    {
+        $guests = Auth::user()->guests()->get();
+        return view('guests.userIndex', compact('guests'));
+    }
+
+
     //Mostra un SINGOLO SPECIFICO oggetto
     public function show(Guest $guest) //Guest $guest
     {
@@ -64,16 +71,13 @@ class GuestsController extends Controller
     //Mostra una vista per modificare un oggetto esistente
     public function edit(Guest $guest)
     {
-        return view('guests.edit', compact('guest'));
+
     }
 
     //aggiorna nel database l'oggetto con la modifica
-    public function update(Guest $guest,Request $request)
+    public function update(Guest $guest)
     {
-        $this->validateGuest($request);
-        $guest->update($request->all());
-        return redirect()->route('guests.index')
-            ->with('success', 'Guest updated successfully');
+
     }
 
     //elimina l'oggetto dal database
@@ -82,15 +86,19 @@ class GuestsController extends Controller
 
     }
 
-    protected function validateGuest(Request $request)
+    protected function validateGuest()
     {
-
-            $this->validate($request, [
+        return request()->validate([
             'name' => 'required',
+            'name.*' => 'required',
             'surname' => 'required',
+            'surname.*' => 'required',
             'birthdate' => 'required',
+            'birthdate.*' => 'required',
             'doctype' => 'required',
+            'doctype.*' => 'required',
             'numdoc' => 'required',
+            'numdoc.*' => 'required',
         ]);
     }
 }

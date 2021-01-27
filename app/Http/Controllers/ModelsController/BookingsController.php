@@ -24,11 +24,9 @@ class BookingsController extends Controller
 
     public function userIndex()
     {
-        $bookings = Booking::orderBy('to')->Paginate(10);
-        //return view('bookings.index', compact('bookings'));
-        $rooms = Room::all()->unique('type');
+        $bookings = Booking::where('user_id', 'LIKE', Auth::user()->id)->get()->sortBy('from');
 
-        return view('home', compact('rooms'));
+        return view('bookings.userIndex', compact('bookings'));
     }
 
 
@@ -58,7 +56,8 @@ class BookingsController extends Controller
     public function showStepThree(Request $request)
     {
         $this->validateStepTwo($request);
-        $services = Service::all()->unique('name');
+        $services = Service::all();
+
         return view('bookings.stepThree', compact('services', 'request'));
     }
 
@@ -79,7 +78,7 @@ class BookingsController extends Controller
             foreach ($request->service as $i => $id){
                 $servicesId[$i] = $request->service[$i];
             }
-            $services = Guest::whereIn('id', $servicesId )->get()->sortBy('id');
+            $services = Service::whereIn('id', $servicesId )->get()->sortBy('id');
 
             return view('bookings.stepFour', compact('guests', 'services', 'request', 'room'));
         } else {
@@ -97,9 +96,27 @@ class BookingsController extends Controller
     //inserisce l'oggetto nel DB
     public function store(Request $request)
     {
+        $booking = new Booking(request(['from', 'to']));
+        $booking->user_id = Auth::user()->id;
+        $booking->save();
+
+        $room = Room::find($request->ourRooms);
+        $booking->rooms()->attach($room);
+
+        foreach ($request->guest as $guest) {
+            $mTmGuest = Guest::find($guest);
+            $booking->guests()->attach($mTmGuest);
+        }
+
+        if ($request->has('service')) {
+            foreach ($request->service as $service) {
+                $mTmService = Service::find($service);
+                $booking->services()->attach($mTmService);
+            }
+        }
 
 
-        Booking::create($request->all());
+
 
         return redirect()->route('bookings.userIndex')
             ->with('success', 'Booking created successfully.');

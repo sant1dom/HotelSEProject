@@ -60,8 +60,7 @@ Route::get('/services', [ServicesController::class, 'index_users'])->name('servi
 /**
  * Routes for the guests views
  */
-Route::resource('guests', GuestsController::class)->middleware('auth');
-
+Route::get('/guests', [GuestsController::class, 'userIndex'])->name('guests.userIndex');
 /**
  * Route for the booking view
  */
@@ -90,6 +89,14 @@ Route::prefix('admin')->group(function () {
      * Routes for the rooms views
      */
     Route::resource('rooms', RoomsController::class)->middleware('auth:admin');
+    /**
+     * Routes for the guests views
+     */
+    Route::resource('guests', GuestsController::class)->middleware('auth');
+    /**
+     * Routes for the bookings views
+     */
+    Route::resource('bookings', BookingsController::class)->middleware('auth');
 
     /**
      * Routes for report generation
