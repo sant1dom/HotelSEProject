@@ -20,7 +20,8 @@ class Booking extends Model
         'to',
         'user_id',
         'check-in',
-        'check-out'
+        'check-out',
+        'booking_code'
     ];
 
     public function services(){

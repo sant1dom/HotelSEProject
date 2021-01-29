@@ -9,6 +9,7 @@ use App\Models\Room;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BookingsController extends Controller
 {
@@ -48,6 +49,15 @@ class BookingsController extends Controller
     public function showStepTwo(Request $request)
     {
         $this->validateStepOne($request);
+
+        $from = $request->from;
+        $to = $request->to;
+
+        $bookings = Booking::whereDate('from', '<=', $from)->whereDate('to', '>=', $to)->first();
+        if($bookings != null && $bookings->rooms[0]->id == $request->ourRooms){
+            return redirect()->route('bookings.stepOne')
+                ->with('error', 'We are sorry! This room is not available on these dates.');
+        }
         $user = Auth::user();
         $guests = Auth::user()->guests()->get();
         return view('bookings.stepTwo', compact('guests', 'request', 'user'));
@@ -87,17 +97,12 @@ class BookingsController extends Controller
     }
 
 
-    public function confirmation(Request $request)
-    {
-        $this->validateBooking($request);
-        return view('userIndex');
-    }
-
     //inserisce l'oggetto nel DB
     public function store(Request $request)
     {
         $booking = new Booking(request(['from', 'to']));
         $booking->user_id = Auth::user()->id;
+        $booking->booking_code = Str::random(6);
         $booking->save();
 
         $room = Room::find($request->ourRooms);
@@ -114,9 +119,6 @@ class BookingsController extends Controller
                 $booking->services()->attach($mTmService);
             }
         }
-
-
-
 
         return redirect()->route('bookings.userIndex')
             ->with('success', 'Booking created successfully.');

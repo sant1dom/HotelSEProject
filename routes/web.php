@@ -71,7 +71,9 @@ Route::prefix('bookings')->group(function() {
     Route::get('/stepFour', [BookingsController::class, 'showStepFour'])->name('bookings.stepFour')->middleware('auth');
     Route::get('/userIndex', [BookingsController::class, 'userIndex'])->name('bookings.userIndex')->middleware('auth');
     Route::get('/store', [BookingsController::class, 'store'])->name('bookings.store')->middleware('auth');
+    Route::get('/edit', [BookingsController::class, 'edit'])->name('bookings.edit')->middleware('auth');
 });
+
 
 /**
  * Route for the admin operations
@@ -93,10 +95,6 @@ Route::prefix('admin')->group(function () {
      * Routes for the guests views
      */
     Route::resource('guests', GuestsController::class)->middleware('auth');
-    /**
-     * Routes for the bookings views
-     */
-    Route::resource('bookings', BookingsController::class)->middleware('auth');
 
     /**
      * Routes for report generation
@@ -108,6 +106,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/reports/services', [ReportController::class, 'servicesIndex'])->name('admin.services.index')->middleware('auth:admin');
     Route::get('/reports/services/{service}', [ReportController::class, 'servicesReport'])->name('report.services.pdf')->middleware('auth:admin');
 });
+
+
 
 Route::prefix('totem')->group(function() {
     Route::get('/menu', [TotemController::class, 'menu'])->name('totem.menu');

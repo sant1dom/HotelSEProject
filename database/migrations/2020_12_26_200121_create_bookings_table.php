@@ -18,8 +18,10 @@ class CreateBookingsTable extends Migration
             $table->date('from');
             $table->date('to');
             $table->unsignedBigInteger('user_id');
+            $table->string('booking_code');
             $table->boolean('check_in')->default(false);
             $table->boolean('check_out')->default(false);
+
             $table->timestamps();
         });
     }

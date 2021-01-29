@@ -29,14 +29,14 @@
                         <div class="col-sm-4 float-left" style="margin: auto">
                             <label for="startDate">Check-in</label>
                             <input id="startDate" type="date"
-                                   class="form-control @error('date') is-invalid @enderror" name="email"
+                                   class="form-control @error('date') is-invalid @enderror" name="startDate"
                                    value="{{ old('date') }}" min="<?php use App\Models\Room;echo date('Y-m-d'); ?>"
                                    max="2030-12-31"/>
                         </div>
                         <div class="col-sm-4 float-none" style="margin: auto">
                             <label for="endDate">Check-out</label>
                             <input id="endDate" type="date"
-                                   class="form-control @error('date') is-invalid @enderror" name="email"
+                                   class="form-control @error('date') is-invalid @enderror" name="endDate"
                                    value="{{ old('date') }}" min="<?php echo date('Y-m-d'); ?>"
                                    max="2030-12-31"/>
                         </div>

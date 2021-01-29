@@ -50,7 +50,7 @@
                                    max="2030-12-31"/>
                         </div>
                         <div class="col-sm-3 float-left" style="margin: auto">
-                            <label for="typeSelection">Type</label>
+                            <label for="typeSelection">Room name</label>
                             <select id="typeSelection" class="form-control" name="typeSelection">
                                 <option>
                                     None

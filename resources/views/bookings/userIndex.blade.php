@@ -9,20 +9,20 @@
     </section>
     <section class="hero is-bold">
         <div class="hero-body">
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="container dashboard">
                 <div class="card dashboard">
                     <div class="card-header d-flex justify-content-center">
                         <input type="text" id="search" class="form-control my-1" onkeyup="searchTable('guestsTable')"
                                placeholder="Search for names.." autocomplete="off">
                     </div>
-                    @if(session()->has('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session()->get('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
                     <div class="card-body">
                         <div class="table-wrapper-scroll-y table-scrollbar">
                             <table class="table table-fixed table-striped header-fixed table-bordered"
@@ -32,12 +32,14 @@
                                     <th class="header has-text-centered" scope="col">Room</th>
                                     <th class="header has-text-centered" scope="col">Check-in date</th>
                                     <th class="header has-text-centered" scope="col">Check-out date</th>
+                                    <th class="header has-text-centered" scope="col">Booking code</th>
                                     <th class="header has-text-centered" scope="col">Actions</th>
                                 </tr>
                                 </thead>
-                                <tbody>
                                 @if(isset($bookings))
                                     @foreach($bookings as $booking)
+                                <tbody>
+
                                         <td class="has-text-centered">
                                             {{$booking->rooms[0]->type}}, N°{{$booking->rooms[0]->numroom}}</td>
                                         <td class="has-text-centered">
@@ -57,14 +59,17 @@
                                             {{$booking->to}}
                                         </td>
                                         <td class="has-text-centered">
+                                            {{$booking->booking_code}}
+                                        </td>
+                                        <td class="has-text-centered">
                                             <div class="col-sm">
                                                 <a class="btn btn-primary btn-block"
                                                    href="{{route('bookings.edit', $booking)}}">Edit/Show</a>
                                             </div>
                                         </td>
+                                </tbody>
                                     @endforeach
                                 @endif
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -76,6 +81,15 @@
 
     <script src="{{asset('js/searchTable.js')}}"></script>
     <style>
+        .alert {
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            transform: translate(50% 50%);
+            z-index: 999;
+        }
+
         .dot {
             height: 15px;
             width: 15px;

@@ -46,12 +46,11 @@ class RoomsController extends Controller
             }
             if(isset($type)){
                 $rooms = Room::whereNotIn('id', $excludedTypes)->where('type', 'LIKE', $type)->get();
+                return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'from' => $from, 'to' => $to, 'selectedType' => $type]);
             } else {
                 $rooms = Room::whereNotIn('id', $excludedTypes)->get();
+                return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'from' => $from, 'to' => $to]);
             }
-
-            return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'from' => $from, 'to' => $to, 'selectedType' => $type]);
-
         } else {
             if(isset($type)) {
                 return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'selectedType' => $type]);

@@ -124,6 +124,13 @@
     <link href="{{ asset('css/dynamicFormStyle.css') }}" rel="stylesheet">
 
     <style>
+        .alert {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 999;
+        }
+
         .hero-body {
             background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 40%), url("https://www.atlantis.com/-/media/atlantis/dubai/atp/resort/exterior/AtlantisThePalm-Exterior-FrontShotWithRoyalPool.jpg?sc_lang=it");
             background-position: center bottom;

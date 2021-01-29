@@ -18,6 +18,14 @@
                         <div class="col-sm-8">
                             <div class="card" id="booking-form">
                                 <div class="card-body">
+                                    @if(session()->has('error'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            {{ session()->get('error') }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
                                     @if ($errors->any())
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                             @foreach ($errors->all() as $error)
@@ -34,9 +42,8 @@
                                                     Check-out</h4>
                                             </div>
                                             <label for="from">Start Date: </label>
-
                                             <input id="from" type="date"
-                                                   class="form-control @error('from') is-invalid @enderror"
+                                                   class="datepicker form-control @error('from') is-invalid @enderror"
                                                    name="from"
                                                    @if(isset($request->from))
                                                    value="{{$request->from}}"
@@ -48,14 +55,16 @@
 
                                             <label for="to">End Date: </label>
                                             <input id="to" type="date"
-                                                   class="form-control @error('to') is-invalid @enderror"
+                                                   class="datepicker form-control @error('to') is-invalid @enderror"
                                                    name="to"
                                                    @if(isset($request->to))
                                                    value="{{$request->to}}"
+                                                   min="{{$request->from}}"
                                                    @else
                                                    value="{{old('to')}}"
-                                                   @endif
+                                                   disabled
                                                    min="<?php echo date('Y-m-d'); ?>"
+                                                   @endif
                                                    max="2030-12-31" form="main-form"/>
                                             <label for="ourRooms">Our rooms: </label>
                                             <select class="selectpicker @error('type') is-invalid @enderror"
@@ -63,11 +72,13 @@
                                                     name="ourRooms" form="main-form">
                                                 @foreach($rooms as $room)
                                                     @if(isset($request->userIndexRoomId) && $room->id == $request->userIndexRoomId)
-                                                        <option data-subtext="{{$room->price}}€" value="{{$room->id}}" selected>
+                                                        <option data-subtext="{{$room->price}}€" value="{{$room->id}}"
+                                                                selected>
                                                             {{$room->type}}
                                                         </option>
                                                     @elseif(isset($request->ourRooms) && $room->id == $request->ourRooms)
-                                                        <option data-subtext="{{$room->price}}€" value="{{$request->ourRooms}}" selected>
+                                                        <option data-subtext="{{$room->price}}€"
+                                                                value="{{$request->ourRooms}}" selected>
                                                             {{$room->type}}
                                                         </option>
                                                     @else
@@ -79,18 +90,18 @@
                                             </select>
                                         </div>
                                     </div>
-                                        @if(isset($request->guest))
-                                            @foreach($request->guest as $guest)
-                                                <input name="guest[]" type="hidden" value="{{$guest}}"
-                                                       form="main-form">
-                                            @endforeach
-                                        @endif
-                                        @if(isset($request->service))
-                                            @foreach($request->service as $service)
-                                                <input name="service[]" type="hidden" value="{{$service}}"
-                                                       form="main-form">
-                                            @endforeach
-                                        @endif
+                                    @if(isset($request->guest))
+                                        @foreach($request->guest as $guest)
+                                            <input name="guest[]" type="hidden" value="{{$guest}}"
+                                                   form="main-form">
+                                        @endforeach
+                                    @endif
+                                    @if(isset($request->service))
+                                        @foreach($request->service as $service)
+                                            <input name="service[]" type="hidden" value="{{$service}}"
+                                                   form="main-form">
+                                        @endforeach
+                                    @endif
                                     <div style="text-align:center;">
                                         <button class="btn btn-success" type="submit" id="prevBtn" style="width: 6rem"
                                                 disabled><span>Previous</span></button>
@@ -109,6 +120,14 @@
             </section>
         </div>
     </form>
+
+    <script>
+        $('#from').change(function () {
+            let minDate = $('#from').val();
+            $('#to').prop("disabled", false);
+            $("#to").attr("min", minDate);
+        });
+    </script>
 
     <style>
         .hero-body {
@@ -147,9 +166,12 @@
 
         .alert {
             position: absolute;
-            right: 0%;
-            top: 6%;
+            top: 2%;
+            left: 20%;
+            right: 20%;
+            transform: translate(50% 50%);
             z-index: 999;
         }
+
     </style>
 @endsection

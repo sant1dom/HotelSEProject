@@ -20,10 +20,18 @@
         </div>
         <form id="Check-in-form" action="{{ route('totem.checkin') }}" method="GET" autocomplete="off">
             <div class="hero-body">
+                @if(session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session()->get('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="container">
                     <div class="col-sm d-flex justify-content-center" style="height: 100%">
-                        <input class="form-control rounded-pill has-text-centered has-text" type="number"
-                               style="height: 100%; font-size: 6rem;" placeholder="Enter email">
+                        <input class="form-control rounded-pill has-text-centered has-text" type="text"
+                               style="height: 100%; font-size: 6rem;" placeholder="Enter email" name="email" required>
 
                         <a class='fas fa-info-circle popover-dismiss' style='font-size:48px; left: 92%; top: 33%' tabindex="0" data-toggle="popover"
                            data-content="Enter the email of the person who booked"></a>
@@ -31,16 +39,16 @@
                     <br>
                     <br>
                     <div class="col-sm d-flex justify-content-center" style="height: 100%">
-                        <input class="form-control rounded-pill has-text-centered has-text" type="number"
+                        <input class="form-control rounded-pill has-text-centered has-text" type="text"
                                style="height: 100%; font-size:  6rem;" placeholder="Enter the booking ID"
-                               id="code">
+                               name="booking_code" required>
                         <a class='fas fa-info-circle popover-dismiss' style='font-size:48px; left: 92%; top: 33%' tabindex="0" data-toggle="popover"
                            data-content="The id was provided to the user after completing the booking"></a>
                     </div>
                     <br>
                     <br>
                     <div class="col-sm d-flex justify-content-center" style="height: 100%">
-                        <button class="btn rounded-pill btn-primary" style="width: 30%">
+                        <button class="btn rounded-pill btn-primary" style="width: 30%" type="submit">
                             <h2>Check-in now!</h2>
                         </button>
                     </div>
@@ -57,6 +65,16 @@
     </section>
 
     <style>
+        .alert {
+            position: absolute;
+            top: 25%;
+            left: 20%;
+            right: 20%;
+            transform: translate(50% 50%);
+            z-index: 999;
+        }
+
+
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
