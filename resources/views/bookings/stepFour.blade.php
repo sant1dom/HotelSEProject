@@ -46,8 +46,11 @@
                                             <div class="col-sm">
                                                 @if(isset($services))
                                                     <h5>Services selected for this stay: </h5>
-                                                    @foreach($services as $service)
-                                                        <p>-{{$service->name}}.</p>
+                                                    @foreach($services as $i=> $service)
+                                                        <p>-{{$service->name}}. For days:
+                                                            @foreach($request->optionDays[$i] as $j=> $days)
+                                                                | {{ $days }}
+                                                            @endforeach</p>
                                                     @endforeach
                                                 @endif
                                             </div>

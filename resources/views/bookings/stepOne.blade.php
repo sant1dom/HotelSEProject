@@ -51,7 +51,7 @@
                                                    value="{{old('from')}}"
                                                    @endif
                                                    min="<?php echo date('Y-m-d'); ?>"
-                                                   max="2030-12-31" form="main-form"/>
+                                                   max="<?php echo date('Y')+1; ?>-12-31" form="main-form"/>
 
                                             <label for="to">End Date: </label>
                                             <input id="to" type="date"
@@ -65,7 +65,7 @@
                                                    disabled
                                                    min="<?php echo date('Y-m-d'); ?>"
                                                    @endif
-                                                   max="2030-12-31" form="main-form"/>
+                                                   max="<?php echo date('Y')+1; ?>-12-31" form="main-form"/>
                                             <label for="ourRooms">Our rooms: </label>
                                             <select class="selectpicker @error('type') is-invalid @enderror"
                                                     id="ourRooms" data-width="100%" data-size="7" data-container="body"

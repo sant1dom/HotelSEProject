@@ -167,22 +167,21 @@
     </style>
 
     <script>
-
         $(function () {
             $('.my-select').selectpicker(
                 {dropupAuto: false}
             );
         });
 
-        window.onload = function() {
+        window.onload = function () {
             selectDays();
         };
 
-        $(document).on("change", "#services", function(){
+        $(document).on("change", "#services", function () {
             selectDays();
         });
 
-        function selectDays () {
+        function selectDays() {
             let serviceSelect = document.querySelector('#services');
             let selected = Array.from(serviceSelect.options).filter(function (option) {
                 return option.selected;
@@ -197,29 +196,63 @@
             });
 
             let fromInput = document.getElementById('fromValue').value;
-            let from = fromInput.charAt(8) + fromInput.charAt(9);
-            parseInt(from);
+            let fromDay = parseInt(fromInput.charAt(8) + fromInput.charAt(9));
+            let fromMonth = parseInt(fromInput.charAt(5) + fromInput.charAt(6));
+
             let toInput = document.getElementById('toValue').value;
-            let to = toInput.charAt(8) + toInput.charAt(9);
-            parseInt(to);
+            let toDay = parseInt(toInput.charAt(8) + toInput.charAt(9));
+            let toMonth = parseInt(toInput.charAt(5) + toInput.charAt(6));
 
-            let days = to - from;
+            let days;
+            if (toMonth === fromMonth) {
+                days = toDay - fromDay;
+            } else {
+                switch (fromMonth) {
+                    case 6:
+                        days = (30 - fromDay) + toDay + 1;
+                        break;
 
+                    case 9:
+                        days = (30 - fromDay) + toDay + 1;
+                        break;
+
+                    case 11:
+                        days = (30 - fromDay) + toDay + 1;
+                        break;
+
+                    case 2:
+                        let isLeep = new Date(new Date().getFullYear(), 1, 29).getDate() === 29;    //bisesitle o no
+                        if (isLeep) {
+                            days = (29 - fromDay) + toDay + 1;
+                        } else {
+                            days = (28 - fromDay) + toDay + 1;
+                        }
+                        break;
+
+                    default:    //mesi 1 | 3 | 4 | 5 | 7 | 8 | 10 | 12
+                        days = (31 - fromDay) + toDay + 1;
+                        break;
+                }
+            }
+            let k = 0;
             selected.forEach(function (option) {
-                let fromIteration = from;
+                let fromDate = new Date(fromInput);
 
                 $("#servicesContainer").append('<label>' +
                     option +
                     '</label>' +
                     '<br>');
 
+
                 for (let i = days, j = 0; i > 0; i--, j++) {
                     $("#servicesContainer").append(
                         '<div class="form-check form-check-inline">' +
-                        '<input class="form-check-input" type="checkbox" name="' + option + '[]" value="' + j + '" form="main-form">' +
-                        '<label class="form-check-label" for="inlineCheckbox1">' + fromIteration++ + '</label>' +
+                        '<input class="form-check-input" type="checkbox" name="optionDays['+ k +']['+ j +']" value="' + fromDate.getDate() + '" form="main-form">' +
+                        '<label class="form-check-label" for="inlineCheckbox1">' + fromDate.getDate() + '</label>' +
                         '</div>');
+                    fromDate.setDate(fromDate.getDate() + 1);
                 }
+                k++;
 
                 $("#servicesContainer").append(
                     '<br>');
