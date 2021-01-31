@@ -50,13 +50,20 @@
                                                         <p>-{{$service->name}}. For days:
                                                             @foreach($request->optionDays[$i] as $j=> $days)
                                                                 | {{ $days }}
-                                                            @endforeach</p>
+                                                            @endforeach
+                                                        </p>
                                                     @endforeach
                                                 @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @foreach($services as $i=> $service)
+                                    @foreach($request->optionDays[$i] as $j=> $optionDay)
+                                        <input name="optionDays[{{$i}}][{{$j}}]" type="hidden" value="{{$optionDay}}"
+                                               form="main-form">
+                                    @endforeach
+                                @endforeach
                                 <input name="from" type="hidden" value="{{$request->from}}"
                                        form="main-form">
                                 <input name="to" type="hidden" value="{{$request->to}}"

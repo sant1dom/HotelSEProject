@@ -16,11 +16,8 @@ class BookingsController extends Controller
 
     public function index()
     {
-        $bookings = Booking::orderBy('to')->Paginate(10);
-        //return view('bookings.index', compact('bookings'));
-        $rooms = Room::all()->unique('type');
-
-        return view('home', compact('rooms'));
+        $bookings = Booking::orderBy('to')->get();
+        return view('bookings.index', compact('bookings'));
     }
 
     public function userIndex()
@@ -29,6 +26,12 @@ class BookingsController extends Controller
 
         return view('bookings.userIndex', compact('bookings'));
     }
+
+    public function userShow(Request $request)
+    {
+        return view('bookings.userShow', compact('request'));
+    }
+
 
 
     public function show(Booking $booking)
@@ -65,7 +68,8 @@ class BookingsController extends Controller
 
     public function showStepThree(Request $request)
     {
-        $this->validateStepTwo($request);
+        $room = Room::where('id', 'LIKE', $request->ourRooms)->first();
+        $this->validateStepTwo($request, $room->capacity);
         $services = Service::all();
 
         return view('bookings.stepThree', compact('services', 'request'));
@@ -113,10 +117,14 @@ class BookingsController extends Controller
             $booking->guests()->attach($mTmGuest);
         }
 
+
         if ($request->has('service')) {
-            foreach ($request->service as $service) {
+            foreach ($request->service as $i => $service) {
                 $mTmService = Service::find($service);
-                $booking->services()->attach($mTmService);
+                foreach ($request->optionDays[$i] as $j=> $option) {
+                    $booking->services()->attach($mTmService, [
+                        'date' => $option]);
+                }
             }
         }
 
@@ -127,15 +135,19 @@ class BookingsController extends Controller
 
     public function edit(Booking $booking)
     {
-        //compact è un modo veloce per scrivere ['article' => $article]
-        return view('bookings.edit', compact('booking'));
+        $room = $booking->rooms()->first();
+        $guests = $booking->guests()->get();
+        $services = $booking->services()->get();
+        $servicesName = $booking->services()->get()->unique('name');
+
+        return view('bookings.edit', compact('room', 'services', 'guests', 'servicesName'));
     }
 
     //elimina l'oggetto dal database
 
     public function update(Booking $booking, Request $request)
     {
-        $this->validateBooking($request);
+        //$this->validateBooking($request);
         $booking->update($request->all());
         return redirect()->route('bookings.index')
             ->with('success', 'Booking updated successfully');
@@ -153,17 +165,20 @@ class BookingsController extends Controller
         ]);
     }
 
-    protected function validateStepTwo(Request $request)
+    protected function validateStepTwo(Request $request, $capacity)
     {
         $this->validate($request, [
-            'guest' => 'required',
+            'guest' => "required|max: $capacity",
         ]);
     }
 
     protected function validateStepThree(Request $request)
     {
         $this->validate($request, [
-            //TODO: deve validare se ha scelto il numero di giorni
+/*            'optionDays' => 'required|array',
+            'optionDays.*' => 'required|integer',
+            'optionDays.*.*' => 'required',*/
+    //TODO: da sistemare perchè funziona male
         ]);
     }
 }

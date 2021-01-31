@@ -241,8 +241,7 @@
                 $("#servicesContainer").append('<label>' +
                     option +
                     '</label>' +
-                    '<br>');
-
+                    '<br>') ;
 
                 for (let i = days, j = 0; i > 0; i--, j++) {
                     $("#servicesContainer").append(

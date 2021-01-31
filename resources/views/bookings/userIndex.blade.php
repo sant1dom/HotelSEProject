@@ -38,36 +38,37 @@
                                 </thead>
                                 @if(isset($bookings))
                                     @foreach($bookings as $booking)
-                                <tbody>
-
-                                        <td class="has-text-centered">
-                                            {{$booking->rooms[0]->type}}, N°{{$booking->rooms[0]->numroom}}</td>
-                                        <td class="has-text-centered">
-                                            @if($booking->check_in)
-                                                <span class="dot" style="background-color: green"></span>
-                                            @else
-                                                <span class="dot" style="background-color: red"></span>
-                                            @endif
-                                                {{$booking->from}}
-                                        </td>
-                                        <td class="has-text-centered">
-                                            @if($booking->check_out)
-                                                <span class="dot" style="background-color: green"></span>
-                                            @else
-                                                <span class="dot" style="background-color: red"></span>
-                                            @endif
-                                            {{$booking->to}}
-                                        </td>
-                                        <td class="has-text-centered">
-                                            {{$booking->booking_code}}
-                                        </td>
-                                        <td class="has-text-centered">
-                                            <div class="col-sm">
-                                                <a class="btn btn-primary btn-block"
-                                                   href="{{route('bookings.edit', $booking)}}">Edit/Show</a>
-                                            </div>
-                                        </td>
-                                </tbody>
+                                        <tbody>
+                                            <tr>
+                                                <td class="has-text-centered">
+                                                    {{$booking->rooms[0]->type}}, N°{{$booking->rooms[0]->numroom}}</td>
+                                                <td class="has-text-centered">
+                                                    @if($booking->check_in)
+                                                        <span class="dot" style="background-color: green"></span>
+                                                    @else
+                                                        <span class="dot" style="background-color: red"></span>
+                                                    @endif
+                                                    {{$booking->from}}
+                                                </td>
+                                                <td class="has-text-centered">
+                                                    @if($booking->check_out)
+                                                        <span class="dot" style="background-color: green"></span>
+                                                    @else
+                                                        <span class="dot" style="background-color: red"></span>
+                                                    @endif
+                                                    {{$booking->to}}
+                                                </td>
+                                                <td class="has-text-centered">
+                                                    {{$booking->booking_code}}
+                                                </td>
+                                                <td class="has-text-centered">
+                                                    <div class="col-sm">
+                                                        <a class="btn btn-primary btn-block"
+                                                           href="{{route('bookings.edit', $booking)}}">Edit/Show</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     @endforeach
                                 @endif
                             </table>

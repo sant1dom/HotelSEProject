@@ -17,8 +17,8 @@ class CreateBookingServiceTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('booking_id');
             $table->unsignedBigInteger('service_id');
+            $table->string('date');
             $table->timestamps();
-            $table->unique(['booking_id', 'service_id']);
 
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');

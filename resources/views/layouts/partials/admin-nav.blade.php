@@ -43,7 +43,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.dashboard')}}" style="color: black"><h5>Bookings</h5></a>
+                <a class="nav-link" href="{{route('bookings.index')}}" style="color: black"><h5>Bookings</h5></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('rooms.index')}}" style="color: black"><h5>Rooms</h5></a>

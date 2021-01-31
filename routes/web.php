@@ -70,8 +70,12 @@ Route::prefix('bookings')->group(function() {
     Route::get('/stepThree', [BookingsController::class, 'showStepThree'])->name('bookings.stepThree')->middleware('auth');
     Route::get('/stepFour', [BookingsController::class, 'showStepFour'])->name('bookings.stepFour')->middleware('auth');
     Route::get('/userIndex', [BookingsController::class, 'userIndex'])->name('bookings.userIndex')->middleware('auth');
+    Route::get('/index', [BookingsController::class, 'index'])->name('bookings.index')->middleware('auth:admin');
     Route::get('/store', [BookingsController::class, 'store'])->name('bookings.store')->middleware('auth');
     Route::get('/edit', [BookingsController::class, 'edit'])->name('bookings.edit')->middleware('auth');
+
+
+
 });
 
 
@@ -95,7 +99,6 @@ Route::prefix('admin')->group(function () {
      * Routes for the guests views
      */
     Route::resource('guests', GuestsController::class)->middleware('auth');
-
     /**
      * Routes for report generation
      */

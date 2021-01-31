@@ -19,7 +19,6 @@
                 </div>
             @endif
         </div>
-
         <div class="border border-warning rounded" id="searchBar">
             <div class="card-body">
                 <form method="GET" action="{{route('rooms.userIndex')}}" role="search">
