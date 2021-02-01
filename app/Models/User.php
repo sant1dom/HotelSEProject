@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'birthdate',
         'doctype',
         'numdoc',
+        'password', //se si sposta il campo password nel fillable funziona
     ];
     //non funziona l'invio della mail
 
@@ -32,7 +33,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', //se si sposta il campo password nel fillable funziona
         'remember_token',
     ];
 

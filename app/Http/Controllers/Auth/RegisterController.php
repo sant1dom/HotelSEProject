@@ -70,15 +70,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        Guest::create([
+        $guest = Guest::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'birthdate' => $data['birthdate'],
             'doctype' => $data['doctype'],
             'numdoc' => $data['numdoc'],
         ]);
-
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'email' => $data['email'],
@@ -87,5 +86,10 @@ class RegisterController extends Controller
             'numdoc' => $data['numdoc'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $guest->user()->associate($user);
+        $guest->save();
+        return $user;
+
     }
 }

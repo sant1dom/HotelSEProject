@@ -30,8 +30,8 @@ class ReportController extends Controller
 
     public function usersShow(User $user){
         $guests = $user->guests()->get();
-        //$bookings = $user->bookings()->get();
-        return view('reports.users.show', compact('user', 'guests'));
+        $bookings = $user->bookings()->get();
+        return view('reports.users.show', compact('user', 'guests', 'bookings'));
     }
 
     public function servicesIndex()
@@ -50,9 +50,9 @@ class ReportController extends Controller
 
     protected function generatePDFUser(User $user)
     {
-        $guests = $user->guests()->get();
-        //$bookings = $user->bookings()->get();
-        $pdf = PDF::loadView('reportPDF', compact('user', 'guests'));
+        $guests = $user->guests;
+        $bookings = $user->bookings;
+        $pdf = PDF::loadView('reportPDF', compact('user', 'guests', 'bookings'));
         return $pdf->download('report.pdf');
     }
 

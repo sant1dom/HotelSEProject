@@ -26,10 +26,10 @@ class TotemController extends Controller
         $booking = Booking::where('booking_code', 'LIKE', $request->booking_code)->first();
         if (isset($booking)) {
             $user = User::where('email', 'LIKE', $request->email);
-            $dateNow = Carbon::now()->toDateTimeString();
+            $dateNow = Carbon::now("Europe/Rome")->toDateString();
             if (isset($user)) {
                 if (!($booking->check_in)) {
-                    if (!($booking->from == $dateNow)) {
+                    if ($booking->from === $dateNow){
                         $booking->check_in = 1;
                         $booking->save();
                     } else {

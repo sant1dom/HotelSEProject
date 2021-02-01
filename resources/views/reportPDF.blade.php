@@ -62,17 +62,17 @@
                        style="">
                     <thead style="" class="thead-dark">
                     <tr>
-                        <th class="header has-text-centered" scope="col">Name</th>
-                        <th class="header has-text-centered" scope="col">Surname</th>
-                        <th class="header has-text-centered" scope="col">Birthday</th>
+                        <th class="header has-text-centered" scope="col">From</th>
+                        <th class="header has-text-centered" scope="col">To</th>
+                        <th class="header has-text-centered" scope="col">Booking Code</th>
                     </tr>
                     </thead>
                     <tbody id="table-guests-body">
-                    @foreach($guests as $guest)
+                    @foreach($bookings as $booking)
                         <tr>
-                            <td class=" has-text-centered">{{$guest->name}}</td>
-                            <td class=" has-text-centered">{{$guest->surname}}</td>
-                            <td class=" has-text-centered">{{$guest->birthdate}}</td>
+                            <td class=" has-text-centered">{{$booking->from}}</td>
+                            <td class=" has-text-centered">{{$booking->to}}</td>
+                            <td class=" has-text-centered">{{$booking->booking_code}}</td>
                         </tr>
                     @endforeach
                     </tbody>

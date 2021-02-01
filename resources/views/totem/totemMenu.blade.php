@@ -29,11 +29,11 @@
         <div class="hero-body">
             <div class="container d-flex justify-content-center">
                 <div class="col-sm">
-                    <a href="{{ route('totem.checkoutView') }}"><img class="rounded-pill" src="/images/check-out.png"
+                    <a href="{{ route('totem.checkoutView') }}"><img class="rounded-pill" src="/images/Check-out.png"
                                                                      alt=""></a>
                 </div>
                 <div class="col-sm">
-                    <a href="{{ route('totem.checkinView') }}"><img class="rounded-pill" src="/images/check-in.png"
+                    <a href="{{ route('totem.checkinView') }}"><img class="rounded-pill" src="/images/Check-in.png"
                                                                     alt=""></a>
                 </div>
             </div>
