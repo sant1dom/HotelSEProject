@@ -32,7 +32,15 @@ class BookingsController extends Controller
         return view('bookings.userShow', compact('request'));
     }
 
-
+    public function addService(Booking $booking){
+        if (Auth::user()->email != $booking->user->email) {
+            return redirect('/');
+        }
+        else{
+            $services = Service::all();
+            return view('bookings.addservice', compact('booking', 'services'));
+        }
+    }
 
     public function show(Booking $booking)
     {

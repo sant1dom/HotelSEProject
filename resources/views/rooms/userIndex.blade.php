@@ -137,12 +137,12 @@
                                 <br>
                                 <p>{{$room->description}}</p>
                                 <br>
-                                <div class="row has-text-centered bottomLine">
-                                    <p>For max {{$room->capacity}} people. Price per person: {{$room->price}}€
-                                        <button class="btn shadow-none" type="submit">
-                                    <h5>Get this room!</h5></button>
+                                <div class=" has-text-centered justify-content-center">
+                                    <p class="col">For max {{$room->capacity}} people. Price per person: {{$room->price}}€
                                     </p>
-
+                                        <button class=" btn shadow-sm rounded-pill" type="submit">
+                                            <h5>Get this room!</h5>
+                                        </button>
                                 </div>
                             </div>
                         </div>

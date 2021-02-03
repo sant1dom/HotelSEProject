@@ -22,16 +22,3 @@ function searchTable(idTable) {
     }
 }
 
-function myFunction(idTable) {
-    var input = document.getElementById("search");
-    var filter = input.value.toUpperCase();
-    var table = document.getElementById(idTable);
-    var tr = table.getElementsByTagName("tr");
-    for ( i = 0; i < tr.length; i++) {
-        if (tr.textContent.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-        } else {
-            tr[i].style.display = "none";
-        }
-    }
-}

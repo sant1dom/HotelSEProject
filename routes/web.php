@@ -80,6 +80,7 @@ Route::prefix('bookings')->group(function() {
     Route::get('/index', [BookingsController::class, 'index'])->name('bookings.index')->middleware('auth:admin');
     Route::get('/store', [BookingsController::class, 'store'])->name('bookings.store')->middleware('auth');
     Route::get('/edit', [BookingsController::class, 'edit'])->name('bookings.edit')->middleware('auth');
+    Route::get('/addservice/{booking}', [BookingsController::class, 'addService'])->name('bookings.addservice')->middleware('auth');
 
 
 
