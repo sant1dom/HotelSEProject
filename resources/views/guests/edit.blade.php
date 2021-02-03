@@ -18,11 +18,7 @@
                 @endif
                 <div class="container-fluid dashboard">
                     <div class="col-sm-12 my-5 d-flex justify-content-center">
-                        <div class="card hoverCard bg-warning">
-                            <div class="card-body">
-                                {{--Yellow background--}}
-                            </div>
-                        </div>
+
                         <div class="card dashboard">
                             <div class="card-body">
                                 <div class="row">
@@ -80,6 +76,14 @@
     </form>
 
     <style>
+        .hero-body {
+            background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 40%), url("https://www.atlantis.com/-/media/atlantis/dubai/atp/resort/exterior/AtlantisThePalm-Exterior-FrontShotWithRoyalPool.jpg?sc_lang=it");
+            background-position: center bottom;
+            background-size: cover;
+            background-attachment: fixed;
+            width: 100%;
+        }
+        
         .alert {
             position: absolute;
             left: 80%;

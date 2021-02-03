@@ -19,11 +19,11 @@ class GuestsController extends Controller
         return view('guests.index', compact('guests'));
     }
 
-    public function userIndex()
+    /**public function userIndex()
     {
         $guests = Auth::user()->guests()->get();
         return view('guests.userIndex', compact('guests'));
-    }
+    }**/
 
 
     //Mostra un SINGOLO SPECIFICO oggetto
@@ -71,13 +71,16 @@ class GuestsController extends Controller
     //Mostra una vista per modificare un oggetto esistente
     public function edit(Guest $guest)
     {
-
+        return view('guests.edit', compact('guest'));
     }
 
     //aggiorna nel database l'oggetto con la modifica
-    public function update(Guest $guest)
+    public function update(Guest $guest, Request $request)
     {
-
+        $this->validateGuest($request);
+        $guest->update($request->all());
+        return redirect()->route('guests.index')
+            ->with('success', 'Guest updated successfully');
     }
 
     //elimina l'oggetto dal database
