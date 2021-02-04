@@ -18,7 +18,7 @@
                 </div>
                 <div class="card dashboard">
                     <div class="card-header d-flex justify-content-center">
-                        <input type="text" id="search" class="form-control my-3" onkeyup="searchTable('roomsTable')"
+                        <input type="text" id="search" class="form-control my-3" onkeyup="searchTable('bookingsTable')"
                                placeholder="Search for room number..">
                     </div>
                     @if(session()->has('success'))
@@ -33,14 +33,14 @@
                     <div class="card-body">
                         <div class="table-wrapper-scroll-y table-scrollbar">
                             <table class="table table-fixed table-striped header-fixed table-bordered"
-                                   id="guestsTable">
+                                   id="bookingsTable">
                                 <thead class="thead-dark">
                                 <tr>
                                     <th class="header has-text-centered" scope="col">Room</th>
                                     <th class="header has-text-centered" scope="col">Check-in date</th>
                                     <th class="header has-text-centered" scope="col">Check-out date</th>
                                     <th class="header has-text-centered" scope="col">Booking code</th>
-                                    <th class="header has-text-centered" scope="col">Actions</th>
+                                    <th class="header has-text-centered" scope="col">User Data</th>
                                 </tr>
                                 </thead>
                                 @if(isset($bookings))
@@ -71,8 +71,7 @@
                                             </td>
                                             <td class="has-text-centered">
                                                 <div class="col-sm">
-                                                    <a class="btn btn-primary btn-block"
-                                                       href="{{route('bookings.edit', $booking)}}">Edit/Show</a>
+                                                    {{$booking->user->name ." ". $booking->user->surname ." ". $booking->user->email}}
                                                 </div>
                                             </td>
                                         </tr>
@@ -88,5 +87,31 @@
     </section>
 
     <link href="{{ asset('css/adminIndex.css') }}" rel="stylesheet">
-    <script src="{{asset('js/searchTable.js')}}"></script>
+    <script>
+        function searchTable() {
+            // Declare variables
+            let input, filter, table, tr, td, i, txtValue, td2, td3, txtValue2, txtValue3;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("bookingsTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                td2 = tr[i].getElementsByTagName("td")[3];
+                td3 = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    txtValue2 = td2.textContent || td.innerText;
+                    txtValue3 = td2.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1 || txtValue3.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 @endsection

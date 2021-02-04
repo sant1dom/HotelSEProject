@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ModelsController;
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\ImageService;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -67,7 +68,20 @@ class ServicesController extends Controller
 
     public function disable(Service $service){
         {
+            $bookings = Service::find($service->id)->bookings->where('from', '<',Carbon::now("Europe/Rome")->toDateString());
+            $tomail = [];
+            $i=0;
+            foreach ($bookings as $booking){
+                $tomail[$i] = $booking->user->email;
+                $i++;
+            }
             if ($service->availability) {
+                foreach ($tomail as $mail){
+                    \Mail::raw('Il servizio '.$service->name.' che avevi prenotato non è più disponibile, sarai presto rimborsato.', function($message) use ($mail) {
+                        $message->to($mail)
+                            ->subject("Servizio disabilitato");
+                    });
+                }
                 Service::find($service->id)->update(['availability' => 0]);
                 $services = Service::orderBy('name')->Paginate(8);
                 return redirect()->route('services.index', ['services' => $services])->with('success', 'Service disabled successfully.');
