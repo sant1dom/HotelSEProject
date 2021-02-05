@@ -6,7 +6,6 @@ use App\Models\Booking;
 use App\Models\ImageRoom;
 use App\Models\Room;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 
 
@@ -29,7 +28,7 @@ class RoomsController extends Controller
         } else {
             $rooms = Room::get();
         }
-        if($request->startDate != null || $request->endDate != null){
+        if ($request->startDate != null || $request->endDate != null) {
             request()->validate([
                 'startDate' => 'required',
                 'endDate' => 'required',
@@ -38,13 +37,13 @@ class RoomsController extends Controller
             $to = $request->endDate;
 
             $bookings = Booking::whereDate('from', '<=', $from)->whereDate('to', '>=', $to)->get();
-            if($bookings != null){
+            if ($bookings != null) {
                 $excludedTypes = [];
-                foreach ($bookings as $i => $booking){
+                foreach ($bookings as $i => $booking) {
                     $excludedTypes[$i] = $booking->rooms[0]->id;
                 }
             }
-            if(isset($type)){
+            if (isset($type)) {
                 $rooms = Room::whereNotIn('id', $excludedTypes)->where('type', 'LIKE', $type)->get();
                 return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'from' => $from, 'to' => $to, 'selectedType' => $type]);
             } else {
@@ -52,7 +51,7 @@ class RoomsController extends Controller
                 return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'from' => $from, 'to' => $to]);
             }
         } else {
-            if(isset($type)) {
+            if (isset($type)) {
                 return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'selectedType' => $type]);
             }
         }
@@ -104,6 +103,12 @@ class RoomsController extends Controller
     public function disable(Room $room)
     {
         if ($room->availability) {
+            $bookings = $room->bookings()->whereDate('to', '>=', now()->toDateString())->get();
+            if (!($bookings->isEmpty())) {
+                return redirect()->route('rooms.index')
+                    ->with('error', 'There is one or more bookings for this room.');
+
+            }
             Room::find($room->id)->update(['availability' => 0]);
             $rooms = room::orderBy('numroom')->paginate(7);
             return redirect()->route('rooms.index', ['rooms' => $rooms])->with('success', 'Room disabled successfully.');
@@ -137,14 +142,24 @@ class RoomsController extends Controller
         return redirect()->route('rooms.index', ['rooms' => $rooms])->with('success', 'Room updated successfully.');
     }
 
-    public function deleteImage(ImageRoom $image){
-        dd($image);
+    public function deleteImage(ImageRoom $image)
+    {
+        //da implementare
     }
 
-    //elimina l'oggetto dal database
     public function destroy(Room $room)
     {
-        Storage::delete($room->images());
+        if ($room->availability) {
+            //prendo tutte le prenotazioni che hanno il check-out con data maggiore di now
+            $bookings = $room->bookings()->whereDate('to', '>=', now()->toDateString())->get();
+            if (!($bookings->isEmpty())) {
+                return redirect()->route('rooms.index')
+                    ->with('error', 'There is one or more bookings for this room.');
+            }
+        }
+        Room::find($room->id)->delete();
+        return redirect()->route('rooms.index')
+            ->with('success', 'Room deleted successfully');
     }
 
     protected function validateRoom()

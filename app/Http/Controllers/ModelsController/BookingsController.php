@@ -32,13 +32,18 @@ class BookingsController extends Controller
         return view('bookings.userShow', compact('request'));
     }
 
-    public function addService(Booking $booking){
+    public function edit(Booking $booking){
         if (Auth::user()->email != $booking->user->email) {
             return redirect('/');
         }
         else{
-            $services = Service::all();
-            return view('bookings.addservice', compact('booking', 'services'));
+            $allServices = Service::all();
+            $bookingServices = $booking->Services()->get();
+            $selectedServices = $booking->Services()->get()->unique('name');
+            $guests = $booking->Guests()->get();
+            $room = $booking->Rooms()->first();
+           /* return view('bookings.addservice', compact('booking', 'services'));*/
+            return view('bookings.edit', compact('booking', 'allServices','bookingServices','selectedServices' ,'room', 'guests'));
         }
     }
 
@@ -69,9 +74,8 @@ class BookingsController extends Controller
             return redirect()->route('bookings.stepOne')
                 ->with('error', 'We are sorry! This room is not available on these dates.');
         }
-        $user = Auth::user();
         $guests = Auth::user()->guests()->get();
-        return view('bookings.stepTwo', compact('guests', 'request', 'user'));
+        return view('bookings.stepTwo', compact('guests', 'request'));
     }
 
     public function showStepThree(Request $request)
@@ -108,7 +112,6 @@ class BookingsController extends Controller
         }
     }
 
-
     //inserisce l'oggetto nel DB
     public function store(Request $request)
     {
@@ -140,22 +143,20 @@ class BookingsController extends Controller
             ->with('success', 'Booking created successfully.');
     }
 
-
-    public function edit(Booking $booking)
-    {
-        $room = $booking->rooms()->first();
-        $guests = $booking->guests()->get();
-        $services = $booking->services()->get();
-        $servicesName = $booking->services()->get()->unique('name');
-
-        return view('bookings.edit', compact('room', 'services', 'guests', 'servicesName'));
-    }
-
     //elimina l'oggetto dal database
 
     public function update(Booking $booking, Request $request)
     {
-        //$this->validateBooking($request);
+        $this->validateStepThree($request);
+        if ($request->has('service')) {
+            foreach ($request->service as $i => $service) {
+                $mTmService = Service::find($service);
+                foreach ($request->optionDays[$i] as $j=> $option) {
+                    $booking->services()->attach($mTmService, [
+                        'date' => $option]);
+                }
+            }
+        }
         $booking->update($request->all());
         return redirect()->route('bookings.index')
             ->with('success', 'Booking updated successfully');

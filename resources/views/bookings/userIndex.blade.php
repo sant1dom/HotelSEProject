@@ -65,7 +65,7 @@
                                                     @if(!$booking->check_out)
                                                         <div class="col-sm">
                                                             <a class="btn btn-primary btn-block"
-                                                               href="{{route('bookings.addservice', $booking)}}">Add Services</a>
+                                                               href="{{route('bookings.edit', $booking)}}">Edit/Show</a>
                                                         </div>
                                                     @endif
                                                 </td>

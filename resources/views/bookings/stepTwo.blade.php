@@ -54,27 +54,15 @@
                                                 @if($guests)
                                                     @for($j=0, $i=0; $i<count($guests); $i++)
                                                         @if(isset($request->guest[$j]) && $guests[$i]->id == $request->guest[$j])
-                                                            @if($guests[$i]->id == 1)
-                                                                <option value="1" selected>
-                                                                    {{$user->name}} {{$user->surname}} (me)
-                                                                </option>
-                                                            @else
-                                                                <option value="{{$guests[$i]->id}}" selected>
-                                                                    {{$guests[$i]->name}} {{$guests[$i]->surname}}
-                                                                </option>
-                                                            @endif
+                                                            <option value="{{$guests[$i]->id}}" selected>
+                                                                {{$guests[$i]->name}} {{$guests[$i]->surname}}
+                                                            </option>
                                                             {{$j++}}
                                                         @else
-                                                            @if($guests[$i]->id == 1)
-                                                                <option value="1">
-                                                                    {{$user->name}} {{$user->surname}} (me)
-                                                                </option>
-                                                            @else
-                                                                <option
-                                                                    value="{{$guests[$i]->id}}">
-                                                                    {{$guests[$i]->name}} {{$guests[$i]->surname}}
-                                                                </option>
-                                                            @endif
+                                                            <option
+                                                                value="{{$guests[$i]->id}}">
+                                                                {{$guests[$i]->name}} {{$guests[$i]->surname}}
+                                                            </option>
                                                         @endif
                                                     @endfor
                                                 @endif
@@ -93,8 +81,6 @@
                                             <input name="to" type="hidden" value="{{$request->to}}"
                                                    form="sub-form">
                                             <input name="ourRooms" type="hidden" value="{{$request->ourRooms}}"
-                                                   form="sub-form">
-                                            <input name="user_id" type="hidden" value="{{$user->id}}"
                                                    form="sub-form">
                                             <div class="col-sm-6">
                                                 <div class="card">

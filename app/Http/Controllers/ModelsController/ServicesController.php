@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\ImageService;
 use App\Models\Service;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ServicesController extends Controller
@@ -121,15 +122,16 @@ class ServicesController extends Controller
     //elimina l'oggetto dal database
     public function destroy(Service $service)
     {
-        if ($service->bookings()->count() == 0){
-            $service->delete();
-            return redirect()->route('services.index')
-                ->with('success','Service deleted successfully');
+        if ($service->availability) {     //controllo se ci sono prenotazioni che check-out che supera la data odierna
+            $bookings = $service->bookings()->whereDate('to', '>=', now()->toDateString())->get();
+            if (!($bookings->isEmpty())) {
+                return redirect()->route('services.index')
+                    ->with('error', 'There is one or more bookings for this room.');
+            }
         }
-        else{
-            return redirect()->route('services.index')
-                ->with('error','Service cannot be deleted, someone used or booked the service');
-        }
+        $service->delete();
+        return redirect()->route('services.index')
+            ->with('success', 'Service deleted successfully');
     }
 
     protected function validateService(Request $request)

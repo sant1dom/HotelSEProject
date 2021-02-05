@@ -53,8 +53,6 @@ Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userInd
 Route::get('/rooms/disableRoom{room}', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
 Route::get('/contacts', [ContactsController::class, 'index_users'])->name('contacts.userIndex');
 Route::get('/services/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
-Route::get('/rooms/delImage', [RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
-
 Route::get('/services', [ServicesController::class, 'index_users'])->name('services.userIndex');
 
 /**
@@ -79,8 +77,9 @@ Route::prefix('bookings')->group(function() {
     Route::get('/userIndex', [BookingsController::class, 'userIndex'])->name('bookings.userIndex')->middleware('auth');
     Route::get('/index', [BookingsController::class, 'index'])->name('bookings.index')->middleware('auth:admin');
     Route::get('/store', [BookingsController::class, 'store'])->name('bookings.store')->middleware('auth');
-    Route::get('/edit', [BookingsController::class, 'edit'])->name('bookings.edit')->middleware('auth');
-    Route::get('/addservice/{booking}', [BookingsController::class, 'addService'])->name('bookings.addservice')->middleware('auth');
+    Route::get('/edit/{booking}', [BookingsController::class, 'edit'])->name('bookings.edit')->middleware('auth');
+    //update non funziona, reindirizza al login admin.
+    Route::put('/update/{booking}', [BookingsController::class, 'update'])->name('bookings.update')->middleware('auth');
 });
 
 
@@ -92,6 +91,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('auth:admin');
     Route::resource('contacts', ContactsController::class)->middleware('auth:admin');
+    //Route::get('/rooms/delImage', [RoomsController::class, 'deleteImage'])->name('rooms.deleteImage')->middleware('auth:admin');
+    Route::delete('/rooms/destroy/{room}', [RoomsController::class, 'destroy'])->name('rooms.delete')->middleware('auth:admin');
     /**
      * Routes for the services views
      */
