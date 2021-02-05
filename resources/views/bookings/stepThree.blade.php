@@ -46,13 +46,13 @@
                                                 @if($services)
                                                     @for($j=0, $i=0; $i<count($services); $i++)
                                                         @if(isset($request->service[$j]) && $services[$i]->id == $request->service[$j])
-                                                            <option value="{{$services[$i]->id}}" selected>
+                                                            <option value="{{$services[$i]->id}}" data-subtext="{{$services[$i]->price}}€" selected>
                                                                 {{$services[$i]->name}}
                                                             </option>
                                                             {{$j++}}
                                                         @else
                                                             <option
-                                                                value="{{$services[$i]->id}}">{{$services[$i]->name}}
+                                                                value="{{$services[$i]->id}}" data-subtext="{{$services[$i]->price}}€">{{$services[$i]->name}}
                                                             </option>
                                                         @endif
                                                     @endfor
@@ -205,7 +205,11 @@
 
             let days;
             if (toMonth === fromMonth) {
-                days = toDay - fromDay;
+                if(toDay === fromDay){
+                    days = 1;
+                } else {
+                    days = toDay - fromDay;
+                }
             } else {
                 switch (fromMonth) {
                     case 6:

@@ -42,7 +42,7 @@
                                     <div class="card-body" style="min-height: 37rem">
                                         <div class="separator"><h4 class=" has-text-centered">Guests</h4></div>
                                         <div class="row d-flex justify-content-center">
-                                            <label>Select your guests and yourself</label>
+                                            <label>Select your guests and yourself (Max {{$max}} persons.)</label>
                                         </div>
                                         <div class="row d-flex justify-content-center mx-3">
                                             <select class="my-select show-tick" multiple

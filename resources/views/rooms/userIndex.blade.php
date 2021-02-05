@@ -44,6 +44,7 @@
                                    value="{{$to}}"
                                    @else
                                    value="{{ old('endDate') }}"
+                                   disabled
                                    @endif
                                    min="<?php echo date('Y-m-d'); ?>"
                                    max="2030-12-31"/>
@@ -87,8 +88,9 @@
                 @if($j % 2 == 0)
                     <form method="GET" action="{{route('bookings.stepOne')}}">
                         <input name="userIndexRoomId" type="hidden" value="{{$room->id}}">
-                        <div class="row d-flex justify-content-center"
-                             style="background-color: white; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);">
+                        <input name="from" id="startDate_input" type="hidden" value="">
+                        <input name="to" id="endDate_input" type="hidden" value="">
+                        <div class="row" style="background-color: white; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);">
                             <div class="col-sm has-text-centered roomImage"
                                  style="margin: 2rem; vertical-align: middle;">
                                 <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
@@ -132,17 +134,20 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-sm has-text-centered" style="margin: 2rem;">
-                                <h1>{{$room->type}}</h1>
+                            <div class="col-sm" style="margin: 2rem; text-align: left">
+                                <div>
+                                    <h1>{{$room->type}}</h1>
+                                </div>
                                 <br>
-                                <p>{{$room->description}}</p>
+                                <div>
+                                    <p>{{$room->description}}</p>
+                                </div>
                                 <br>
-                                <div class=" has-text-centered justify-content-center">
-                                    <p class="col">For max {{$room->capacity}} people. Price per person: {{$room->price}}€
-                                    </p>
-                                        <button class=" btn shadow-sm rounded-pill" type="submit">
-                                            <h5>Get this room!</h5>
-                                        </button>
+                                <div>
+                                    <p>For max {{$room->capacity}} people. Price per person: {{$room->price}}€</p>
+                                    <button class="btn btn-outline-secondary shadow-sm rounded-pill" type="submit">
+                                        <h5>Get this room!</h5>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -150,17 +155,23 @@
                 @else
                     <form method="GET" action="{{route('bookings.stepOne')}}">
                         <input name="userIndexRoomId" type="hidden" value="{{$room->id}}">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-sm has-text-centered" style="margin: 2rem;">
-                                <h1>{{$room->type}}</h1>
+                        <input name="from" id="startDate_input" type="hidden">
+                        <input name="to" id="endDate_input" type="hidden">
+                        <div class="row">
+                            <div class="col-sm" style="margin: 2rem; text-align: right">
+                                <div>
+                                    <h1>{{$room->type}}</h1>
+                                </div>
                                 <br>
-                                <p>{{$room->description}}</p>
+                                <div>
+                                    <p>{{$room->description}}</p>
+                                </div>
                                 <br>
-                                <div class="row has-text-centered bottomLine">
-                                    <p>For max {{$room->capacity}} people. Price per person: {{$room->price}}€
-                                        <button class="btn shadow-none" type="submit">
-                                    <h5>Get this room!</h5></button>
-                                    </p>
+                                <div>
+                                    <p>For max {{$room->capacity}} people. Price per person: {{$room->price}}€</p>
+                                    <button class="btn btn-outline-secondary shadow-sm rounded-pill" type="submit">
+                                        <h5>Get this room!</h5>
+                                    </button>
                                 </div>
                             </div>
                             <div class="col-sm has-text-centered roomImage"
@@ -215,6 +226,27 @@
         <br>
     </div>
 
+    <script>
+        window.onload = function () {
+            let minDate = $('#startDate').val();
+            $("#startDate_input").attr("value", minDate);
+            let endDate = $('#endDate').val();
+            $("#endDate_input").attr("value", endDate);
+        };
+
+        $('#startDate').change(function () {
+            let minDate = $('#startDate').val();
+            $('#endDate').prop("disabled", false);
+            $("#endDate").attr("min", minDate);
+            $("#startDate_input").attr("value", minDate);
+        });
+
+        $('#endDate').change(function () {
+            let endDate = $('#endDate').val();
+            $("#endDate_input").attr("value", endDate);
+        });
+    </script>
+
     <style>
         .alert {
             position: absolute;
@@ -259,21 +291,6 @@
             /* cambia il colore degli indicatori del carosello in nero */
             filter: invert(100%);
         }
-
-        .row.has-text-centered.bottomLine {
-            position: absolute;
-            bottom: auto;
-            left: 50%;
-            top: 100%;
-            transform: translate(-50%, -50%);
-            margin: auto;
-        }
     </style>
-
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
 @endsection
 

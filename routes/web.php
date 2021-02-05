@@ -38,7 +38,7 @@ Auth::routes(['verify' => true]);
  * Route for the home view
  */
 Route::get('/', function () {
-    $rooms = Room::take(4)->get()->unique('type');
+    $rooms = Room::take(4)->whereNotIn('availability', [0])->get()->unique('type');
     return view('home', compact('rooms'));
 })->name('home');
 

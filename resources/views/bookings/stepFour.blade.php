@@ -38,6 +38,12 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-sm">
+                                            Total price: {{$totalPrice}}€
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm">
                                                 <h5>Guests selected for this stay:</h5>
                                                 @foreach($guests as $i=> $guest)
                                                     <p>-{{$guest->name}}.</p>

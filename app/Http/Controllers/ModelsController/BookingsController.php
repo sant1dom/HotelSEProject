@@ -42,7 +42,6 @@ class BookingsController extends Controller
             $selectedServices = $booking->Services()->get()->unique('name');
             $guests = $booking->Guests()->get();
             $room = $booking->Rooms()->first();
-           /* return view('bookings.addservice', compact('booking', 'services'));*/
             return view('bookings.edit', compact('booking', 'allServices','bookingServices','selectedServices' ,'room', 'guests'));
         }
     }
@@ -54,7 +53,7 @@ class BookingsController extends Controller
 
     public function showStepOne(Request $request)
     {
-        $rooms = Room::all()->unique('type');
+        $rooms = Room::WhereNotIn('availability', [0])->get()->unique('type');
         if ($request != null) {
             return view('bookings.stepOne', compact('rooms', 'request'));
         } else {
@@ -75,7 +74,8 @@ class BookingsController extends Controller
                 ->with('error', 'We are sorry! This room is not available on these dates.');
         }
         $guests = Auth::user()->guests()->get();
-        return view('bookings.stepTwo', compact('guests', 'request'));
+        $max = Room::where('id', 'LIKE', $request->ourRooms)->first()->capacity;
+        return view('bookings.stepTwo', compact('guests', 'request', 'max'));
     }
 
     public function showStepThree(Request $request)
@@ -90,6 +90,7 @@ class BookingsController extends Controller
     public function showStepFour(Request $request)
     {
 
+
         $this->validateStepThree($request);
         $room = Room::where('id', 'LIKE', $request->ourRooms)->first();
 
@@ -99,16 +100,22 @@ class BookingsController extends Controller
         }
         $guests = Guest::whereIn('id', $guestsId )->get()->sortBy('id');
 
+        $totalPrice = $room->price * count($guests);
+
         if($request->service != null){
             $servicesId = [];
             foreach ($request->service as $i => $id){
                 $servicesId[$i] = $request->service[$i];
             }
             $services = Service::whereIn('id', $servicesId )->get()->sortBy('id');
-
-            return view('bookings.stepFour', compact('guests', 'services', 'request', 'room'));
+            foreach ($services as $i => $service) {
+                foreach ($request->optionDays[$i] as $option){
+                    $totalPrice = $totalPrice + $service->price;
+                }
+            }
+            return view('bookings.stepFour', compact('guests', 'services', 'request', 'room', 'totalPrice'));
         } else {
-            return view('bookings.stepFour', compact('guests', 'request', 'room'));
+            return view('bookings.stepFour', compact('guests', 'request', 'room', 'totalPrice'));
         }
     }
 

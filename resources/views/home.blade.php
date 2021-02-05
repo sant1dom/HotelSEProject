@@ -1,10 +1,10 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-    <section class="hero is-fullheight is-bold">
+    <section class="hero is-bold">
         <div class="hero-body">
             <div class="container has-text-centered">
-                <h4 class="subtitle text-light font-weight-bold" style="font-size:2vw;">
+                <h4 class="subtitle text-light font-weight-bold" style="font-size:2vmax;">
                     @if ($hotel)
                         Welcome to a {{$hotel->stars}} <span class="text-warning">&#9733</span> hotel <br/>
                     @else
@@ -38,7 +38,8 @@
                             <input id="endDate" type="date"
                                    class="form-control @error('date') is-invalid @enderror" name="endDate"
                                    value="{{ old('date') }}" min="<?php echo date('Y-m-d'); ?>"
-                                   max="2030-12-31"/>
+                                   max="2030-12-31"
+                                   disabled/>
                         </div>
                         <div class="col-sm-4 float-right" style="margin-top: 2.5%">
                             <button class="btn btn-lg btn-primary btn-block text-uppercase text-center rounded-pill"
@@ -70,7 +71,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-sm has-text-centered" style="margin: 2rem">
+                        <div class="col-sm" style="margin: 2rem; text-align: left">
                             <h1>{{$room->type}}</h1>
                             <br>
                             <p>{{$room->description}}</p>
@@ -78,7 +79,7 @@
                     </div>
                 @else
                     <div class="row d-flex justify-content-center">
-                        <div class="col-sm has-text-centered" style="margin: 2rem">
+                        <div class="col-sm" style="margin: 2rem; text-align: right">
                             <h1>{{$room->type}}</h1>
                             <br>
                             <p>{{$room->description}}</p>
@@ -101,10 +102,21 @@
         <div class="separatorEnd"></div>
     </div>
 
+    <script>
+        $('#startDate').change(function () {
+            let minDate = $('#startDate').val();
+            $('#endDate').prop("disabled", false);
+            $("#endDate").attr("min", minDate);
+        });
+    </script>
+
     <style>
         .hero-body {
+            height: 34vmax;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            height: 20rem;
         }
         .separatorEnd {
             flex: 1;
@@ -145,7 +157,6 @@
         .col-sm.has-text-centered.roomImage:hover .middle {
             opacity: 1;
         }
-
     </style>
 @endsection
 

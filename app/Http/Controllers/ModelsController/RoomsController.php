@@ -21,13 +21,15 @@ class RoomsController extends Controller
 
     public function userIndex(Request $request)
     {
-        $roomsTypes = room::get()->unique('type');
+        $roomsTypes = room::WhereNotIn('availability', [0])->get()->unique('type');
         if (!($request->typeSelection === 'None')) {
             $type = $request->typeSelection;
-            $rooms = Room::where('type', 'LIKE', $type)->get()->sortBy('id');
+            $rooms = Room::WhereNotIn('availability', [0])->Where('type', 'LIKE', $type)->get()->sortBy('id');
         } else {
-            $rooms = Room::get();
+            $rooms = Room::WhereNotIn('availability', [0])->get();
+
         }
+
         if ($request->startDate != null || $request->endDate != null) {
             request()->validate([
                 'startDate' => 'required',
@@ -44,10 +46,10 @@ class RoomsController extends Controller
                 }
             }
             if (isset($type)) {
-                $rooms = Room::whereNotIn('id', $excludedTypes)->where('type', 'LIKE', $type)->get();
+                $rooms = Room::whereNotIn('id', $excludedTypes)->WhereNotIn('availability', [0])->where('type', 'LIKE', $type)->get();
                 return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'from' => $from, 'to' => $to, 'selectedType' => $type]);
             } else {
-                $rooms = Room::whereNotIn('id', $excludedTypes)->get();
+                $rooms = Room::whereNotIn('id', $excludedTypes)->WhereNotIn('availability', [0])->get();
                 return view('rooms.userIndex', ['rooms' => $rooms, 'roomsTypes' => $roomsTypes, 'from' => $from, 'to' => $to]);
             }
         } else {
