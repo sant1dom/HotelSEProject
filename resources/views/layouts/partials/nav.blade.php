@@ -57,7 +57,10 @@
                 <a class="nav-link" href="/" style="color: black"><h5>Home</h5><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active inline">
-                <a class="nav-link" href="{{route('rooms.userIndex')}}" style="color: black"><h5>Look all our rooms</h5></a>
+                <a class="nav-link" href="{{route('rooms.userIndex')}}" style="color: black"><h5>Our rooms</h5></a>
+            </li>
+            <li class="nav-item active inline">
+                <a class="nav-link" href="{{route('services.userIndex')}}" style="color: black"><h5>Our services</h5></a>
             </li>
             <li class="nav-item active inline">
                 <a class="nav-link" href="{{route('bookings.stepOne')}}" style="color: black"><h5>Booking</h5></a>

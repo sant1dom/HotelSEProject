@@ -17,12 +17,10 @@ class ServicesController extends Controller
         return view('services.index', compact('services'));
     }
 
-    public function index_users()
+    public function userIndex()
     {
-        $services = Service::where('availability', '=', '1')
-            ->orderBy('name')
-            ->simplePaginate(9);
-        return view('services.index-users', compact('services'));
+        $services = Service::WhereNotIn('availability', [0])->get();
+        return view('services.userIndex', compact('services'));
     }
 
     //Mostra un SINGOLO SPECIFICO oggetto
@@ -54,6 +52,11 @@ class ServicesController extends Controller
                 $image->service_id = $service->id;
                 $image->save();
             }
+        } else {
+            $image = new ImageService();
+            $image->path = 'https://via.placeholder.com/1000.png/00dd99';
+            $image->service_id = $service->id;
+            $image->save();
         }
 
         return redirect()->route('services.index')

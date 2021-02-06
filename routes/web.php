@@ -52,14 +52,8 @@ Route::get('/home', function () {
 Route::get('/rooms', [RoomsController::class, 'userIndex'])->name('rooms.userIndex');
 Route::get('/rooms/disableRoom{room}', [RoomsController::class, 'disable'])->name('rooms.disable')->middleware('auth:admin');
 Route::get('/contacts', [ContactsController::class, 'index_users'])->name('contacts.userIndex');
+Route::get('/services', [ServicesController::class, 'userIndex'])->name('services.userIndex');
 Route::get('/services/disableService{service}', [ServicesController::class, 'disable'])->name('services.disable')->middleware('auth:admin');
-Route::get('/services', [ServicesController::class, 'index_users'])->name('services.userIndex');
-
-/**
- * Routes for the guests views
- *
- */
-//Route::get('/guests', [GuestsController::class, 'userIndex'])->name('guests.userIndex')->middleware('auth');
 
 /**
  * Routes for the guests views

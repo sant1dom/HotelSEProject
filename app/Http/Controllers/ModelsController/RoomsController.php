@@ -89,6 +89,11 @@ class RoomsController extends Controller
                 $image->room_id = $room->id;
                 $image->save();
             }
+        } else {
+            $image = new ImageRoom();
+            $image->path = 'https://via.placeholder.com/1000.png/00dd99';
+            $image->room_id = $room->id;
+            $image->save();
         }
 
 
