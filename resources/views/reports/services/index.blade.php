@@ -4,7 +4,7 @@
     <section class="hero is-bold">
         <div class="hero-body">
             <h4 class="title has-text-centered text-light font-weight-bold" style="font-size:3vw;">
-                Service list
+                Services list
             </h4>
         </div>
     </section>

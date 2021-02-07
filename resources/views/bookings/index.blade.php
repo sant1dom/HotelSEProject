@@ -4,7 +4,7 @@
     <section class="hero is-bold">
         <div class="hero-body">
             <h4 class="title has-text-centered text-light font-weight-bold" style="font-size:3vw;">
-                My Bookings
+                Bookings management
             </h4>
         </div>
     </section>

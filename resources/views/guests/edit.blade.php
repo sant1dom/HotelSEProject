@@ -83,7 +83,7 @@
             background-attachment: fixed;
             width: 100%;
         }
-        
+
         .alert {
             position: absolute;
             left: 80%;
