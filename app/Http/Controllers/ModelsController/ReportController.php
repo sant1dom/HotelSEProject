@@ -23,7 +23,7 @@ class ReportController extends Controller
 
     public function usersIndex()
     {
-        $users = User::orderBy('name')->Paginate(7);
+        $users = User::orderBy('name')->get();
         return view('reports.users.index', compact('users'));
     }
 
@@ -35,7 +35,7 @@ class ReportController extends Controller
 
     public function servicesIndex()
     {
-        $services = Service::orderBy('name')->Paginate(7);
+        $services = Service::orderBy('name')->get();
         return view('reports.services.index', compact('services'));
     }
 

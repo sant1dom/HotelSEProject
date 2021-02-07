@@ -93,7 +93,7 @@
                                         <div class="imagePreviewEdit"
                                              style="background-image: URL('{{$image->path}}');">
                                         </div>
-                                        <i class="fa fa-times del" onclick="{{ route('rooms.deleteImage', $image) }}"></i>
+                                        <i class="fa fa-times del"></i>
                                     </div><!-- col-2 -->
                                 @endforeach
                             </div><!-- row -->

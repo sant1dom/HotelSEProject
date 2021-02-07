@@ -37,14 +37,9 @@
 .imgAdd {
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    background-color: #4bd7ef;
-    color: #fff;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
     text-align: center;
-    line-height: 30px;
     margin-top: 15px;
     margin-left: 15px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 30px;
 }
