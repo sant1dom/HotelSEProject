@@ -18,7 +18,7 @@
                     <div class="row" style="background-color: white; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);">
                         <div class="col-sm has-text-centered serviceImage"
                              style="margin-left: 6rem; margin-top: 2rem; margin-bottom: 2rem; vertical-align: middle;">
-                            <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
+                            <div id="carouselIndicators{{$j}}" class="carousel slide" data-interval="false" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <?php $i = 0;?>
                                     @foreach ($service->imageServices as $image)
@@ -41,7 +41,7 @@
                                             $set_ = '';
                                         } ?>
                                         <div class='carousel-item  <?php echo $set_; ?>'>
-                                            <img src="{{$image->path}}" class='imageService' alt=""
+                                            <img src="/storage/{{$image->path}}" class='imageService' alt=""
                                                  style="margin: auto; object-fit: contain;">
                                         </div>
                                         <?php $i++;?>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-sm has-text-centered serviceImage"
                                  style="margin-right: 6rem; margin-top: 2rem; margin-bottom: 2rem; vertical-align: middle;">
-                                <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
+                                <div id="carouselIndicators{{$j}}" class="carousel slide" data-interval="false" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <?php $i = 0;?>
                                         @foreach ($service->imageServices as $image)
@@ -103,7 +103,7 @@
                                                 $set_ = '';
                                             } ?>
                                             <div class='carousel-item  <?php echo $set_; ?>'>
-                                                <img src="{{$image->path}}" class='imageService img-responsive'
+                                                <img src="/storage/{{$image->path}}" class='imageService img-responsive'
                                                      alt=""
                                                      style="margin: auto;">
                                             </div>

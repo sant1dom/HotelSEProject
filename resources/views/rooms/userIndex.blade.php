@@ -93,7 +93,7 @@
                         <div class="row" style="background-color: white; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);">
                             <div class="col-sm has-text-centered roomImage"
                                  style="margin: 2rem; vertical-align: middle;">
-                                <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
+                                <div id="carouselIndicators{{$j}}" class="carousel slide" data-interval="false" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <?php $i = 0;?>
                                         @foreach ($room->imageRooms as $image)
@@ -116,7 +116,7 @@
                                                 $set_ = '';
                                             } ?>
                                             <div class='carousel-item  <?php echo $set_; ?>'>
-                                                <img src="{{$image->path}}" class='imageRoom' alt=""
+                                                <img src="/storage/{{$image->path}}" class='imageRoom' alt=""
                                                      style="margin: auto; object-fit: contain;">
                                             </div>
                                             <?php $i++;?>
@@ -176,7 +176,7 @@
                             </div>
                             <div class="col-sm has-text-centered roomImage"
                                  style="margin: 2rem; vertical-align: middle;">
-                                <div id="carouselIndicators{{$j}}" class="carousel slide" data-ride="carousel">
+                                <div id="carouselIndicators{{$j}}" class="carousel slide" data-interval="false" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <?php $i = 0;?>
                                         @foreach ($room->imageRooms as $image)
@@ -199,7 +199,7 @@
                                                 $set_ = '';
                                             } ?>
                                             <div class='carousel-item  <?php echo $set_; ?>'>
-                                                <img src="{{$image->path}}" class='imageRoom img-responsive'
+                                                <img src="/storage/{{$image->path}}" class='imageRoom img-responsive'
                                                      alt=""
                                                      style="margin: auto;">
                                             </div>

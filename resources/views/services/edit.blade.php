@@ -66,7 +66,7 @@
                                 @foreach($service->imageServices as $image)
                                     <div class="col-sm-3 imgUp ">
                                         <div class="imagePreviewEdit"
-                                             style="background-image: URL('{{$image->path}}');">
+                                             style="background-image: URL('/storage/{{$image->path}}');">
                                         </div>
                                         <i class="fa fa-times del"></i>
                                     </div><!-- col-2 -->

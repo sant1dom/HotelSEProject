@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ModelsController;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guest;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
@@ -52,20 +53,22 @@ class GuestsController extends Controller
 
         for($count = 0; $count < count($names); $count++)
         {
+            $user_id = Auth::user()->id;
             $guest = new Guest([
                 'name' => $names[$count],
                 'surname' => $surnames[$count],
                 'birthdate' => $birthdates[$count],
                 'doctype' => $doctypes[$count],
                 'numdoc' => $numdocs[$count],
-                'user_id' => $request->user_id,
+                'user_id' => $user_id,
             ]);
             $guest->save();
         }
 
         $user = Auth::user();
         $guests = Auth::user()->guests()->get();
-        return view('bookings.stepTwo', compact('guests', 'request', 'user'))->with('success', 'Guests created successfully.');
+        $max = Room::where('id', 'LIKE', $request->ourRooms)->first()->capacity;
+        return view('bookings.stepTwo', compact('guests', 'request', 'user', 'max'))->with('success', 'Guests created successfully.');
     }
 
     //Mostra una vista per modificare un oggetto esistente

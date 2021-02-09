@@ -89,8 +89,6 @@ class BookingsController extends Controller
 
     public function showStepFour(Request $request)
     {
-
-
         $this->validateStepThree($request);
         $room = Room::where('id', 'LIKE', $request->ourRooms)->first();
 
@@ -165,7 +163,7 @@ class BookingsController extends Controller
             }
         }
         $booking->update($request->all());
-        return redirect()->route('bookings.index')
+        return redirect()->route('bookings.userIndex')
             ->with('success', 'Booking updated successfully');
     }
 

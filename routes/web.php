@@ -71,9 +71,8 @@ Route::prefix('bookings')->group(function() {
     Route::get('/userIndex', [BookingsController::class, 'userIndex'])->name('bookings.userIndex')->middleware('auth');
     Route::get('/index', [BookingsController::class, 'index'])->name('bookings.index')->middleware('auth:admin');
     Route::get('/store', [BookingsController::class, 'store'])->name('bookings.store')->middleware('auth');
-    Route::get('/edit/{booking}', [BookingsController::class, 'edit'])->name('bookings.edit')->middleware('auth');
-    //update non funziona, reindirizza al login admin.
     Route::put('/update/{booking}', [BookingsController::class, 'update'])->name('bookings.update')->middleware('auth');
+    Route::get('/edit/{booking}', [BookingsController::class, 'edit'])->name('bookings.edit')->middleware('auth');
 });
 
 
